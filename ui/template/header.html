@@ -20,10 +20,13 @@
 -->
 {{define "header"}}
 <!DOCTYPE html>
-<html lang="{{.lang}}">
+<html lang="{{.lang}}" dir="{{if .dir}}{{.dir}}{{else}}ltr{{end}}">
   <head>
     <meta charset="utf-8" />
     <title>{{.title}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Cairo:wght@300..700&display=swap" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" />
     <meta name="description" content="{{.description}}" data-rh="true" />
@@ -144,7 +147,7 @@
         <div id="protect-browser"></div>
       </div>
 
-      <nav id="header" class="sticky-top theme-dark navbar navbar-expand-xl navbar-light">
+      <nav id="header" class="sticky-top theme-light navbar navbar-expand-xl navbar-light">
         <div class="w-100 d-flex align-items-center px-3">
           <button
             aria-controls="navBarContent"
@@ -162,8 +165,8 @@
                 <img class="logo me-0" src="{{.siteinfo.Branding.Logo}}" alt="{{.siteinfo.General.Name}}">
               </a>
             {{else}}
-              <a class="lh-1 me-0 me-sm-3 navbar-brand" href="{{$.baseURL}}/">
-                {{.siteinfo.General.Name}}
+              <a class="lh-1 me-0 me-sm-3 p-0 navbar-brand" href="{{$.baseURL}}/">
+                <img class="logo me-0" src="{{$.baseURL}}/static/assets/logo-lightmode.svg" alt="{{.siteinfo.General.Name}}" style="max-height: 2rem">
               </a>
             {{end}}
           </div>

@@ -18,7 +18,7 @@
  */
 
 export const DEFAULT_SITE_NAME = 'Answer';
-export const DEFAULT_LANG = 'en_US';
+export const DEFAULT_LANG = 'ar_SA';
 export const CURRENT_LANG_STORAGE_KEY = '_a_lang_';
 export const LANG_RESOURCE_STORAGE_KEY = '_a_lang_r_';
 export const LOGGED_TOKEN_STORAGE_KEY = '_a_ltk_';
@@ -700,7 +700,8 @@ export const SYSTEM_AVATAR_OPTIONS = [
 
 export const TAG_SLUG_NAME_MAX_LENGTH = 35;
 
-export const DEFAULT_THEME_COLOR = '#0033ff';
+// Reseda Green — hsl(105, 15.2%, 36.1%), matches the syrianzone primary
+export const DEFAULT_THEME_COLOR = '#556A4E';
 
 export const SUSPENSE_USER_TIME = [
   {

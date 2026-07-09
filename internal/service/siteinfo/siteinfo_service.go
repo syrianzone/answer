@@ -176,9 +176,9 @@ func (s *SiteInfoService) SaveSiteGeneral(ctx context.Context, req schema.SiteGe
 }
 
 func (s *SiteInfoService) SaveSiteInterface(ctx context.Context, req schema.SiteInterfaceReq) (err error) {
-	// If the language is invalid, set it to the default language "en_US"
+	// If the language is invalid, set it to the default language "ar_SA"
 	if !translator.CheckLanguageIsValid(req.Language) {
-		req.Language = "en_US"
+		req.Language = "ar_SA"
 	}
 
 	content, _ := json.Marshal(req)

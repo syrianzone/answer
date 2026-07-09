@@ -15,1370 +15,2488 @@
 # specific language governing permissions and limitations
 # under the License.
 
-#The following fields are used for back-end
+# The following fields are used for back-end
+
 backend:
   base:
     success:
-      other: Success.
+      other: تم بنجاح.
     unknown:
-      other: Unknown error.
+      other: خطأ غير معروف.
     request_format_error:
-      other: Request format is not valid.
+      other: صيغة الطلب غير صالحة.
     unauthorized_error:
-      other: Unauthorized.
+      other: غير مصرح.
     database_error:
-      other: Data server error.
+      other: خطأ في خادم البيانات.
+    forbidden_error:
+      other: محظور.
+    duplicate_request_error:
+      other: إرسال مكرر.
+  action:
+    report:
+      other: إبلاغ
+    edit:
+      other: تعديل
+    delete:
+      other: حذف
+    close:
+      other: إغلاق
+    reopen:
+      other: إعادة فتح
+    forbidden_error:
+      other: محظور.
+    pin:
+      other: تثبيت
+    hide:
+      other: إخفاء من القائمة
+    unpin:
+      other: إلغاء التثبيت
+    show:
+      other: إظهار في القائمة
+    invite_someone_to_answer:
+      other: تعديل
+    undelete:
+      other: استرجاع
+    merge:
+      other: دمج
   role:
     name:
       user:
-        other: User
+        other: مستخدم
       admin:
-        other: Admin
+        other: مدير
       moderator:
-        other: Moderator
+        other: مشرف
     description:
       user:
-        other: Default with no special access.
+        other: الدور الافتراضي دون صلاحيات خاصة.
       admin:
-        other: Have the full power to access the site.
+        other: يملك الصلاحية الكاملة للوصول إلى الموقع.
       moderator:
-        other: Has access to all posts except admin settings.
+        other: يمكنه الوصول إلى جميع المنشورات باستثناء إعدادات المدير.
+  privilege:
+    level_1:
+      description:
+        other: المستوى 1 (سمعة أقل مطلوبة للفرق والمجموعات الخاصة)
+    level_2:
+      description:
+        other: المستوى 2 (سمعة منخفضة مطلوبة للمجتمعات الناشئة)
+    level_3:
+      description:
+        other: المستوى 3 (سمعة عالية مطلوبة للمجتمعات الناضجة)
+    level_custom:
+      description:
+        other: مستوى مخصص
+    rank_question_add_label:
+      other: طرح سؤال
+    rank_answer_add_label:
+      other: كتابة إجابة
+    rank_comment_add_label:
+      other: كتابة تعليق
+    rank_report_add_label:
+      other: إبلاغ
+    rank_comment_vote_up_label:
+      other: التصويت بالإيجاب على تعليق
+    rank_link_url_limit_label:
+      other: نشر أكثر من رابطين في المرة الواحدة
+    rank_question_vote_up_label:
+      other: التصويت بالإيجاب على سؤال
+    rank_answer_vote_up_label:
+      other: التصويت بالإيجاب على إجابة
+    rank_question_vote_down_label:
+      other: التصويت بالسلب على سؤال
+    rank_answer_vote_down_label:
+      other: التصويت بالسلب على إجابة
+    rank_invite_someone_to_answer_label:
+      other: دعوة شخص للإجابة
+    rank_tag_add_label:
+      other: إنشاء وسم جديد
+    rank_tag_edit_label:
+      other: تعديل وصف الوسم (يتطلب مراجعة)
+    rank_question_edit_label:
+      other: تعديل سؤال الآخرين (يتطلب مراجعة)
+    rank_answer_edit_label:
+      other: تعديل إجابة الآخرين (تتطلب مراجعة)
+    rank_question_edit_without_review_label:
+      other: تعديل سؤال الآخرين دون مراجعة
+    rank_answer_edit_without_review_label:
+      other: تعديل إجابة الآخرين دون مراجعة
+    rank_question_audit_label:
+      other: مراجعة تعديلات الأسئلة
+    rank_answer_audit_label:
+      other: مراجعة تعديلات الإجابات
+    rank_tag_audit_label:
+      other: مراجعة تعديلات الوسوم
+    rank_tag_edit_without_review_label:
+      other: تعديل وصف الوسم دون مراجعة
+    rank_tag_synonym_label:
+      other: إدارة مرادفات الوسوم
   email:
-    other: Email
+    other: البريد الإلكتروني
+  e_mail:
+    other: البريد الإلكتروني
   password:
-    other: Password
+    other: كلمة المرور
+  pass:
+    other: كلمة المرور
+  old_pass:
+    other: كلمة المرور الحالية
+  original_text:
+    other: هذا المنشور
   email_or_password_wrong_error:
-    other: Email and password do not match.
+    other: البريد الإلكتروني وكلمة المرور غير متطابقين.
   error:
+    common:
+      invalid_url:
+        other: رابط غير صالح.
+      status_invalid:
+        other: حالة غير صالحة.
+    password:
+      space_invalid:
+        other: لا يمكن أن تحتوي كلمة المرور على مسافات.
     admin:
+      cannot_update_their_password:
+        other: لا يمكنك تعديل كلمة المرور الخاصة بك.
+      cannot_edit_their_profile:
+        other: لا يمكنك تعديل ملفك الشخصي.
+      cannot_modify_self_status:
+        other: لا يمكنك تعديل حالتك.
       email_or_password_wrong:
-        other: Email and password do not match.
+        other: البريد الإلكتروني وكلمة المرور غير متطابقين.
     answer:
       not_found:
-        other: Answer do not found.
+        other: الإجابة غير موجودة.
       cannot_deleted:
-        other: No permission to delete.
+        other: لا توجد صلاحية للحذف.
       cannot_update:
-        other: No permission to update.
+        other: لا توجد صلاحية للتحديث.
+      question_closed_cannot_add:
+        other: السؤال مغلق ولا يمكن إضافة إجابات.
+      content_cannot_empty:
+        other: لا يمكن أن يكون محتوى الإجابة فارغًا.
     comment:
       edit_without_permission:
-        other: Comment are not allowed to edit.
+        other: غير مسموح بتعديل التعليق.
       not_found:
-        other: Comment not found.
+        other: التعليق غير موجود.
       cannot_edit_after_deadline:
-        other: The comment time has been too long to modify.
+        other: مضى وقت طويل على التعليق ولا يمكن تعديله.
+      content_cannot_empty:
+        other: لا يمكن أن يكون محتوى التعليق فارغًا.
     email:
       duplicate:
-        other: Email already exists.
+        other: البريد الإلكتروني موجود بالفعل.
       need_to_be_verified:
-        other: Email should be verified.
+        other: يجب التحقق من البريد الإلكتروني.
       verify_url_expired:
-        other: Email verified URL has expired, please resend the email.
+        other: انتهت صلاحية رابط التحقق من البريد الإلكتروني، يرجى إعادة إرسال البريد.
+      illegal_email_domain_error:
+        other: البريد الإلكتروني غير مسموح به من هذا النطاق. يرجى استخدام بريد آخر.
     lang:
       not_found:
-        other: Language file not found.
+        other: ملف اللغة غير موجود.
     object:
       captcha_verification_failed:
-        other: Captcha wrong.
+        other: رمز التحقق غير صحيح.
       disallow_follow:
-        other: You are not allowed to follow.
+        other: غير مسموح لك بالمتابعة.
       disallow_vote:
-        other: You are not allowed to vote.
+        other: غير مسموح لك بالتصويت.
       disallow_vote_your_self:
-        other: You can't vote for your own post.
+        other: لا يمكنك التصويت على منشورك الخاص.
       not_found:
-        other: Object not found.
+        other: العنصر غير موجود.
       verification_failed:
-        other: Verification failed.
+        other: فشل التحقق.
       email_or_password_incorrect:
-        other: Email and password do not match.
+        other: البريد الإلكتروني وكلمة المرور غير متطابقين.
       old_password_verification_failed:
-        other: The old password verification failed
+        other: فشل التحقق من كلمة المرور القديمة
       new_password_same_as_previous_setting:
-        other: The new password is the same as the previous one.
+        other: كلمة المرور الجديدة مطابقة لكلمة المرور السابقة.
+      already_deleted:
+        other: هذا المنشور تم حذفه.
+    meta:
+      object_not_found:
+        other: العنصر الوصفي غير موجود
     question:
+      already_deleted:
+        other: هذا المنشور تم حذفه.
+      under_review:
+        other: منشورك في انتظار المراجعة. سيكون مرئيًا بعد الموافقة عليه.
       not_found:
-        other: Question not found.
+        other: السؤال غير موجود.
       cannot_deleted:
-        other: No permission to delete.
+        other: لا توجد صلاحية للحذف.
       cannot_close:
-        other: No permission to close.
+        other: لا توجد صلاحية للإغلاق.
       cannot_update:
-        other: No permission to update.
+        other: لا توجد صلاحية للتحديث.
+      content_cannot_empty:
+        other: لا يمكن أن يكون المحتوى فارغًا.
+      content_less_than_minimum:
+        other: المحتوى المُدخل غير كافٍ.
     rank:
       fail_to_meet_the_condition:
-        other: Rank fail to meet the condition.
+        other: رتبة السمعة لا تستوفي الشرط المطلوب.
+      vote_fail_to_meet_the_condition:
+        other: شكرًا على ملاحظاتك. تحتاج إلى {{.Rank}} نقطة سمعة على الأقل للتصويت.
+      no_enough_rank_to_operate:
+        other: تحتاج إلى {{.Rank}} نقطة سمعة على الأقل للقيام بذلك.
     report:
       handle_failed:
-        other: Report handle failed.
+        other: فشلت معالجة البلاغ.
       not_found:
-        other: Report not found.
+        other: البلاغ غير موجود.
     tag:
+      already_exist:
+        other: الوسم موجود بالفعل.
       not_found:
-        other: Tag not found.
+        other: الوسم غير موجود.
       recommend_tag_not_found:
-        other: Recommend Tag is not exist.
+        other: الوسم المقترح غير موجود.
       recommend_tag_enter:
-        other: Please enter at least one required tag.
+        other: يرجى إدخال وسم واحد مطلوب على الأقل.
       not_contain_synonym_tags:
-        other: Should not contain synonym tags.
+        other: يجب ألا يحتوي على وسوم مرادفة.
       cannot_update:
-        other: No permission to update.
+        other: لا توجد صلاحية للتحديث.
+      is_used_cannot_delete:
+        other: لا يمكنك حذف وسم قيد الاستخدام.
       cannot_set_synonym_as_itself:
-        other: You cannot set the synonym of the current tag as itself.
+        other: لا يمكنك تعيين الوسم الحالي كمرادف لنفسه.
+      minimum_count:
+        other: لم يتم إدخال عدد كافٍ من الوسوم.
     smtp:
       config_from_name_cannot_be_email:
-        other: The From Name cannot be a email address.
+        other: لا يمكن أن يكون اسم المرسل عنوان بريد إلكتروني.
     theme:
       not_found:
-        other: Theme not found.
+        other: السمة غير موجودة.
     revision:
       review_underway:
-        other: Can't edit currently, there is a version in the review queue.
+        other: لا يمكن التعديل حاليًا، توجد نسخة في قائمة انتظار المراجعة.
       no_permission:
-        other: No permission to Revision.
+        other: لا توجد صلاحية للمراجعة.
     user:
+      external_login_missing_user_id:
+        other: المنصة الخارجية لا توفر معرّف مستخدم فريدًا، لذا لا يمكنك تسجيل الدخول، يرجى التواصل مع مدير الموقع.
+      external_login_unbinding_forbidden:
+        other: يرجى تعيين كلمة مرور لتسجيل الدخول إلى حسابك قبل إزالة طريقة تسجيل الدخول هذه.
       email_or_password_wrong:
         other:
-          other: Email and password do not match.
+          other: البريد الإلكتروني وكلمة المرور غير متطابقين.
       not_found:
-        other: User not found.
+        other: المستخدم غير موجود.
       suspended:
-        other: User has been suspended.
+        other: تم إيقاف المستخدم.
       username_invalid:
-        other: Username is invalid.
+        other: اسم المستخدم غير صالح.
       username_duplicate:
-        other: Username is already in use.
+        other: اسم المستخدم مستخدم بالفعل.
       set_avatar:
-        other: Avatar set failed.
+        other: فشل تعيين الصورة الرمزية.
       cannot_update_your_role:
-        other: You cannot modify your role.
+        other: لا يمكنك تعديل دورك.
       not_allowed_registration:
-        other: Currently the site is not open for registration
+        other: التسجيل في الموقع غير متاح حاليًا.
+      not_allowed_login_via_password:
+        other: تسجيل الدخول عبر كلمة المرور غير مسموح به حاليًا في الموقع.
+      access_denied:
+        other: تم رفض الوصول
+      page_access_denied:
+        other: لا تملك صلاحية الوصول إلى هذه الصفحة.
+      add_bulk_users_format_error:
+        other: "خطأ في صيغة {{.Field}} بالقرب من '{{.Content}}' في السطر {{.Line}}. {{.ExtraMessage}}"
+      add_bulk_users_amount_error:
+        other: "يجب أن يكون عدد المستخدمين الذين تضيفهم دفعة واحدة ضمن النطاق 1-{{.MaxAmount}}."
+      status_suspended_forever:
+        other: "<strong>تم إيقاف هذا المستخدم نهائيًا.</strong> هذا المستخدم لا يلتزم بإرشادات المجتمع."
+      status_suspended_until:
+        other: "<strong>تم إيقاف هذا المستخدم حتى {{.SuspendedUntil}}.</strong> هذا المستخدم لا يلتزم بإرشادات المجتمع."
+      status_deleted:
+        other: "تم حذف هذا المستخدم."
+      status_inactive:
+        other: "هذا المستخدم غير نشط."
     config:
       read_config_failed:
-        other: Read config failed
+        other: فشلت قراءة الإعدادات
     database:
       connection_failed:
-        other: Database connection failed
+        other: فشل الاتصال بقاعدة البيانات
       create_table_failed:
-        other: Create table failed
+        other: فشل إنشاء الجدول
     install:
       create_config_failed:
-        other: Can't create the config.yaml file.
+        other: تعذر إنشاء ملف config.yaml.
     upload:
       unsupported_file_format:
-        other: Unsupported file format.
-  report:
+        other: صيغة الملف غير مدعومة.
+    site_info:
+      config_not_found:
+        other: إعدادات الموقع غير موجودة.
+    badge:
+      object_not_found:
+        other: عنصر الشارة غير موجود
+  reason:
     spam:
       name:
-        other: spam
+        other: محتوى مزعج
       desc:
-        other: This post is an advertisement, or vandalism. It is not useful or relevant to the current topic.
-    rude:
+        other: هذا المنشور إعلان أو تخريب. وهو غير مفيد أو غير ذي صلة بالموضوع الحالي.
+    rude_or_abusive:
       name:
-        other: rude or abusive
+        other: فظ أو مسيء
       desc:
-        other: A reasonable person would find this content inappropriate for respectful discourse.
-    duplicate:
+        other: "أي شخص عاقل سيجد هذا المحتوى غير لائق لنقاش محترم."
+    a_duplicate:
       name:
-        other: a duplicate
+        other: مكرر
       desc:
-        other: This question has been asked before and already has an answer.
-    not_answer:
+        other: هذا السؤال طُرح من قبل ولديه إجابة بالفعل.
+      placeholder:
+        other: أدخل رابط السؤال الموجود
+    not_a_answer:
       name:
-        other: not an answer
+        other: ليس إجابة
       desc:
-        other: This was posted as an answer, but it does not attempt to answer the question. It should possibly be an edit, a comment, another question, or deleted altogether.
-    not_need:
+        other: "نُشر هذا كإجابة، لكنه لا يحاول الإجابة على السؤال. ربما ينبغي أن يكون تعديلًا أو تعليقًا أو سؤالًا آخر، أو أن يُحذف تمامًا."
+    no_longer_needed:
       name:
-        other: no longer needed
+        other: لم يعد ضروريًا
       desc:
-        other: This comment is outdated, conversational or not relevant to this post.
-    other:
+        other: هذا التعليق قديم أو حواري أو غير ذي صلة بهذا المنشور.
+    something:
       name:
-        other: something else
+        other: سبب آخر
       desc:
-        other: This post requires staff attention for another reason not listed above.
+        other: يتطلب هذا المنشور انتباه فريق العمل لسبب آخر غير مذكور أعلاه.
+      placeholder:
+        other: أخبرنا تحديدًا بما يقلقك
+    community_specific:
+      name:
+        other: سبب خاص بالمجتمع
+      desc:
+        other: هذا السؤال لا يلتزم بإرشادات المجتمع.
+    not_clarity:
+      name:
+        other: يحتاج إلى تفاصيل أو توضيح
+      desc:
+        other: يتضمن هذا السؤال حاليًا عدة أسئلة في سؤال واحد. ينبغي أن يركز على مشكلة واحدة فقط.
+    looks_ok:
+      name:
+        other: يبدو جيدًا
+      desc:
+        other: هذا المنشور جيد كما هو وليس منخفض الجودة.
+    needs_edit:
+      name:
+        other: يحتاج إلى تعديل، وقد قمت به
+      desc:
+        other: قم بتحسين هذا المنشور وتصحيح مشاكله بنفسك.
+    needs_close:
+      name:
+        other: يحتاج إلى إغلاق
+      desc:
+        other: السؤال المغلق لا يمكن الإجابة عليه، لكن لا يزال بالإمكان تعديله والتصويت والتعليق عليه.
+    needs_delete:
+      name:
+        other: يحتاج إلى حذف
+      desc:
+        other: سيتم حذف هذا المنشور.
   question:
     close:
       duplicate:
         name:
-          other: spam
+          other: بريد مزعج
         desc:
-          other: This question has been asked before and already has an answer.
+          other: هذا السؤال طُرح من قبل ولديه إجابة بالفعل.
       guideline:
         name:
-          other: a community-specific reason
+          other: سبب خاص بالمجتمع
         desc:
-          other: This question doesn't meet a community guideline.
+          other: هذا السؤال لا يتوافق مع إرشادات المجتمع.
       multiple:
         name:
-          other: needs details or clarity
+          other: يحتاج إلى تفاصيل أو توضيح
         desc:
-          other: This question currently includes multiple questions in one. It should focus on one problem only.
+          other: يتضمن هذا السؤال حاليًا عدة أسئلة في سؤال واحد. ينبغي أن يركز على مشكلة واحدة فقط.
       other:
         name:
-          other: something else
+          other: سبب آخر
         desc:
-          other: This post requires another reason not listed above.
+          other: يتطلب هذا المنشور سببًا آخر غير مذكور أعلاه.
     operation_type:
       asked:
-        other: asked
+        other: سأل
       answered:
-        other: answered
+        other: أجاب
       modified:
-        other: modified
+        other: عدّل
+    deleted_title:
+      other: سؤال محذوف
+    questions_title:
+      other: الأسئلة
+  tag:
+    tags_title:
+      other: الوسوم
+    no_description:
+      other: لا يوجد وصف لهذا الوسم.
   notification:
     action:
       update_question:
-        other: updated question
+        other: حدّث السؤال
       answer_the_question:
-        other: answered question
+        other: أجاب عن السؤال
       update_answer:
-        other: updated answer
+        other: حدّث الإجابة
       accept_answer:
-        other: accepted answer
+        other: قبل الإجابة
       comment_question:
-        other: commented question
+        other: علّق على السؤال
       comment_answer:
-        other: commented answer
+        other: علّق على الإجابة
       reply_to_you:
-        other: replied to you
+        other: ردّ عليك
       mention_you:
-        other: mentioned you
+        other: أشار إليك
       your_question_is_closed:
-        other: Your question has been closed
+        other: تم إغلاق سؤالك
       your_question_was_deleted:
-        other: Your question has been deleted
+        other: تم حذف سؤالك
       your_answer_was_deleted:
-        other: Your answer has been deleted
+        other: تم حذف إجابتك
       your_comment_was_deleted:
-        other: Your comment has been deleted
-#The following fields are used for interface presentation(Front-end)
+        other: تم حذف تعليقك
+      up_voted_question:
+        other: صوّت للسؤال بالإيجاب
+      down_voted_question:
+        other: صوّت للسؤال بالسلب
+      up_voted_answer:
+        other: صوّت للإجابة بالإيجاب
+      down_voted_answer:
+        other: صوّت للإجابة بالسلب
+      up_voted_comment:
+        other: صوّت للتعليق بالإيجاب
+      invited_you_to_answer:
+        other: دعاك للإجابة
+      earned_badge:
+        other: لقد حصلت على شارة "{{.BadgeName}}"
+  email_tpl:
+    change_email:
+      title:
+        other: "[{{.SiteName}}] تأكيد عنوان بريدك الإلكتروني الجديد"
+      body:
+        other: "أكّد عنوان بريدك الإلكتروني الجديد في {{.SiteName}} بالنقر على الرابط التالي:<br>\n<a href='{{.ChangeEmailUrl}}' target='_blank'>{{.ChangeEmailUrl}}</a><br><br>\n\nإذا لم تطلب هذا التغيير، فيرجى تجاهل هذه الرسالة.<br><br>\n\n--<br>\nملاحظة: هذه رسالة آلية من النظام، يرجى عدم الرد عليها لأن ردك لن تتم رؤيته."
+    new_answer:
+      title:
+        other: "[{{.SiteName}}] أجاب {{.DisplayName}} عن سؤالك"
+      body:
+        other: "<a href='{{.AnswerUrl}}'>{{.QuestionTitle}}</a><br><br>\n\n{{.DisplayName}}:<br>\n<blockquote>{{.AnswerSummary}}</blockquote><br>\n<a href='{{.AnswerUrl}}'>اعرضها على {{.SiteName}}</a><br><br>\n\n--<br>\nملاحظة: هذه رسالة آلية من النظام، يرجى عدم الرد عليها لأن ردك لن تتم رؤيته.<br><br>\n\n<small><a href='{{.UnsubscribeUrl}}'>إلغاء الاشتراك</a></small>"
+    invited_you_to_answer:
+      title:
+        other: "[{{.SiteName}}] دعاك {{.DisplayName}} للإجابة"
+      body:
+        other: "<a href='{{.InviteUrl}}'>{{.QuestionTitle}}</a><br><br>\n\n{{.DisplayName}}:<br>\n<blockquote>أعتقد أنك قد تعرف الإجابة.</blockquote><br>\n<a href='{{.InviteUrl}}'>اعرضه على {{.SiteName}}</a><br><br>\n\n--<br>\nملاحظة: هذه رسالة آلية من النظام، يرجى عدم الرد عليها لأن ردك لن تتم رؤيته.<br><br>\n\n<small><a href='{{.UnsubscribeUrl}}'>إلغاء الاشتراك</a></small>"
+    new_comment:
+      title:
+        other: "[{{.SiteName}}] علّق {{.DisplayName}} على منشورك"
+      body:
+        other: "<a href='{{.CommentUrl}}'>{{.QuestionTitle}}</a><br><br>\n\n{{.DisplayName}}:<br>\n<blockquote>{{.CommentSummary}}</blockquote><br>\n<a href='{{.CommentUrl}}'>اعرضه على {{.SiteName}}</a><br><br>\n\n--<br>\nملاحظة: هذه رسالة آلية من النظام، يرجى عدم الرد عليها لأن ردك لن تتم رؤيته.<br><br>\n\n<small><a href='{{.UnsubscribeUrl}}'>إلغاء الاشتراك</a></small>"
+    new_question:
+      title:
+        other: "[{{.SiteName}}] سؤال جديد: {{.QuestionTitle}}"
+      body:
+        other: "<a href='{{.QuestionUrl}}'>{{.QuestionTitle}}</a><br>\n<small>{{.Tags}}</small><br><br>\n\n--<br>\nملاحظة: هذه رسالة آلية من النظام، يرجى عدم الرد عليها لأن ردك لن تتم رؤيته.<br><br>\n\n<small><a href='{{.UnsubscribeUrl}}'>إلغاء الاشتراك</a></small>"
+    pass_reset:
+      title:
+        other: "[{{.SiteName }}] إعادة تعيين كلمة المرور"
+      body:
+        other: "طلب شخص ما إعادة تعيين كلمة مرورك على {{.SiteName}}.<br><br>\n\nإذا لم تكن أنت من طلب ذلك، فيمكنك تجاهل هذه الرسالة بأمان.<br><br>\n\nانقر على الرابط التالي لاختيار كلمة مرور جديدة:<br>\n<a href='{{.PassResetUrl}}' target='_blank'>{{.PassResetUrl}}</a>\n<br><br>\n\n--<br>\nملاحظة: هذه رسالة آلية من النظام، يرجى عدم الرد عليها لأن ردك لن تتم رؤيته."
+    register:
+      title:
+        other: "[{{.SiteName}}] تأكيد حسابك الجديد"
+      body:
+        other: "مرحبًا بك في {{.SiteName}}!<br><br>\n\nانقر على الرابط التالي لتأكيد حسابك الجديد وتفعيله:<br>\n<a href='{{.RegisterUrl}}' target='_blank'>{{.RegisterUrl}}</a><br><br>\n\nإذا لم يكن الرابط أعلاه قابلًا للنقر، فحاول نسخه ولصقه في شريط العنوان في متصفحك.\n<br><br>\n\n--<br>\nملاحظة: هذه رسالة آلية من النظام، يرجى عدم الرد عليها لأن ردك لن تتم رؤيته."
+    test:
+      title:
+        other: "[{{.SiteName}}] رسالة تجريبية"
+      body:
+        other: "هذه رسالة بريد إلكتروني تجريبية.\n<br><br>\n\n--<br>\nملاحظة: هذه رسالة آلية من النظام، يرجى عدم الرد عليها لأن ردك لن تتم رؤيته."
+  action_activity_type:
+    upvote:
+      other: تصويت بالإيجاب
+    upvoted:
+      other: صوّت بالإيجاب
+    downvote:
+      other: تصويت بالسلب
+    downvoted:
+      other: صوّت بالسلب
+    accept:
+      other: قبول
+    accepted:
+      other: مقبولة
+    edit:
+      other: تعديل
+  review:
+    queued_post:
+      other: منشور في قائمة الانتظار
+    flagged_post:
+      other: منشور مبلَّغ عنه
+    suggested_post_edit:
+      other: تعديلات مقترحة
+  reaction:
+    tooltip:
+      other: "{{ .Names }} و{{ .Count }} آخرون..."
+  badge:
+    default_badges:
+      autobiographer:
+        name:
+          other: كاتب سيرة ذاتية
+        desc:
+          other: أكمل معلومات <a href="{{ .ProfileURL }}" target="_blank">الملف الشخصي</a>.
+      certified:
+        name:
+          other: معتمد
+        desc:
+          other: أكمل الدليل التعريفي للمستخدم الجديد.
+      editor:
+        name:
+          other: محرّر
+        desc:
+          other: أول تعديل على منشور.
+      first_flag:
+        name:
+          other: أول إبلاغ
+        desc:
+          other: أبلغ عن منشور لأول مرة.
+      first_upvote:
+        name:
+          other: أول تصويت بالإيجاب
+        desc:
+          other: صوّت لمنشور بالإيجاب لأول مرة.
+      first_link:
+        name:
+          other: أول رابط
+        desc:
+          other: أضاف رابطًا إلى منشور آخر لأول مرة.
+      first_reaction:
+        name:
+          other: أول تفاعل
+        desc:
+          other: تفاعل مع منشور لأول مرة.
+      first_share:
+        name:
+          other: أول مشاركة
+        desc:
+          other: شارك منشورًا لأول مرة.
+      scholar:
+        name:
+          other: باحث
+        desc:
+          other: طرح سؤالًا وقبل إجابة.
+      commentator:
+        name:
+          other: معلّق
+        desc:
+          other: كتب 5 تعليقات.
+      new_user_of_the_month:
+        name:
+          other: المستخدم الجديد المميز لهذا الشهر
+        desc:
+          other: مساهمات متميزة في شهره الأول.
+      read_guidelines:
+        name:
+          other: قرأ الإرشادات
+        desc:
+          other: قرأ [إرشادات المجتمع].
+      reader:
+        name:
+          other: قارئ
+        desc:
+          other: قرأ جميع الإجابات في موضوع يحتوي على أكثر من 10 إجابات.
+      welcome:
+        name:
+          other: أهلًا بك
+        desc:
+          other: حصل على تصويت بالإيجاب.
+      nice_share:
+        name:
+          other: مشاركة لطيفة
+        desc:
+          other: شارك منشورًا وصل إلى 25 زائرًا فريدًا.
+      good_share:
+        name:
+          other: مشاركة جيدة
+        desc:
+          other: شارك منشورًا وصل إلى 300 زائر فريد.
+      great_share:
+        name:
+          other: مشاركة رائعة
+        desc:
+          other: شارك منشورًا وصل إلى 1000 زائر فريد.
+      out_of_love:
+        name:
+          other: بدافع الحب
+        desc:
+          other: استخدم 50 تصويتًا بالإيجاب في يوم واحد.
+      higher_love:
+        name:
+          other: حب أسمى
+        desc:
+          other: استخدم 50 تصويتًا بالإيجاب في يوم واحد 5 مرات.
+      crazy_in_love:
+        name:
+          other: مغرم حتى الجنون
+        desc:
+          other: استخدم 50 تصويتًا بالإيجاب في يوم واحد 20 مرة.
+      promoter:
+        name:
+          other: مروّج
+        desc:
+          other: دعا مستخدمًا واحدًا.
+      campaigner:
+        name:
+          other: داعية
+        desc:
+          other: دعا 3 مستخدمين أساسيين.
+      champion:
+        name:
+          other: بطل
+        desc:
+          other: دعا 5 أعضاء.
+      thank_you:
+        name:
+          other: شكرًا لك
+        desc:
+          other: لديه 20 منشورًا حاصلًا على تصويت بالإيجاب ومنح 10 تصويتات بالإيجاب.
+      gives_back:
+        name:
+          other: يردّ الجميل
+        desc:
+          other: لديه 100 منشور حاصل على تصويت بالإيجاب ومنح 100 تصويت بالإيجاب.
+      empathetic:
+        name:
+          other: متعاطف
+        desc:
+          other: لديه 500 منشور حاصل على تصويت بالإيجاب ومنح 1000 تصويت بالإيجاب.
+      enthusiast:
+        name:
+          other: متحمس
+        desc:
+          other: زار الموقع 10 أيام متتالية.
+      aficionado:
+        name:
+          other: شغوف
+        desc:
+          other: زار الموقع 100 يوم متتالٍ.
+      devotee:
+        name:
+          other: مخلص
+        desc:
+          other: زار الموقع 365 يومًا متتاليًا.
+      anniversary:
+        name:
+          other: الذكرى السنوية
+        desc:
+          other: عضو نشط منذ عام، ونشر مرة واحدة على الأقل.
+      appreciated:
+        name:
+          other: محل تقدير
+        desc:
+          other: حصل على تصويت واحد بالإيجاب في 20 منشورًا.
+      respected:
+        name:
+          other: محترم
+        desc:
+          other: حصل على تصويتين بالإيجاب في 100 منشور.
+      admired:
+        name:
+          other: محل إعجاب
+        desc:
+          other: حصل على 5 تصويتات بالإيجاب في 300 منشور.
+      solved:
+        name:
+          other: حلّال المشكلات
+        desc:
+          other: حصلت إحدى إجاباته على القبول.
+      guidance_counsellor:
+        name:
+          other: مرشد
+        desc:
+          other: حصلت 10 من إجاباته على القبول.
+      know_it_all:
+        name:
+          other: العارف بكل شيء
+        desc:
+          other: حصلت 50 من إجاباته على القبول.
+      solution_institution:
+        name:
+          other: مؤسسة الحلول
+        desc:
+          other: حصلت 150 من إجاباته على القبول.
+      nice_answer:
+        name:
+          other: إجابة لطيفة
+        desc:
+          other: إجابة بدرجة 10 أو أكثر.
+      good_answer:
+        name:
+          other: إجابة جيدة
+        desc:
+          other: إجابة بدرجة 25 أو أكثر.
+      great_answer:
+        name:
+          other: إجابة رائعة
+        desc:
+          other: إجابة بدرجة 50 أو أكثر.
+      nice_question:
+        name:
+          other: سؤال لطيف
+        desc:
+          other: سؤال بدرجة 10 أو أكثر.
+      good_question:
+        name:
+          other: سؤال جيد
+        desc:
+          other: سؤال بدرجة 25 أو أكثر.
+      great_question:
+        name:
+          other: سؤال رائع
+        desc:
+          other: سؤال بدرجة 50 أو أكثر.
+      popular_question:
+        name:
+          other: سؤال شائع
+        desc:
+          other: سؤال حصل على 500 مشاهدة.
+      notable_question:
+        name:
+          other: سؤال بارز
+        desc:
+          other: سؤال حصل على 1,000 مشاهدة.
+      famous_question:
+        name:
+          other: سؤال مشهور
+        desc:
+          other: سؤال حصل على 5,000 مشاهدة.
+      popular_link:
+        name:
+          other: رابط شائع
+        desc:
+          other: نشر رابطًا خارجيًا حصل على 50 نقرة.
+      hot_link:
+        name:
+          other: رابط رائج
+        desc:
+          other: نشر رابطًا خارجيًا حصل على 300 نقرة.
+      famous_link:
+        name:
+          other: رابط مشهور
+        desc:
+          other: نشر رابطًا خارجيًا حصل على 100 نقرة.
+    default_badge_groups:
+      getting_started:
+        name:
+          other: البداية
+      community:
+        name:
+          other: المجتمع
+      posting:
+        name:
+          other: النشر
+
+# The following fields are used for interface presentation(Front-end)
 ui:
   how_to_format:
-    title: How to Format
+    title: كيفية التنسيق
     desc: >-
-      <ul class="mb-0"><li><p class="mb-2">to make links</p><pre class="mb-2"><code>&lt;https://url.com&gt;<br/><br/>[Title](https://url.com)</code></pre></li><li><p class="mb-2">put returns between paragraphs</p></li><li><p class="mb-2"><em>_italic_</em> or **<strong>bold</strong>**</p></li><li><p class="mb-2">indent code by 4 spaces</p></li><li><p class="mb-2">quote by placing <code>&gt;</code> at start of line</p></li><li><p class="mb-2">backtick escapes <code>`like _this_`</code></p></li><li><p class="mb-2">create code fences with backticks <code>`</code></p><pre class="mb-0"><code>```<br/>code here<br/>```</code></pre></li></ul>
+      <ul class="mb-0"><li><p class="mb-2">للإشارة إلى منشور: <code>#post_id</code></p></li>
+      <li><p class="mb-2">لإنشاء الروابط</p><pre
+      class="mb-2"><code>&lt;https://url.com&gt;<br/><br/>[العنوان](https://url.com)</code></pre></li><li><p
+      class="mb-2">ضع أسطراً فارغة بين الفقرات</p></li><li><p
+      class="mb-2"><em>_مائل_</em> أو **<strong>غامق</strong>**</p></li><li><p
+      class="mb-2">أزح الشيفرة بمقدار 4 مسافات</p></li><li><p class="mb-2">للاقتباس ضع
+      <code>&gt;</code> في بداية السطر</p></li><li><p
+      class="mb-2">العلامة المائلة الخلفية تحمي النص <code>`مثل _هذا_`</code></p></li><li><p
+      class="mb-2">أنشئ كتل الشيفرة باستخدام العلامات المائلة الخلفية <code>`</code></p><pre
+      class="mb-0"><code>```<br/>الشيفرة هنا<br/>```</code></pre></li></ul>
   pagination:
-    prev: Prev
-    next: Next
+    prev: السابق
+    next: التالي
   page_title:
-    question: Question
-    questions: Questions
-    tag: Tag
-    tags: Tags
-    tag_wiki: tag wiki
-    edit_tag: Edit Tag
-    ask_a_question: Add Question
-    edit_question: Edit Question
-    edit_answer: Edit Answer
-    search: Search
-    posts_containing: Posts containing
-    settings: Settings
-    notifications: Notifications
-    login: Log In
-    sign_up: Sign Up
-    account_recovery: Account Recovery
-    account_activation: Account Activation
-    confirm_email: Confirm Email
-    account_suspended: Account Suspended
-    admin: Admin
-    change_email: Modify Email
-    install: Answer Installation
-    upgrade: Answer Upgrade
-    maintenance: Website Maintenance
-    users: Users
+    question: سؤال
+    questions: الأسئلة
+    tag: وسم
+    tags: الوسوم
+    tag_wiki: ويكي الوسم
+    create_tag: إنشاء وسم
+    edit_tag: تعديل الوسم
+    ask_a_question: إنشاء سؤال
+    edit_question: تعديل السؤال
+    edit_answer: تعديل الإجابة
+    search: بحث
+    posts_containing: منشورات تحتوي على
+    settings: الإعدادات
+    notifications: الإشعارات
+    login: تسجيل الدخول
+    sign_up: إنشاء حساب
+    account_recovery: استعادة الحساب
+    account_activation: تفعيل الحساب
+    confirm_email: تأكيد البريد الإلكتروني
+    account_suspended: الحساب موقوف
+    admin: الإدارة
+    change_email: تغيير البريد الإلكتروني
+    install: تثبيت Answer
+    upgrade: ترقية Answer
+    maintenance: صيانة الموقع
+    users: المستخدمون
+    oauth_callback: جارٍ المعالجة
+    http_404: خطأ HTTP 404
+    http_50X: خطأ HTTP 500
+    http_403: خطأ HTTP 403
+    logout: تسجيل الخروج
+    posts: المنشورات
+    ai_assistant: المساعد الذكي
+  ai_assistant:
+    description: لديك سؤال؟ اطرحه واحصل على إجابات ووجهات نظر وتوصيات.
+    recent_conversations: المحادثات الأخيرة
+    show_more: عرض المزيد
+    new: محادثة جديدة
+    ai_generate: تم إنشاؤه بالذكاء الاصطناعي من المنشورات وقد لا يكون دقيقاً.
+    copy: نسخ
+    ask_a_follow_up: اطرح سؤالاً متابعاً
+    ask_placeholder: اطرح سؤالاً
   notifications:
-    title: Notifications
-    inbox: Inbox
-    achievement: Achievements
-    all_read: Mark all as read
-    show_more: Show more
+    title: الإشعارات
+    inbox: صندوق الوارد
+    achievement: الإنجازات
+    new_alerts: تنبيهات جديدة
+    all_read: تعليم الكل كمقروء
+    show_more: عرض المزيد
+    someone: شخص ما
+    inbox_type:
+      all: الكل
+      posts: المنشورات
+      invites: الدعوات
+      votes: التصويتات
+    answer: إجابة
+    question: سؤال
+    badge_award: شارة
   suspended:
-    title: Your Account has been Suspended
-    until_time: "Your account was suspended until {{ time }}."
-    forever: This user was suspended forever.
-    end: You don't meet a community guideline.
+    title: تم إيقاف حسابك
+    until_time: "تم إيقاف حسابك حتى {{ time }}."
+    forever: تم إيقاف هذا المستخدم بشكل دائم.
+    end: أنت لا تستوفي إحدى إرشادات المجتمع.
+    contact_us: تواصل معنا
   editor:
     blockquote:
-      text: Blockquote
+      text: اقتباس
     bold:
-      text: Strong
+      text: غامق
     chart:
-      text: Chart
-      flow_chart: Flow chart
-      sequence_diagram: Sequence diagram
-      class_diagram: Class diagram
-      state_diagram: State diagram
-      entity_relationship_diagram: Entity relationship diagram
-      user_defined_diagram: User defined diagram
-      gantt_chart: Gantt chart
-      pie_chart: Pie chart
+      text: مخطط
+      flow_chart: مخطط انسيابي
+      sequence_diagram: مخطط تسلسلي
+      class_diagram: مخطط الفئات
+      state_diagram: مخطط الحالات
+      entity_relationship_diagram: مخطط الكيانات والعلاقات
+      user_defined_diagram: مخطط مخصص من المستخدم
+      gantt_chart: مخطط غانت
+      pie_chart: مخطط دائري
     code:
-      text: Code Sample
-      add_code: Add code sample
+      text: نموذج شيفرة
+      add_code: إضافة نموذج شيفرة
       form:
         fields:
           code:
-            label: Code
+            label: الشيفرة
             msg:
-              empty: Code cannot be empty.
+              empty: لا يمكن أن تكون الشيفرة فارغة.
           language:
-            label: Language (optional)
-            placeholder: Automatic detection
-      btn_cancel: Cancel
-      btn_confirm: Add
+            label: اللغة
+            placeholder: كشف تلقائي
+      btn_cancel: إلغاء
+      btn_confirm: إضافة
     formula:
-      text: Formula
+      text: صيغة رياضية
       options:
-        inline: Inline formula
-        block: Block formula
+        inline: صيغة ضمن السطر
+        block: صيغة مستقلة
     heading:
-      text: Heading
+      text: عنوان
       options:
-        h1: Heading 1
-        h2: Heading 2
-        h3: Heading 3
-        h4: Heading 4
-        h5: Heading 5
-        h6: Heading 6
+        h1: عنوان 1
+        h2: عنوان 2
+        h3: عنوان 3
+        h4: عنوان 4
+        h5: عنوان 5
+        h6: عنوان 6
     help:
-      text: Help
+      text: مساعدة
     hr:
-      text: Horizontal Rule
+      text: خط أفقي
     image:
-      text: Image
-      add_image: Add image
-      tab_image: Upload image
+      text: صورة
+      add_image: إضافة صورة
+      tab_image: رفع صورة
       form_image:
         fields:
           file:
-            label: Image File
-            btn: Select image
+            label: ملف الصورة
+            btn: اختيار صورة
             msg:
-              empty: File cannot be empty.
-              only_image: Only image files are allowed.
-              max_size: File size cannot exceed 4 MB.
+              empty: لا يمكن أن يكون الملف فارغاً.
+              only_image: يُسمح بملفات الصور فقط.
+              max_size: لا يمكن أن يتجاوز حجم الملف {{size}} ميغابايت.
           desc:
-            label: Description (optional)
-      tab_url: Image URL
+            label: الوصف
+      tab_url: رابط الصورة
       form_url:
         fields:
           url:
-            label: Image URL
+            label: رابط الصورة
             msg:
-              empty: Image URL cannot be empty.
+              empty: لا يمكن أن يكون رابط الصورة فارغاً.
           name:
-            label: Description (optional)
-      btn_cancel: Cancel
-      btn_confirm: Add
-      uploading: Uploading
+            label: الوصف
+      btn_cancel: إلغاء
+      btn_confirm: إضافة
+      uploading: جارٍ الرفع
     indent:
-      text: Indent
+      text: زيادة الإزاحة
     outdent:
-      text: Outdent
+      text: تقليل الإزاحة
     italic:
-      text: Emphasis
+      text: مائل
     link:
-      text: Hyperlink
-      add_link: Add hyperlink
+      text: رابط تشعبي
+      add_link: إضافة رابط تشعبي
       form:
         fields:
           url:
-            label: URL
+            label: الرابط
             msg:
-              empty: URL cannot be empty.
+              empty: لا يمكن أن يكون الرابط فارغاً.
           name:
-            label: Description (optional)
-      btn_cancel: Cancel
-      btn_confirm: Add
+            label: الوصف
+      btn_cancel: إلغاء
+      btn_confirm: إضافة
     ordered_list:
-      text: Numbered List
+      text: قائمة مرقمة
     unordered_list:
-      text: Bulleted List
+      text: قائمة نقطية
     table:
-      text: Table
-      heading: Heading
-      cell: Cell
+      text: جدول
+      heading: عنوان
+      cell: خلية
+    file:
+      text: إرفاق ملفات
+      not_supported: "نوع الملف هذا غير مدعوم. حاول مجدداً باستخدام {{file_type}}."
+      max_size: "لا يمكن أن يتجاوز حجم الملفات المرفقة {{size}} ميغابايت."
   close_modal:
-    title: I am closing this post as...
-    btn_cancel: Cancel
-    btn_submit: Submit
+    title: أقوم بإغلاق هذا المنشور لأنه...
+    btn_cancel: إلغاء
+    btn_submit: إرسال
     remark:
-      empty: Cannot be empty.
+      empty: لا يمكن أن يكون فارغاً.
     msg:
-      empty: Please select a reason.
+      empty: يرجى اختيار سبب.
   report_modal:
-    flag_title: I am flagging to report this post as...
-    close_title: I am closing this post as...
-    review_question_title: Review question
-    review_answer_title: Review answer
-    review_comment_title: Review comment
-    btn_cancel: Cancel
-    btn_submit: Submit
+    flag_title: أقوم بالإبلاغ عن هذا المنشور لأنه...
+    close_title: أقوم بإغلاق هذا المنشور لأنه...
+    review_question_title: مراجعة السؤال
+    review_answer_title: مراجعة الإجابة
+    review_comment_title: مراجعة التعليق
+    btn_cancel: إلغاء
+    btn_submit: إرسال
     remark:
-      empty: Cannot be empty.
+      empty: لا يمكن أن يكون فارغاً.
     msg:
-      empty: Please select a reason.
+      empty: يرجى اختيار سبب.
+      not_a_url: صيغة الرابط غير صحيحة.
+      url_not_match: أصل الرابط لا يطابق الموقع الحالي.
   tag_modal:
-    title: Create new tag
+    title: إنشاء وسم جديد
     form:
       fields:
         display_name:
-          label: Display Name
+          label: الاسم المعروض
           msg:
-            empty: Display name cannot be empty.
-            range: Display name up to 35 characters.
+            empty: لا يمكن أن يكون الاسم المعروض فارغاً.
+            range: الاسم المعروض بحد أقصى 35 حرفاً.
         slug_name:
-          label: URL Slug
-          desc: URL slug up to 35 characters.
+          label: المعرّف في الرابط
+          desc: المعرّف في الرابط بحد أقصى 35 حرفاً.
           msg:
-            empty: URL slug cannot be empty.
-            range: URL slug up to 35 characters.
-            character: URL slug contains unallowed character set.
+            empty: لا يمكن أن يكون المعرّف في الرابط فارغاً.
+            range: المعرّف في الرابط بحد أقصى 35 حرفاً.
+            character: يحتوي المعرّف في الرابط على حروف غير مسموح بها.
         desc:
-          label: Description (optional)
-    btn_cancel: Cancel
-    btn_submit: Submit
-  tag_info:
-    created_at: Created
-    edited_at: Edited
-    history: History
-    synonyms:
-      title: Synonyms
-      text: The following tags will be remapped to
-      empty: No synonyms found.
-      btn_add: Add a synonym
-      btn_edit: Edit
-      btn_save: Save
-    synonyms_text: The following tags will be remapped to
-    delete:
-      title: Delete this tag
-      content: >-
-        <p>We do not allow deleting tag with posts.</p><p>Please remove this tag from the posts first.</p>
-      content2: Are you sure you wish to delete?
-      close: Close
-  edit_tag:
-    title: Edit Tag
-    default_reason: Edit tag
-    form:
-      fields:
+          label: الوصف
         revision:
-          label: Revision
-        display_name:
-          label: Display Name
-        slug_name:
-          label: URL Slug
-          info: URL slug up to 35 characters.
-        desc:
-          label: Description
+          label: المراجعة
         edit_summary:
-          label: Edit Summary
+          label: ملخص التعديل
           placeholder: >-
-            Briefly explain your changes (corrected spelling, fixed grammar, improved formatting)
-    btn_save_edits: Save edits
-    btn_cancel: Cancel
+            اشرح تعديلاتك بإيجاز (تصحيح إملائي، إصلاح قواعدي،
+            تحسين التنسيق)
+    btn_cancel: إلغاء
+    btn_submit: إرسال
+    btn_post: نشر وسم جديد
+  tag_info:
+    created_at: أُنشئ
+    edited_at: عُدّل
+    history: السجل
+    synonyms:
+      title: المرادفات
+      text: سيُعاد ربط الوسوم التالية بـ
+      empty: لم يتم العثور على مرادفات.
+      btn_add: إضافة مرادف
+      btn_edit: تعديل
+      btn_save: حفظ
+    synonyms_text: سيُعاد ربط الوسوم التالية بـ
+    delete:
+      title: حذف هذا الوسم
+      tip_with_posts: >-
+        <p>لا نسمح بـ<strong>حذف وسم مرتبط بمنشورات</strong>.</p>
+        <p>يرجى إزالة هذا الوسم من المنشورات أولاً.</p>
+      tip_with_synonyms: >-
+        <p>لا نسمح بـ<strong>حذف وسم له مرادفات</strong>.</p>
+        <p>يرجى إزالة المرادفات من هذا الوسم أولاً.</p>
+      tip: هل أنت متأكد من رغبتك في الحذف؟
+      close: إغلاق
+    merge:
+      title: دمج الوسم
+      source_tag_title: الوسم المصدر
+      source_tag_description: سيُعاد ربط الوسم المصدر وبياناته المرتبطة به بالوسم الهدف.
+      target_tag_title: الوسم الهدف
+      target_tag_description: سيتم إنشاء مرادف بين هذين الوسمين بعد الدمج.
+      no_results: لا توجد وسوم مطابقة
+      btn_submit: إرسال
+      btn_close: إغلاق
+  edit_tag:
+    title: تعديل الوسم
+    default_reason: تعديل الوسم
+    default_first_reason: إضافة وسم
+    btn_save_edits: حفظ التعديلات
+    btn_cancel: إلغاء
   dates:
     long_date: MMM D
     long_date_with_year: "MMM D, YYYY"
-    long_date_with_time: "MMM D, YYYY [at] HH:mm"
-    now: now
-    x_seconds_ago: "{{count}}s ago"
-    x_minutes_ago: "{{count}}m ago"
-    x_hours_ago: "{{count}}h ago"
-    hour: hour
-    day: day
+    long_date_with_time: "MMM D, YYYY [الساعة] HH:mm"
+    now: الآن
+    x_seconds_ago: "قبل {{count}} ث"
+    x_minutes_ago: "قبل {{count}} د"
+    x_hours_ago: "قبل {{count}} س"
+    hour: ساعة
+    day: يوم
+    hours: ساعات
+    days: أيام
+    month: شهر
+    months: أشهر
+    year: سنة
+  reaction:
+    heart: قلب
+    smile: ابتسامة
+    frown: عبوس
+    btn_label: إضافة تفاعلات أو إزالتها
+    undo_emoji: التراجع عن تفاعل {{ emoji }}
+    react_emoji: التفاعل بـ {{ emoji }}
+    unreact_emoji: إزالة التفاعل بـ {{ emoji }}
   comment:
-    btn_add_comment: Add comment
-    reply_to: Reply to
-    btn_reply: Reply
-    btn_edit: Edit
-    btn_delete: Delete
-    btn_flag: Flag
-    btn_save_edits: Save edits
-    btn_cancel: Cancel
-    show_more: Show more comments
+    btn_add_comment: إضافة تعليق
+    reply_to: الرد على
+    btn_reply: رد
+    btn_edit: تعديل
+    btn_delete: حذف
+    btn_flag: إبلاغ
+    btn_save_edits: حفظ التعديلات
+    btn_cancel: إلغاء
+    show_more: "{{count}} تعليقات أخرى"
     tip_question: >-
-      Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.
+      استخدم التعليقات لطلب مزيد من المعلومات أو اقتراح تحسينات. تجنّب
+      الإجابة عن الأسئلة في التعليقات.
     tip_answer: >-
-      Use comments to reply to other users or notify them of changes. If you are adding new information, edit your post instead of commenting.
+      استخدم التعليقات للرد على المستخدمين الآخرين أو إعلامهم بالتغييرات. إذا كنت
+      تضيف معلومات جديدة، فعدّل منشورك بدلاً من التعليق.
+    tip_vote: يضيف شيئاً مفيداً إلى المنشور
   edit_answer:
-    title: Edit Answer
-    default_reason: Edit answer
+    title: تعديل الإجابة
+    default_reason: تعديل الإجابة
+    default_first_reason: إضافة إجابة
     form:
       fields:
         revision:
-          label: Revision
+          label: المراجعة
         answer:
-          label: Answer
+          label: الإجابة
           feedback:
-            characters: content must be at least 6 characters in length.
+            characters: يجب ألا يقل طول المحتوى عن 6 أحرف.
         edit_summary:
-          label: Edit Summary
+          label: ملخص التعديل
           placeholder: >-
-            Briefly explain your changes (corrected spelling, fixed grammar, improved formatting)
-    btn_save_edits: Save edits
-    btn_cancel: Cancel
+            اشرح تعديلاتك بإيجاز (تصحيح إملائي، إصلاح قواعدي،
+            تحسين التنسيق)
+    btn_save_edits: حفظ التعديلات
+    btn_cancel: إلغاء
   tags:
-    title: Tags
+    title: الوسوم
     sort_buttons:
-      popular: Popular
-      name: Name
-      newest: newest
-    button_follow: Follow
-    button_following: Following
-    tag_label: questions
-    search_placeholder: Filter by tag name
-    no_desc: The tag has no description.
-    more: More
+      popular: الأكثر شيوعاً
+      name: الاسم
+      newest: الأحدث
+    button_follow: متابعة
+    button_following: مُتابَع
+    tag_label: أسئلة
+    search_placeholder: تصفية حسب اسم الوسم
+    no_desc: لا يوجد وصف لهذا الوسم.
+    more: المزيد
+    wiki: ويكي
   ask:
-    title: Add Question
-    edit_title: Edit Question
-    default_reason: Edit question
-    similar_questions: Similar questions
+    title: إنشاء سؤال
+    edit_title: تعديل السؤال
+    default_reason: تعديل السؤال
+    default_first_reason: إنشاء سؤال
+    similar_questions: أسئلة مشابهة
     form:
       fields:
         revision:
-          label: Revision
+          label: المراجعة
         title:
-          label: Title
-          placeholder: Be specific and imagine you're asking a question to another person
+          label: العنوان
+          placeholder: ما موضوعك؟ كن محدداً.
           msg:
-            empty: Title cannot be empty.
-            range: Title up to 150 characters
+            empty: لا يمكن أن يكون العنوان فارغاً.
+            range: العنوان بحد أقصى 150 حرفاً
         body:
-          label: Body
+          label: المحتوى
           msg:
-            empty: Body cannot be empty.
+            empty: لا يمكن أن يكون المحتوى فارغاً.
+          hint:
+            optional_body: صف موضوع السؤال.
+            minimum_characters: "صف موضوع السؤال، ويلزم ما لا يقل عن {{min_content_length}} حرفاً."
         tags:
-          label: Tags
+          label: الوسوم
           msg:
-            empty: Tags cannot be empty.
+            empty: لا يمكن أن تكون الوسوم فارغة.
         answer:
-          label: Answer
+          label: الإجابة
           msg:
-            empty: Answer cannot be empty.
+            empty: لا يمكن أن تكون الإجابة فارغة.
         edit_summary:
-          label: Edit Summary
+          label: ملخص التعديل
           placeholder: >-
-            Briefly explain your changes (corrected spelling, fixed grammar, improved formatting)
-    btn_post_question: Post your question
-    btn_save_edits: Save edits
-    answer_question: Answer your own question
-    post_question&answer: Post your question and answer
+            اشرح تعديلاتك بإيجاز (تصحيح إملائي، إصلاح قواعدي،
+            تحسين التنسيق)
+    btn_post_question: انشر سؤالك
+    btn_save_edits: حفظ التعديلات
+    answer_question: أجب عن سؤالك بنفسك
+    post_question&answer: انشر سؤالك وإجابتك
   tag_selector:
-    add_btn: Add tag
-    create_btn: Create new tag
-    search_tag: Search tag
-    hint: "Describe what your question is about, at least one tag is required."
-    no_result: No tags matched
-    tag_required_text: Required tag (at least one)
+    add_btn: إضافة وسم
+    create_btn: إنشاء وسم جديد
+    search_tag: البحث عن وسم
+    hint: صف موضوع محتواك، ويلزم وسم واحد على الأقل.
+    hint_zero_tags: صف موضوع محتواك.
+    hint_more_than_one_tag: "صف موضوع محتواك، ويلزم ما لا يقل عن {{min_tags_number}} وسوم."
+    no_result: لا توجد وسوم مطابقة
+    tag_required_text: وسم إلزامي (واحد على الأقل)
   header:
     nav:
-      question: Questions
-      tag: Tags
-      user: Users
-      profile: Profile
-      setting: Settings
-      logout: Log out
-      admin: Admin
-      review: Review
+      question: الأسئلة
+      tag: الوسوم
+      user: المستخدمون
+      badges: الشارات
+      profile: الملف الشخصي
+      setting: الإعدادات
+      logout: تسجيل الخروج
+      admin: الإدارة
+      review: المراجعة
+      bookmark: المحفوظات
+      moderation: الإشراف
     search:
-      placeholder: Search
+      placeholder: بحث
   footer:
-    build_on: >-
-      Built on <1> Answer </1>- the open-source software that powers Q&A communities.<br />Made with love © {{cc}}.
+    build_on: يعمل بواسطة <1> Apache Answer </1>
   upload_img:
-    name: Change
-    loading: loading...
+    name: تغيير
+    loading: جارٍ التحميل...
   pic_auth_code:
-    title: Captcha
-    placeholder: Type the text above
+    title: رمز التحقق
+    placeholder: اكتب النص أعلاه
     msg:
-      empty: Captcha cannot be empty.
+      empty: لا يمكن ترك رمز التحقق فارغًا.
   inactive:
     first: >-
-      You're almost done! We sent an activation mail to <bold>{{mail}}</bold>. Please follow the instructions in the mail to activate your account.
-    info: "If it doesn't arrive, check your spam folder."
+      أوشكت على الانتهاء! لقد أرسلنا رسالة تفعيل إلى <bold>{{mail}}</bold>.
+      يُرجى اتباع التعليمات الواردة في الرسالة لتفعيل حسابك.
+    info: "إذا لم تصلك الرسالة، فتحقق من مجلد البريد غير المرغوب فيه."
     another: >-
-      We sent another activation email to you at <bold>{{mail}}</bold>. It might take a few minutes for it to arrive; be sure to check your spam folder.
-    btn_name: Resend activation email
-    change_btn_name: Change email
+      لقد أرسلنا رسالة تفعيل أخرى إليك على <bold>{{mail}}</bold>. قد يستغرق
+      وصولها بضع دقائق؛ فتأكد من التحقق من مجلد البريد غير المرغوب فيه.
+    btn_name: إعادة إرسال رسالة التفعيل
+    change_btn_name: تغيير البريد الإلكتروني
     msg:
-      empty: Cannot be empty.
+      empty: لا يمكن أن يكون فارغًا.
+    resend_email:
+      url_label: هل أنت متأكد من رغبتك في إعادة إرسال رسالة التفعيل؟
+      url_text: يمكنك أيضًا إعطاء رابط التفعيل أعلاه للمستخدم.
   login:
-    page_title: Welcome to {{site_name}}
-    login_to_continue: Log in to continue
-    info_sign: Don't have an account? <1>Sign up</1>
-    info_login: Already have an account? <1>Log in</1>
-    agreements: By registering, you agree to the <1>privacy policy</1> and <3>terms of service</3>.
-    forgot_pass: Forgot password?
+    login_to_continue: سجّل الدخول للمتابعة
+    info_sign: ليس لديك حساب؟ <1>إنشاء حساب</1>
+    info_login: لديك حساب بالفعل؟ <1>تسجيل الدخول</1>
+    agreements: بالتسجيل، فإنك توافق على <1>سياسة الخصوصية</1> و<3>شروط الخدمة</3>.
+    forgot_pass: هل نسيت كلمة المرور؟
     name:
-      label: Name
+      label: الاسم
       msg:
-        empty: Name cannot be empty.
-        range: Name must be between 2 to 30 characters in length.
-        character: 'Must use the character set "a-z", "A-Z", "0-9", " - . _"'
+        empty: لا يمكن ترك الاسم فارغًا.
+        range: يجب أن يتراوح طول الاسم بين 2 و30 حرفًا.
+        character: 'يجب استخدام مجموعة الأحرف "a-z" و"0-9" و" - . _"'
     email:
-      label: Email
+      label: البريد الإلكتروني
       msg:
-        empty: Email cannot be empty.
+        empty: لا يمكن ترك البريد الإلكتروني فارغًا.
     password:
-      label: Password
+      label: كلمة المرور
       msg:
-        empty: Password cannot be empty.
-        different: The passwords entered on both sides are inconsistent
+        empty: لا يمكن ترك كلمة المرور فارغة.
+        different: كلمتا المرور المدخلتان غير متطابقتين
   account_forgot:
-    page_title: Forgot Your Password
-    btn_name: Send me recovery email
+    page_title: هل نسيت كلمة المرور
+    btn_name: أرسل لي رسالة الاستعادة
     send_success: >-
-      If an account matches <strong>{{mail}}</strong>, you should receive an email with instructions on how to reset your password shortly.
+      إذا كان هناك حساب يطابق <strong>{{mail}}</strong>، فستصلك قريبًا رسالة
+      بريد إلكتروني تتضمن تعليمات إعادة تعيين كلمة المرور.
     email:
-      label: Email
+      label: البريد الإلكتروني
       msg:
-        empty: Email cannot be empty.
+        empty: لا يمكن ترك البريد الإلكتروني فارغًا.
   change_email:
-    page_title: Welcome to {{site_name}}
-    btn_cancel: Cancel
-    btn_update: Update email address
+    btn_cancel: إلغاء
+    btn_update: تحديث عنوان البريد الإلكتروني
     send_success: >-
-      If an account matches <strong>{{mail}}</strong>, you should receive an email with instructions on how to reset your password shortly.
+      إذا كان هناك حساب يطابق <strong>{{mail}}</strong>، فستصلك قريبًا رسالة
+      بريد إلكتروني تتضمن تعليمات إعادة تعيين كلمة المرور.
     email:
-      label: New Email
+      label: البريد الإلكتروني الجديد
       msg:
-        empty: Email cannot be empty.
+        empty: لا يمكن ترك البريد الإلكتروني فارغًا.
+  oauth:
+    connect: الربط باستخدام {{ auth_name }}
+    remove: إزالة {{ auth_name }}
+  oauth_bind_email:
+    subtitle: أضف بريدًا إلكترونيًا للاستعادة إلى حسابك.
+    btn_update: تحديث عنوان البريد الإلكتروني
+    email:
+      label: البريد الإلكتروني
+      msg:
+        empty: لا يمكن ترك البريد الإلكتروني فارغًا.
+    modal_title: البريد الإلكتروني موجود بالفعل.
+    modal_content: عنوان البريد الإلكتروني هذا مسجّل بالفعل. هل أنت متأكد من رغبتك في الربط بالحساب الموجود؟
+    modal_cancel: تغيير البريد الإلكتروني
+    modal_confirm: الربط بالحساب الموجود
   password_reset:
-    page_title: Password Reset
-    btn_name: Reset my password
+    page_title: إعادة تعيين كلمة المرور
+    btn_name: إعادة تعيين كلمة المرور الخاصة بي
     reset_success: >-
-      You successfully changed your password; you will be redirected to the log in page.
+      لقد غيّرت كلمة المرور بنجاح؛ سيتم توجيهك إلى صفحة تسجيل
+      الدخول.
     link_invalid: >-
-      Sorry, this password reset link is no longer valid. Perhaps your password is already reset?
-    to_login: Continue to log in page
+      عذرًا، رابط إعادة تعيين كلمة المرور هذا لم يعد صالحًا. ربما تمت إعادة
+      تعيين كلمة المرور بالفعل؟
+    to_login: المتابعة إلى صفحة تسجيل الدخول
     password:
-      label: Password
+      label: كلمة المرور
       msg:
-        empty: Password cannot be empty.
-        length: The length needs to be between 8 and 32
-        different: The passwords entered on both sides are inconsistent
+        empty: لا يمكن ترك كلمة المرور فارغة.
+        length: يجب أن يتراوح الطول بين 8 و32
+        different: كلمتا المرور المدخلتان غير متطابقتين
     password_confirm:
-      label: Confirm New Password
+      label: تأكيد كلمة المرور الجديدة
   settings:
-    page_title: Settings
+    page_title: الإعدادات
+    goto_modify: الانتقال إلى التعديل
     nav:
-      profile: Profile
-      notification: Notifications
-      account: Account
-      interface: Interface
+      profile: الملف الشخصي
+      notification: الإشعارات
+      account: الحساب
+      interface: الواجهة
     profile:
-      heading: Profile
-      btn_name: Save
+      heading: الملف الشخصي
+      btn_name: حفظ
       display_name:
-        label: Display Name
-        msg: Display name cannot be empty.
-        msg_range: Display name must be 2-30 characters in length.
+        label: الاسم المعروض
+        msg: لا يمكن ترك الاسم المعروض فارغًا.
+        msg_range: يجب أن يتراوح طول الاسم المعروض بين 2 و30 حرفًا.
       username:
-        label: Username
-        caption: People can mention you as "@username".
-        msg: Username cannot be empty.
-        msg_range: Username must be 2-30 characters in length.
-        character: 'Must use the character set "a-z", "0-9", "- . _"'
+        label: اسم المستخدم
+        caption: يمكن للآخرين الإشارة إليك باستخدام "@username".
+        msg: لا يمكن ترك اسم المستخدم فارغًا.
+        msg_range: يجب أن يتراوح طول اسم المستخدم بين 2 و30 حرفًا.
+        character: 'يجب استخدام مجموعة الأحرف "a-z" و"0-9" و"- . _"'
       avatar:
-        label: Profile Image
+        label: صورة الملف الشخصي
         gravatar: Gravatar
-        gravatar_text: You can change image on <1>gravatar.com</1>
-        custom: Custom
-        btn_refresh: Refresh
-        custom_text: You can upload your image.
-        default: System
-        msg: Please upload an avatar
+        gravatar_text: يمكنك تغيير الصورة على
+        custom: مخصصة
+        custom_text: يمكنك رفع صورتك الخاصة.
+        default: النظام
+        msg: يرجى رفع صورة شخصية
       bio:
-        label: About Me (optional)
+        label: نبذة عني
       website:
-        label: Website (optional)
+        label: الموقع الإلكتروني
         placeholder: "https://example.com"
-        msg: Website incorrect format
+        msg: صيغة الموقع الإلكتروني غير صحيحة
       location:
-        label: Location (optional)
-        placeholder: "City, Country"
+        label: الموقع الجغرافي
+        placeholder: "المدينة، الدولة"
     notification:
-      heading: Notifications
-      email:
-        label: Email Notifications
-        radio: "Answers to your questions, comments, and more"
+      heading: إشعارات البريد الإلكتروني
+      turn_on: تفعيل
+      inbox:
+        label: إشعارات صندوق الوارد
+        description: الإجابات على أسئلتك، والتعليقات، والدعوات، والمزيد.
+      all_new_question:
+        label: جميع الأسئلة الجديدة
+        description: تلقَّ إشعارات بجميع الأسئلة الجديدة. بحد أقصى 50 سؤالًا في الأسبوع.
+      all_new_question_for_following_tags:
+        label: جميع الأسئلة الجديدة للوسوم المتابَعة
+        description: تلقَّ إشعارات بالأسئلة الجديدة للوسوم التي تتابعها.
     account:
-      heading: Account
-      change_email_btn: Change email
-      change_pass_btn: Change password
+      heading: الحساب
+      change_email_btn: تغيير البريد الإلكتروني
+      change_pass_btn: تغيير كلمة المرور
       change_email_info: >-
-        We've sent an email to that address. Please follow the confirmation instructions.
+        لقد أرسلنا رسالة بريد إلكتروني إلى ذلك العنوان. يُرجى اتباع تعليمات
+        التأكيد.
       email:
-        label: Email
+        label: البريد الإلكتروني
       new_email:
-        label: New email
-        msg: New email cannot be empty.
-      password_title: Password
+        label: البريد الإلكتروني الجديد
+        msg: لا يمكن ترك البريد الإلكتروني الجديد فارغًا.
+      pass:
+        label: كلمة المرور الحالية
+        msg: لا يمكن ترك كلمة المرور فارغة.
+      password_title: كلمة المرور
       current_pass:
-        label: Current Password
+        label: كلمة المرور الحالية
         msg:
-          empty: Current Password cannot be empty.
-          length: The length needs to be between 8 and 32.
-          different: The two entered passwords do not match.
+          empty: لا يمكن ترك كلمة المرور الحالية فارغة.
+          length: يجب أن يتراوح الطول بين 8 و32.
+          different: كلمتا المرور المدخلتان غير متطابقتين.
       new_pass:
-        label: New Password
+        label: كلمة المرور الجديدة
       pass_confirm:
-        label: Confirm New Password
+        label: تأكيد كلمة المرور الجديدة
     interface:
-      heading: Interface
+      heading: الواجهة
       lang:
-        label: Interface Language
-        text: User interface language. It will change when you refresh the page.
+        label: لغة الواجهة
+        text: لغة واجهة المستخدم. ستتغير عند تحديث الصفحة.
+    my_logins:
+      title: طرق تسجيل الدخول الخاصة بي
+      label: سجّل الدخول أو أنشئ حسابًا في هذا الموقع باستخدام هذه الحسابات.
+      modal_title: إزالة طريقة تسجيل الدخول
+      modal_content: هل أنت متأكد من رغبتك في إزالة طريقة تسجيل الدخول هذه من حسابك؟
+      modal_confirm_btn: إزالة
+      remove_success: تمت الإزالة بنجاح
   toast:
-    update: update success
-    update_password: Password changed successfully.
-    flag_success: Thanks for flagging.
-    forbidden_operate_self: Forbidden to operate on yourself
-    review: Your revision will show after review.
+    update: تم التحديث بنجاح
+    update_password: تم تغيير كلمة المرور بنجاح.
+    flag_success: شكرًا على الإبلاغ.
+    forbidden_operate_self: لا يُسمح بتنفيذ هذا الإجراء على نفسك
+    review: ستظهر مراجعتك بعد التدقيق.
+    sent_success: تم الإرسال بنجاح
   related_question:
-    title: Related Questions
-    btn: Add question
-    answers: answers
+    title: ذات صلة
+    answers: إجابات
+  linked_question:
+    title: مرتبطة
+    description: المنشورات المرتبطة بـ
+    no_linked_question: لا توجد محتويات مرتبطة بهذا المحتوى.
+  invite_to_answer:
+    title: دعوة أشخاص
+    desc: ادعُ الأشخاص الذين تعتقد أن بإمكانهم الإجابة.
+    invite: دعوة للإجابة
+    add: إضافة أشخاص
+    search: البحث عن أشخاص
   question_detail:
-    Asked: Asked
-    asked: asked
-    update: Modified
-    edit: edited
-    Views: Viewed
-    Follow: Follow
-    Following: Following
-    answered: answered
-    closed_in: Closed in
-    show_exist: Show existing question.
+    action: إجراء
+    created: تاريخ الإنشاء
+    Asked: تاريخ السؤال
+    asked: سأل
+    update: تاريخ التعديل
+    Edited: تاريخ التحرير
+    edit: عدّل
+    commented: علّق
+    Views: المشاهدات
+    Follow: متابعة
+    Following: تتابعه
+    follow_tip: تابع هذا السؤال لتلقّي الإشعارات
+    answered: أجاب
+    closed_in: أُغلق في
+    show_exist: عرض السؤال الموجود.
+    useful: مفيد
+    question_useful: إنه مفيد وواضح
+    question_un_useful: إنه غير واضح أو غير مفيد
+    question_bookmark: حفظ هذا السؤال
+    answer_useful: إنها مفيدة
+    answer_un_useful: إنها غير مفيدة
     answers:
-      title: Answers
-      score: Score
-      newest: Newest
-      btn_accept: Accept
-      btn_accepted: Accepted
+      title: الإجابات
+      score: التقييم
+      newest: الأحدث
+      oldest: الأقدم
+      btn_accept: قبول
+      btn_accepted: مقبولة
     write_answer:
-      title: Your Answer
-      btn_name: Post your answer
-      add_another_answer: Add another answer
-      confirm_title: Continue to answer
-      continue: Continue
+      title: إجابتك
+      edit_answer: تعديل إجابتي الحالية
+      btn_name: نشر إجابتك
+      add_another_answer: إضافة إجابة أخرى
+      confirm_title: المتابعة للإجابة
+      continue: متابعة
       confirm_info: >-
-        <p>Are you sure you want to add another answer?</p><p>You could use the edit link to refine and improve your existing answer, instead.</p>
-      empty: Answer cannot be empty.
-      characters: content must be at least 6 characters in length.
+        <p>هل أنت متأكد من رغبتك في إضافة إجابة أخرى؟</p><p>يمكنك بدلًا من ذلك
+        استخدام رابط التعديل لتحسين إجابتك الحالية وتطويرها.</p>
+      empty: لا يمكن ترك الإجابة فارغة.
+      characters: يجب ألا يقل طول المحتوى عن 6 أحرف.
+      tips:
+        header_1: شكرًا على إجابتك
+        li1_1: يُرجى الحرص على <strong>الإجابة عن السؤال</strong>. قدّم التفاصيل وشارك ما توصلت إليه من بحث.
+        li1_2: ادعم أي عبارات تذكرها بمراجع أو بخبرتك الشخصية.
+        header_2: ولكن <strong>تجنّب</strong> ...
+        li2_1: طلب المساعدة، أو طلب التوضيح، أو الرد على إجابات أخرى.
     reopen:
-      title: Reopen this post
-      content: Are you sure you want to reopen?
-      success: This post has been reopened
+      confirm_btn: إعادة فتح
+      title: إعادة فتح هذا المنشور
+      content: هل أنت متأكد من رغبتك في إعادة الفتح؟
+    list:
+      confirm_btn: إدراج
+      title: إدراج هذا المنشور
+      content: هل أنت متأكد من رغبتك في الإدراج؟
+    unlist:
+      confirm_btn: إلغاء الإدراج
+      title: إلغاء إدراج هذا المنشور
+      content: هل أنت متأكد من رغبتك في إلغاء الإدراج؟
+    pin:
+      title: تثبيت هذا المنشور
+      content: هل أنت متأكد من رغبتك في التثبيت على مستوى الموقع؟ سيظهر هذا المنشور في أعلى جميع قوائم المنشورات.
+      confirm_btn: تثبيت
   delete:
-    title: Delete this post
+    title: حذف هذا المنشور
     question: >-
-      We do not recommend <strong>deleting questions with answers</strong> because doing so deprives future readers of this knowledge.</p><p>Repeated deletion of answered questions can result in your account being blocked from asking. Are you sure you wish to delete?
+      لا ننصح بـ<strong>حذف الأسئلة التي لها إجابات</strong> لأن ذلك يحرم
+      القراء المستقبليين من هذه المعرفة.</p><p>قد يؤدي تكرار حذف الأسئلة
+      المُجابة إلى منع حسابك من طرح الأسئلة. هل أنت متأكد من رغبتك في الحذف؟
     answer_accepted: >-
-      <p>We do not recommend <strong>deleting accepted answer</strong> because doing so deprives future readers of this knowledge. </p> Repeated deletion of accepted answers can result in your account being blocked from answering. Are you sure you wish to delete?
-    other: Are you sure you wish to delete?
-    tip_question_deleted: This post has been deleted
-    tip_answer_deleted: This answer has been deleted
+      <p>لا ننصح بـ<strong>حذف الإجابة المقبولة</strong> لأن ذلك يحرم القراء
+      المستقبليين من هذه المعرفة. </p> قد يؤدي تكرار حذف الإجابات المقبولة إلى
+      منع حسابك من الإجابة. هل أنت متأكد من رغبتك في الحذف؟
+    other: هل أنت متأكد من رغبتك في الحذف؟
+    tip_answer_deleted: تم حذف هذه الإجابة
+    undelete_title: التراجع عن حذف هذا المنشور
+    undelete_desc: هل أنت متأكد من رغبتك في التراجع عن الحذف؟
   btns:
-    confirm: Confirm
-    cancel: Cancel
-    save: Save
-    delete: Delete
-    login: Log in
-    signup: Sign up
-    logout: Log out
-    verify: Verify
-    add_question: Add question
-    approve: Approve
-    reject: Reject
-    skip: Skip
+    confirm: تأكيد
+    cancel: إلغاء
+    edit: تعديل
+    save: حفظ
+    delete: حذف
+    undelete: تراجع عن الحذف
+    list: إدراج
+    unlist: إلغاء الإدراج
+    unlisted: غير مُدرج
+    login: تسجيل الدخول
+    signup: إنشاء حساب
+    logout: تسجيل الخروج
+    verify: تحقق
+    create: إنشاء
+    approve: موافقة
+    reject: رفض
+    skip: تخطي
+    discard_draft: تجاهل المسودة
+    pinned: مثبّت
+    all: الكل
+    question: سؤال
+    answer: إجابة
+    comment: تعليق
+    refresh: تحديث
+    resend: إعادة الإرسال
+    deactivate: إلغاء التفعيل
+    active: نشط
+    suspend: تعليق الحساب
+    unsuspend: إلغاء تعليق الحساب
+    close: إغلاق
+    reopen: إعادة فتح
+    ok: حسنًا
+    light: فاتح
+    dark: داكن
+    system_setting: إعداد النظام
+    default: افتراضي
+    reset: إعادة تعيين
+    tag: وسم
+    post_lowercase: منشور
+    filter: تصفية
+    ignore: تجاهل
+    submit: إرسال
+    normal: عادي
+    closed: مغلق
+    deleted: محذوف
+    deleted_permanently: محذوف نهائيًا
+    pending: قيد الانتظار
+    more: المزيد
+    view: عرض
+    card: بطاقة
+    compact: مضغوط
+    display_below: العرض بالأسفل
+    always_display: العرض دائمًا
+    or: أو
+    back_sites: العودة إلى المواقع
   search:
-    title: Search Results
-    keywords: Keywords
-    options: Options
-    follow: Follow
-    following: Following
-    counts: "{{count}} Results"
-    more: More
+    title: نتائج البحث
+    keywords: الكلمات المفتاحية
+    options: الخيارات
+    follow: متابعة
+    following: تتابعه
+    counts: "{{count}} نتيجة"
+    counts_loading: "... نتيجة"
+    more: المزيد
     sort_btns:
-      relevance: Relevance
-      newest: Newest
-      active: Active
-      score: Score
-      more: More
+      relevance: الصلة
+      newest: الأحدث
+      active: النشاط
+      score: التقييم
+      more: المزيد
     tips:
-      title: Advanced Search Tips
-      tag: "<1>[tag]</1> search with a tag"
-      user: "<1>user:username</1> search by author"
-      answer: "<1>answers:0</1> unanswered questions"
-      score: "<1>score:3</1> posts with a 3+ score"
-      question: "<1>is:question</1> search questions"
-      is_answer: "<1>is:answer</1> search answers"
-    empty: We couldn't find anything. <br /> Try different or less specific keywords.
+      title: نصائح البحث المتقدم
+      tag: "<1>[tag]</1> البحث باستخدام وسم"
+      user: "<1>user:username</1> البحث حسب الكاتب"
+      answer: "<1>answers:0</1> الأسئلة غير المُجابة"
+      score: "<1>score:3</1> المنشورات ذات تقييم 3 فأكثر"
+      question: "<1>is:question</1> البحث في الأسئلة"
+      is_answer: "<1>is:answer</1> البحث في الإجابات"
+    empty: لم نعثر على أي نتائج. <br /> جرّب كلمات مفتاحية مختلفة أو أقل تحديدًا.
   share:
-    name: Share
-    copy: Copy link
-    via: Share post via...
-    copied: Copied
-    facebook: Share to Facebook
-    twitter: Share to X
-  cannot_vote_for_self: You can't vote for your own post
+    name: مشاركة
+    copy: نسخ الرابط
+    via: مشاركة المنشور عبر...
+    copied: تم النسخ
+    facebook: المشاركة على Facebook
+    twitter: المشاركة على X
+  cannot_vote_for_self: لا يمكنك التصويت على منشورك الخاص.
   modal_confirm:
-    title: Error...
+    title: خطأ...
+  delete_permanently:
+    title: حذف نهائي
+    content: هل أنت متأكد من أنك تريد الحذف نهائياً؟
   account_result:
-    page_title: Welcome to {{site_name}}
-    success: Your new account is confirmed; you will be redirected to the home page.
-    link: Continue to homepage
-    invalid: >-
-      Sorry, this account confirmation link is no longer valid. Perhaps your account is already active?
-    confirm_new_email: Your email has been updated.
+    success: تم تأكيد حسابك الجديد؛ ستتم إعادة توجيهك إلى الصفحة الرئيسية.
+    link: المتابعة إلى الصفحة الرئيسية
+    oops: عذراً!
+    invalid: الرابط الذي استخدمته لم يعد صالحاً.
+    confirm_new_email: تم تحديث بريدك الإلكتروني.
     confirm_new_email_invalid: >-
-      Sorry, this confirmation link is no longer valid. Perhaps your email was already changed?
+      عذراً، رابط التأكيد هذا لم يعد صالحاً. ربما تم تغيير بريدك الإلكتروني
+      بالفعل؟
   unsubscribe:
-    page_title: Unsubscribe
-    success_title: Unsubscribe Successful
-    success_desc: You have been successfully removed from this subscriber list and won't receive any further emails from us.
-    link: Change settings
+    page_title: إلغاء الاشتراك
+    success_title: تم إلغاء الاشتراك بنجاح
+    success_desc: تمت إزالتك بنجاح من قائمة المشتركين هذه ولن تتلقى أي رسائل بريد إلكتروني أخرى منا.
+    link: تغيير الإعدادات
   question:
-    following_tags: Following Tags
-    edit: Edit
-    save: Save
-    follow_tag_tip: Follow tags to curate your list of questions.
-    hot_questions: Hot Questions
-    all_questions: All Questions
-    x_questions: "{{ count }} Questions"
-    x_answers: "{{ count }} answers"
-    questions: Questions
-    answers: Answers
-    newest: Newest
-    active: Active
-    hot: Hot
-    score: Score
-    unanswered: Unanswered
-    modified: modified
-    answered: answered
-    asked: asked
-    closed: closed
-    follow_a_tag: Follow a tag
-    more: More
+    following_tags: الوسوم المتابَعة
+    edit: تعديل
+    save: حفظ
+    follow_tag_tip: تابع الوسوم لتنظيم قائمة أسئلتك.
+    hot_questions: الأسئلة الرائجة
+    all_questions: جميع الأسئلة
+    x_questions: "{{ count }} سؤال"
+    x_answers: "{{ count }} إجابة"
+    x_posts: "{{ count }} منشور"
+    questions: الأسئلة
+    answers: الإجابات
+    newest: الأحدث
+    active: النشطة
+    hot: الرائجة
+    frequent: المتكررة
+    recommend: الموصى بها
+    score: النقاط
+    unanswered: بلا إجابة
+    modified: عُدّل
+    answered: أُجيب
+    asked: سُئل
+    closed: أُغلق
+    follow_a_tag: تابع وسماً
+    more: المزيد
   personal:
-    overview: Overview
-    answers: Answers
-    answer: answer
-    questions: Questions
-    question: question
-    bookmarks: Bookmarks
-    reputation: Reputation
-    comments: Comments
-    votes: Votes
-    newest: Newest
-    score: Score
-    edit_profile: Edit Profile
-    visited_x_days: "Visited {{ count }} days"
-    viewed: Viewed
-    joined: Joined
-    last_login: Seen
-    about_me: About Me
+    overview: نظرة عامة
+    answers: الإجابات
+    answer: إجابة
+    questions: الأسئلة
+    question: سؤال
+    bookmarks: العلامات المرجعية
+    reputation: السمعة
+    comments: التعليقات
+    votes: الأصوات
+    badges: الشارات
+    newest: الأحدث
+    score: النقاط
+    edit_profile: تعديل الملف الشخصي
+    visited_x_days: "زار الموقع {{ count }} يوماً"
+    viewed: المشاهدات
+    joined: انضم
+    comma: "،"
+    last_login: آخر ظهور
+    about_me: نبذة عني
     about_me_empty: "// Hello, World !"
-    top_answers: Top Answers
-    top_questions: Top Questions
-    stats: Stats
-    list_empty: No posts found.<br />Perhaps you'd like to select a different tab?
-    accepted: Accepted
-    answered: answered
-    asked: asked
-    upvote: upvote
-    downvote: downvote
-    mod_short: Mod
-    mod_long: Moderators
-    x_reputation: reputation
-    x_votes: votes received
-    x_answers: answers
-    x_questions: questions
+    top_answers: أفضل الإجابات
+    top_questions: أفضل الأسئلة
+    stats: الإحصائيات
+    list_empty: لم يتم العثور على منشورات.<br />ربما تود اختيار تبويب آخر؟
+    content_empty: لم يتم العثور على منشورات.
+    accepted: مقبولة
+    answered: أجاب
+    asked: سأل
+    downvoted: صوّت بالسلب
+    mod_short: مشرف
+    mod_long: المشرفون
+    x_reputation: السمعة
+    x_votes: الأصوات المستلمة
+    x_answers: الإجابات
+    x_questions: الأسئلة
+    recent_badges: أحدث الشارات
   install:
-    title: Installation
-    next: Next
-    done: Done
-    config_yaml_error: Can't create the config.yaml file.
+    title: التثبيت
+    next: التالي
+    done: تم
+    config_yaml_error: تعذّر إنشاء ملف config.yaml.
     lang:
-      label: Please Choose a Language
+      label: يرجى اختيار اللغة
     db_type:
-      label: Database Engine
+      label: محرك قاعدة البيانات
     db_username:
-      label: Username
+      label: اسم المستخدم
       placeholder: root
-      msg: Username cannot be empty.
+      msg: لا يمكن ترك اسم المستخدم فارغاً.
     db_password:
-      label: Password
+      label: كلمة المرور
       placeholder: root
-      msg: Password cannot be empty.
+      msg: لا يمكن ترك كلمة المرور فارغة.
     db_host:
-      label: Database Host
+      label: مضيف قاعدة البيانات
       placeholder: "db:3306"
-      msg: Database Host cannot be empty.
+      msg: لا يمكن ترك مضيف قاعدة البيانات فارغاً.
     db_name:
-      label: Database Name
+      label: اسم قاعدة البيانات
       placeholder: answer
-      msg: Database Name cannot be empty.
+      msg: لا يمكن ترك اسم قاعدة البيانات فارغاً.
     db_file:
-      label: Database File
+      label: ملف قاعدة البيانات
       placeholder: /data/answer.db
-      msg: Database File cannot be empty.
+      msg: لا يمكن ترك ملف قاعدة البيانات فارغاً.
+    ssl_enabled:
+      label: تفعيل SSL
+    ssl_enabled_on:
+      label: مفعّل
+    ssl_enabled_off:
+      label: معطّل
+    ssl_mode:
+      label: وضع SSL
+    ssl_root_cert:
+      placeholder: مسار ملف sslrootcert
+      msg: لا يمكن ترك مسار ملف sslrootcert فارغاً
+    ssl_cert:
+      placeholder: مسار ملف sslcert
+      msg: لا يمكن ترك مسار ملف sslcert فارغاً
+    ssl_key:
+      placeholder: مسار ملف sslkey
+      msg: لا يمكن ترك مسار ملف sslkey فارغاً
     config_yaml:
-      title: Create config.yaml
-      label: The config.yaml file created.
+      title: إنشاء config.yaml
+      label: تم إنشاء ملف config.yaml.
       desc: >-
-        You can create the <1>config.yaml</1> file manually in the <1>/var/wwww/xxx/</1> directory and paste the following text into it.
-      info: After you've done that, click "Next" button.
-    site_information: Site Information
-    admin_account: Admin Account
+        يمكنك إنشاء ملف <1>config.yaml</1> يدوياً في المجلد
+        <1>/var/wwww/xxx/</1> ولصق النص التالي فيه.
+      info: بعد الانتهاء من ذلك، انقر على زر "التالي".
+    site_information: معلومات الموقع
+    admin_account: حساب المدير
     site_name:
-      label: Site Name
-      msg: Site Name cannot be empty.
+      label: اسم الموقع
+      msg: لا يمكن ترك اسم الموقع فارغاً.
+      msg_max_length: يجب ألا يتجاوز طول اسم الموقع 30 حرفاً.
     site_url:
-      label: Site URL
-      text: The address of your site.
+      label: رابط الموقع
+      text: عنوان موقعك.
       msg:
-        empty: Site URL cannot be empty.
-        incorrect: Site URL incorrect format.
+        empty: لا يمكن ترك رابط الموقع فارغاً.
+        incorrect: صيغة رابط الموقع غير صحيحة.
+        max_length: يجب ألا يتجاوز طول رابط الموقع 512 حرفاً.
     contact_email:
-      label: Contact Email
-      text: Email address of key contact responsible for this site.
+      label: البريد الإلكتروني للتواصل
+      text: عنوان البريد الإلكتروني لجهة الاتصال الرئيسية المسؤولة عن هذا الموقع.
       msg:
-        empty: Contact Email cannot be empty.
-        incorrect: Contact Email incorrect format.
+        empty: لا يمكن ترك البريد الإلكتروني للتواصل فارغاً.
+        incorrect: صيغة البريد الإلكتروني للتواصل غير صحيحة.
+    login_required:
+      label: خاص
+      switch: تسجيل الدخول مطلوب
+      text: يمكن للمستخدمين المسجّلين دخولهم فقط الوصول إلى هذا المجتمع.
     admin_name:
-      label: Name
-      msg: Name cannot be empty.
+      label: الاسم
+      msg: لا يمكن ترك الاسم فارغاً.
+      character: 'يجب استخدام مجموعة الأحرف "a-z" و"0-9" و" - . _"'
+      msg_max_length: يجب أن يتراوح طول الاسم بين 2 و30 حرفاً.
     admin_password:
-      label: Password
+      label: كلمة المرور
       text: >-
-        You will need this password to log in. Please store it in a secure location.
-      msg: Password cannot be empty.
+        ستحتاج إلى كلمة المرور هذه لتسجيل الدخول. يرجى حفظها في مكان
+        آمن.
+      msg: لا يمكن ترك كلمة المرور فارغة.
+      msg_min_length: يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.
+      msg_max_length: يجب ألا يتجاوز طول كلمة المرور 32 حرفاً.
+    admin_confirm_password:
+      label: "تأكيد كلمة المرور"
+      text: "يرجى إعادة إدخال كلمة المرور للتأكيد."
+      msg: "تأكيد كلمة المرور غير متطابق."
     admin_email:
-      label: Email
-      text: You will need this email to log in.
+      label: البريد الإلكتروني
+      text: ستحتاج إلى هذا البريد الإلكتروني لتسجيل الدخول.
       msg:
-        empty: Email cannot be empty.
-        incorrect: Email incorrect format.
-    ready_title: Your site is ready
+        empty: لا يمكن ترك البريد الإلكتروني فارغاً.
+        incorrect: صيغة البريد الإلكتروني غير صحيحة.
+    ready_title: موقعك جاهز
     ready_desc: >-
-      If you ever feel like changing more settings, visit <1>admin section</1>; find it in the site menu.
-    good_luck: "Have fun, and good luck!"
-    warn_title: Warning
+      إذا رغبت يوماً في تغيير المزيد من الإعدادات، تفضل بزيارة <1>قسم الإدارة</1>؛
+      ستجده في قائمة الموقع.
+    good_luck: "استمتع، وبالتوفيق!"
+    warn_title: تحذير
     warn_desc: >-
-      The file <1>config.yaml</1> already exists. If you need to reset any of the configuration items in this file, please delete it first.
-    install_now: You may try <1>installing now</1>.
-    installed: Already installed
+      الملف <1>config.yaml</1> موجود بالفعل. إذا كنت بحاجة إلى إعادة تعيين أي من
+      عناصر الإعداد في هذا الملف، يرجى حذفه أولاً.
+    install_now: يمكنك تجربة <1>التثبيت الآن</1>.
+    installed: مثبّت بالفعل
     installed_desc: >-
-      You appear to have already installed. To reinstall please clear your old database tables first.
-    db_failed: Database connection failed
+      يبدو أنك قمت بالتثبيت بالفعل. لإعادة التثبيت يرجى مسح جداول قاعدة البيانات
+      القديمة أولاً.
+    db_failed: فشل الاتصال بقاعدة البيانات
     db_failed_desc: >-
-      This either means that the database information in your <1>config.yaml</1> file is incorrect or that contact with the database server could not be established. This could mean your host's database server is down.
+      يعني هذا إما أن معلومات قاعدة البيانات في ملف <1>config.yaml</1> غير صحيحة أو أنه تعذّر الاتصال بخادم قاعدة البيانات. قد يعني هذا أن خادم قاعدة البيانات لدى مضيفك متوقف عن العمل.
   counts:
-    views: views
-    votes: votes
-    answers: answers
-    accepted: Accepted
-  page_404:
-    desc: "Unfortunately, this page doesn't exist."
-    back_home: Back to homepage
-  page_50X:
-    desc: The server encountered an error and could not complete your request.
-    back_home: Back to homepage
+    views: المشاهدات
+    votes: الأصوات
+    answers: الإجابات
+    accepted: مقبولة
+  page_error:
+    http_error: خطأ HTTP {{ code }}
+    desc_403: ليست لديك صلاحية الوصول إلى هذه الصفحة.
+    desc_404: للأسف، هذه الصفحة غير موجودة.
+    desc_50X: واجه الخادم خطأً ولم يتمكن من إكمال طلبك.
+    back_home: العودة إلى الصفحة الرئيسية
   page_maintenance:
-    desc: "We are under maintenance, we'll be back soon."
+    desc: "نحن في فترة صيانة، وسنعود قريباً."
   nav_menus:
-    dashboard: Dashboard
-    contents: Contents
-    questions: Questions
-    answers: Answers
-    users: Users
-    flags: Flags
-    settings: Settings
-    general: General
-    interface: Interface
+    dashboard: لوحة التحكم
+    contents: المحتويات
+    questions: الأسئلة
+    answers: الإجابات
+    users: المستخدمون
+    badges: الشارات
+    flags: البلاغات
+    settings: الإعدادات
+    general: عام
+    interface: الواجهة
     smtp: SMTP
-    branding: Branding
-    legal: Legal
-    write: Write
-    tos: Terms of Service
-    privacy: Privacy
+    branding: العلامة التجارية
+    legal: قانوني
+    write: الكتابة
+    terms: الشروط
+    tos: شروط الخدمة
+    privacy: الخصوصية
     seo: SEO
-    customize: Customize
-    themes: Themes
-    css-html: CSS/HTML
-    login: Login
+    customize: التخصيص
+    themes: السمات
+    login: تسجيل الدخول
+    privileges: الامتيازات
+    plugins: الإضافات
+    installed_plugins: الإضافات المثبّتة
+    apperance: المظهر
+    community: المجتمع
+    advanced: متقدم
+    tags: الوسوم
+    rules: القواعد
+    policies: السياسات
+    security: الأمان
+    files: الملفات
+    apikeys: مفاتيح API
+    intelligence: الذكاء
+    ai_assistant: مساعد الذكاء الاصطناعي
+    ai_settings: إعدادات الذكاء الاصطناعي
+    mcp: MCP
+  website_welcome: مرحباً بك في {{site_name}}
+  user_center:
+    login: تسجيل الدخول
+    qrcode_login_tip: يرجى استخدام {{ agentName }} لمسح رمز QR وتسجيل الدخول.
+    login_failed_email_tip: فشل تسجيل الدخول، يرجى السماح لهذا التطبيق بالوصول إلى معلومات بريدك الإلكتروني ثم المحاولة مرة أخرى.
+  badges:
+    modal:
+      title: تهانينا
+      content: لقد حصلت على شارة جديدة.
+      close: إغلاق
+      confirm: عرض الشارات
+    title: الشارات
+    awarded: مُنحت
+    earned_×: حصلت عليها ×{{ number }}
+    ×_awarded: "مُنحت {{ number }} مرة"
+    can_earn_multiple: يمكنك الحصول على هذه الشارة عدة مرات.
+    earned: حصلت عليها
   admin:
     admin_header:
-      title: Admin
+      title: الإدارة
     dashboard:
-      title: Dashboard
-      welcome: Welcome to Admin!
-      site_statistics: Site Statistics
-      questions: "Questions:"
-      answers: "Answers:"
-      comments: "Comments:"
-      votes: "Votes:"
-      active_users: "Active users:"
-      flags: "Flags:"
-      site_health_status: Site Health Status
-      version: "Version:"
+      title: لوحة التحكم
+      welcome: مرحباً بك في لوحة الإدارة!
+      site_statistics: إحصائيات الموقع
+      questions: "الأسئلة:"
+      resolved: "المحلولة:"
+      unanswered: "بلا إجابة:"
+      answers: "الإجابات:"
+      comments: "التعليقات:"
+      votes: "الأصوات:"
+      users: "المستخدمون:"
+      flags: "البلاغات:"
+      reviews: "المراجعات:"
+      site_health: سلامة الموقع
+      version: "الإصدار:"
       https: "HTTPS:"
-      uploading_files: "Uploading files:"
+      upload_folder: "مجلد الرفع:"
+      run_mode: "وضع التشغيل:"
+      private: خاص
+      public: عام
       smtp: "SMTP:"
-      timezone: "Timezone:"
-      system_info: System Info
-      storage_used: "Storage used:"
-      uptime: "Uptime:"
-      answer_links: Answer Links
-      documents: Documents
-      feedback: Feedback
-      support: Support
-      review: Review
-      config: Config
-      update_to: Update to
-      latest: Latest
-      check_failed: Check failed
-      "yes": "Yes"
-      "no": "No"
-      not_allowed: Not allowed
-      allowed: Allowed
-      enabled: Enabled
-      disabled: Disabled
+      timezone: "المنطقة الزمنية:"
+      system_info: معلومات النظام
+      go_version: "إصدار Go:"
+      database: "قاعدة البيانات:"
+      database_size: "حجم قاعدة البيانات:"
+      storage_used: "مساحة التخزين المستخدمة:"
+      uptime: "مدة التشغيل:"
+      links: روابط
+      plugins: الإضافات
+      github: GitHub
+      blog: المدونة
+      contact: اتصل بنا
+      forum: المنتدى
+      documents: الوثائق
+      feedback: الملاحظات
+      support: الدعم
+      review: مراجعة
+      config: الإعدادات
+      update_to: التحديث إلى
+      latest: الأحدث
+      check_failed: فشل التحقق
+      "yes": "نعم"
+      "no": "لا"
+      not_allowed: غير مسموح
+      allowed: مسموح
+      enabled: مفعّل
+      disabled: معطّل
+      writable: قابل للكتابة
+      not_writable: غير قابل للكتابة
     flags:
-      title: Flags
-      pending: Pending
-      completed: Completed
-      flagged: Flagged
-      created: Created
-      action: Action
-      review: Review
-    change_modal:
-      title: Change user status to...
-      btn_cancel: Cancel
-      btn_submit: Submit
-      normal_name: normal
-      normal_desc: A normal user can ask and answer questions.
-      suspended_name: suspended
-      suspended_desc: A suspended user can't log in.
-      deleted_name: deleted
-      deleted_desc: "Delete profile, authentication associations."
-      inactive_name: inactive
-      inactive_desc: An inactive user must re-validate their email.
-      confirm_title: Delete this user
-      confirm_content: Are you sure you want to delete this user? This is permanent!
-      confirm_btn: Delete
-      msg:
-        empty: Please select a reason.
-    status_modal:
-      title: "Change {{ type }} status to..."
-      normal_name: normal
-      normal_desc: A normal post available to everyone.
-      closed_name: closed
-      closed_desc: "A closed question can't answer, but still can edit, vote and comment."
-      deleted_name: deleted
-      deleted_desc: All reputation gained and lost will be restored.
-      btn_cancel: Cancel
-      btn_submit: Submit
-      btn_next: Next
+      title: البلاغات
+      pending: قيد الانتظار
+      completed: مكتملة
+      flagged: مُبلَّغ عنه
+      flagged_type: مُبلَّغ عنه {{ type }}
+      created: تاريخ الإنشاء
+      action: إجراء
+      review: مراجعة
     user_role_modal:
-      title: Change user role to...
-      btn_cancel: Cancel
-      btn_submit: Submit
+      title: تغيير دور المستخدم إلى...
+      btn_cancel: إلغاء
+      btn_submit: إرسال
+    new_password_modal:
+      title: تعيين كلمة مرور جديدة
+      form:
+        fields:
+          password:
+            label: كلمة المرور
+            text: سيتم تسجيل خروج المستخدم وسيحتاج إلى تسجيل الدخول مرة أخرى.
+            msg: يجب أن تتكون كلمة المرور من 8 إلى 32 حرفاً.
+      btn_cancel: إلغاء
+      btn_submit: إرسال
+    edit_profile_modal:
+      title: تعديل الملف الشخصي
+      form:
+        fields:
+          display_name:
+            label: الاسم المعروض
+            msg_range: يجب أن يتكون الاسم المعروض من 2 إلى 30 حرفاً.
+          username:
+            label: اسم المستخدم
+            msg_range: يجب أن يتكون اسم المستخدم من 2 إلى 30 حرفاً.
+          email:
+            label: البريد الإلكتروني
+            msg_invalid: عنوان البريد الإلكتروني غير صالح.
+      edit_success: تم التعديل بنجاح
+      btn_cancel: إلغاء
+      btn_submit: إرسال
+    user_modal:
+      title: إضافة مستخدم جديد
+      form:
+        fields:
+          users:
+            label: إضافة مستخدمين دفعة واحدة
+            placeholder: "John Smith, john@example.com, BUSYopr2\nAlice, alice@example.com, fpDntV8q"
+            text: افصل بين «الاسم، البريد الإلكتروني، كلمة المرور» بفواصل. مستخدم واحد في كل سطر.
+            msg: "يرجى إدخال البريد الإلكتروني للمستخدم، واحد في كل سطر."
+          display_name:
+            label: الاسم المعروض
+            msg: يجب أن يتكون الاسم المعروض من 2 إلى 30 حرفاً.
+          email:
+            label: البريد الإلكتروني
+            msg: البريد الإلكتروني غير صالح.
+          password:
+            label: كلمة المرور
+            msg: يجب أن تتكون كلمة المرور من 8 إلى 32 حرفاً.
+      btn_cancel: إلغاء
+      btn_submit: إرسال
     users:
-      title: Users
-      name: Name
-      email: Email
-      reputation: Reputation
-      created_at: Created Time
-      delete_at: Deleted Time
-      suspend_at: Suspended Time
-      status: Status
-      role: Role
-      action: Action
-      change: Change
-      all: All
-      staff: Staff
-      inactive: Inactive
-      suspended: Suspended
-      deleted: Deleted
-      normal: Normal
-      Moderator: Moderator
-      Admin: Admin
-      User: User
+      title: المستخدمون
+      name: الاسم
+      email: البريد الإلكتروني
+      reputation: السمعة
+      created_at: تاريخ الإنشاء
+      delete_at: تاريخ الحذف
+      suspend_at: تاريخ الإيقاف
+      suspend_until: موقوف حتى
+      status: الحالة
+      role: الدور
+      action: إجراء
+      change: تغيير
+      all: الكل
+      staff: طاقم العمل
+      more: المزيد
+      inactive: غير نشط
+      suspended: موقوف
+      deleted: محذوف
+      normal: عادي
+      Moderator: مشرف
+      Admin: مدير
+      User: مستخدم
       filter:
-        placeholder: "Filter by name, user:id"
-      set_new_password: Set new password
-      change_status: Change status
-      change_role: Change role
-      show_logs: Show logs
-      add_user: Add user
-      new_password_modal:
-        title: Set new password
-        form:
-          fields:
-            password:
-              label: Password
-              text: The user will be logged out and need to login again.
-              msg: Password must be at 8-32 characters in length.
-        btn_cancel: Cancel
-        btn_submit: Submit
-      user_modal:
-        title: Add new user
-        form:
-          fields:
-            display_name:
-              label: Display Name
-              msg: Display name must be 2-30 characters in length.
-            email:
-              label: Email
-              msg: Email is not valid.
-            password:
-              label: Password
-              msg: Password must be at 8-32 characters in length.
-        btn_cancel: Cancel
-        btn_submit: Submit
+        placeholder: "التصفية حسب الاسم، user:id"
+      set_new_password: تعيين كلمة مرور جديدة
+      edit_profile: تعديل الملف الشخصي
+      change_status: تغيير الحالة
+      change_role: تغيير الدور
+      show_logs: عرض السجلات
+      add_user: إضافة مستخدم
+      deactivate_user:
+        title: إلغاء تنشيط المستخدم
+        content: يجب على المستخدم غير النشط إعادة التحقق من بريده الإلكتروني.
+      delete_user:
+        title: حذف هذا المستخدم
+        content: هل أنت متأكد من رغبتك في حذف هذا المستخدم؟ هذا الإجراء نهائي!
+        remove: إزالة محتواه
+        label: إزالة جميع الأسئلة والإجابات والتعليقات وغيرها.
+        text: لا تُحدد هذا الخيار إذا كنت ترغب في حذف حساب المستخدم فقط.
+      suspend_user:
+        title: إيقاف هذا المستخدم
+        content: لا يمكن للمستخدم الموقوف تسجيل الدخول.
+        label: ما مدة إيقاف المستخدم؟
+        forever: للأبد
     questions:
-      page_title: Questions
-      normal: Normal
-      closed: Closed
-      deleted: Deleted
-      post: Post
-      votes: Votes
-      answers: Answers
-      created: Created
-      status: Status
-      action: Action
-      change: Change
+      page_title: الأسئلة
+      unlisted: غير مدرج
+      post: المنشور
+      votes: الأصوات
+      answers: الإجابات
+      created: تاريخ الإنشاء
+      status: الحالة
+      action: إجراء
+      change: تغيير
+      pending: قيد الانتظار
       filter:
-        placeholder: "Filter by title, question:id"
+        placeholder: "التصفية حسب العنوان، question:id"
     answers:
-      page_title: Answers
-      normal: Normal
-      deleted: Deleted
-      post: Post
-      votes: Votes
-      created: Created
-      status: Status
-      action: Action
-      change: Change
+      page_title: الإجابات
+      post: المنشور
+      votes: الأصوات
+      created: تاريخ الإنشاء
+      status: الحالة
+      action: إجراء
+      change: تغيير
       filter:
-        placeholder: "Filter by title, answer:id"
+        placeholder: "التصفية حسب العنوان، answer:id"
     general:
-      page_title: General
+      page_title: عام
       name:
-        label: Site Name
-        msg: Site name cannot be empty.
-        text: "The name of this site, as used in the title tag."
+        label: اسم الموقع
+        msg: لا يمكن أن يكون اسم الموقع فارغاً.
+        text: "اسم هذا الموقع، كما يُستخدم في وسم العنوان (title)."
       site_url:
-        label: Site URL
-        msg: Site url cannot be empty.
-        validate: Please enter a valid URL.
-        text: The address of your site.
+        label: رابط الموقع
+        msg: لا يمكن أن يكون رابط الموقع فارغاً.
+        validate: يرجى إدخال رابط صالح.
+        text: عنوان موقعك.
       short_desc:
-        label: Short Site Description (optional)
-        msg: Short site description cannot be empty.
-        text: "Short description, as used in the title tag on homepage."
+        label: وصف قصير للموقع
+        msg: لا يمكن أن يكون الوصف القصير للموقع فارغاً.
+        text: "وصف قصير، كما يُستخدم في وسم العنوان في الصفحة الرئيسية."
       desc:
-        label: Site Description (optional)
-        msg: Site description cannot be empty.
-        text: "Describe this site in one sentence, as used in the meta description tag."
+        label: وصف الموقع
+        msg: لا يمكن أن يكون وصف الموقع فارغاً.
+        text: "صِف هذا الموقع في جملة واحدة، كما يُستخدم في وسم meta description."
       contact_email:
-        label: Contact Email
-        msg: Contact email cannot be empty.
-        validate: Contact email is not valid.
-        text: Email address of key contact responsible for this site.
+        label: بريد التواصل
+        msg: لا يمكن أن يكون بريد التواصل فارغاً.
+        validate: بريد التواصل غير صالح.
+        text: عنوان البريد الإلكتروني لجهة الاتصال الرئيسية المسؤولة عن هذا الموقع.
+      check_update:
+        label: تحديثات البرنامج
+        text: التحقق من التحديثات تلقائياً
     interface:
-      page_title: Interface
-      logo:
-        label: Logo (optional)
-        msg: Site logo cannot be empty.
-        text: You can upload your image or <1>reset</1> it to the site title text.
-      theme:
-        label: Theme
-        msg: Theme cannot be empty.
-        text: Select an existing theme.
+      page_title: الواجهة
       language:
-        label: Interface Language
-        msg: Interface language cannot be empty.
-        text: User interface language. It will change when you refresh the page.
+        label: لغة الواجهة
+        msg: لا يمكن أن تكون لغة الواجهة فارغة.
+        text: لغة واجهة المستخدم. ستتغير عند تحديث الصفحة.
       time_zone:
-        label: Timezone
-        msg: Timezone cannot be empty.
-        text: Choose a city in the same timezone as you.
+        label: المنطقة الزمنية
+        msg: لا يمكن أن تكون المنطقة الزمنية فارغة.
+        text: اختر مدينة في نفس منطقتك الزمنية.
+      avatar:
+        label: الصورة الرمزية الافتراضية
+        text: للمستخدمين الذين ليس لديهم صورة رمزية مخصصة.
+      gravatar_base_url:
+        label: الرابط الأساسي لـ Gravatar
+        text: الرابط الأساسي لواجهة برمجة تطبيقات مزود Gravatar. يتم تجاهله عندما يكون فارغاً.
     smtp:
       page_title: SMTP
       from_email:
-        label: From Email
-        msg: From email cannot be empty.
-        text: The email address which emails are sent from.
+        label: البريد المُرسِل
+        msg: لا يمكن أن يكون البريد المُرسِل فارغاً.
+        text: عنوان البريد الإلكتروني الذي تُرسل منه الرسائل.
       from_name:
-        label: From Name
-        msg: From name cannot be empty.
-        text: The name which emails are sent from.
+        label: اسم المُرسِل
+        msg: لا يمكن أن يكون اسم المُرسِل فارغاً.
+        text: الاسم الذي تُرسل به الرسائل.
       smtp_host:
-        label: SMTP Host
-        msg: SMTP host cannot be empty.
-        text: Your mail server.
+        label: مضيف SMTP
+        msg: لا يمكن أن يكون مضيف SMTP فارغاً.
+        text: خادم البريد الخاص بك.
       encryption:
-        label: Encryption
-        msg: Encryption cannot be empty.
-        text: For most servers SSL is the recommended option.
+        label: التشفير
+        msg: لا يمكن أن يكون التشفير فارغاً.
+        text: بالنسبة لمعظم الخوادم، يُعد SSL الخيار الموصى به.
         ssl: SSL
-        none: None
+        tls: TLS
+        none: بدون
       smtp_port:
-        label: SMTP Port
-        msg: SMTP port must be number 1 ~ 65535.
-        text: The port to your mail server.
+        label: منفذ SMTP
+        msg: يجب أن يكون منفذ SMTP رقماً بين 1 و 65535.
+        text: منفذ خادم البريد الخاص بك.
       smtp_username:
-        label: SMTP Username
-        msg: SMTP username cannot be empty.
+        label: اسم مستخدم SMTP
+        msg: لا يمكن أن يكون اسم مستخدم SMTP فارغاً.
       smtp_password:
-        label: SMTP Password
-        msg: SMTP password cannot be empty.
+        label: كلمة مرور SMTP
+        msg: لا يمكن أن تكون كلمة مرور SMTP فارغة.
       test_email_recipient:
-        label: Test Email Recipients
-        text: Provide email address that will receive test sends.
-        msg: Test email recipients is invalid
+        label: مستلمو البريد التجريبي
+        text: أدخل عنوان البريد الإلكتروني الذي سيستلم الرسائل التجريبية.
+        msg: مستلمو البريد التجريبي غير صالحين
       smtp_authentication:
-        label: Enable authentication
-        title: SMTP Authentication
-        msg: SMTP authentication cannot be empty.
-        "yes": "Yes"
-        "no": "No"
+        label: تفعيل المصادقة
+        title: مصادقة SMTP
+        msg: لا يمكن أن تكون مصادقة SMTP فارغة.
+        "yes": "نعم"
+        "no": "لا"
     branding:
-      page_title: Branding
+      page_title: العلامة التجارية
       logo:
-        label: Logo (optional)
-        msg: Logo cannot be empty.
-        text: The logo image at the top left of your site. Use a wide rectangular image with a height of 56 and an aspect ratio greater than 3:1. If left blank, the site title text will be shown.
+        label: الشعار
+        msg: لا يمكن أن يكون الشعار فارغاً.
+        text: صورة الشعار في أعلى موقعك. استخدم صورة مستطيلة عريضة بارتفاع 56 ونسبة عرض إلى ارتفاع أكبر من 3:1. إذا تُرك فارغاً، سيُعرض نص عنوان الموقع.
       mobile_logo:
-        label: Mobile Logo (optional)
-        text: The logo used on mobile version of your site. Use a wide rectangular image with a height of 56. If left blank, the image from the "logo" setting will be used.
+        label: شعار الجوال
+        text: الشعار المستخدم في نسخة الجوال من موقعك. استخدم صورة مستطيلة عريضة بارتفاع 56. إذا تُرك فارغاً، ستُستخدم الصورة من إعداد «الشعار».
       square_icon:
-        label: Square Icon (optional)
-        msg: Square icon cannot be empty.
-        text: Image used as the base for metadata icons. Should ideally be larger than 512x512.
+        label: الأيقونة المربعة
+        msg: لا يمكن أن تكون الأيقونة المربعة فارغة.
+        text: الصورة المستخدمة كأساس لأيقونات البيانات الوصفية. يُفضل أن تكون أكبر من 512x512.
       favicon:
-        label: Favicon (optional)
-        text: A favicon for your site. To work correctly over a CDN it must be a png. Will be resized to 32x32. If left blank, "square icon" will be used.
+        label: أيقونة الموقع (Favicon)
+        text: أيقونة لموقعك. لكي تعمل بشكل صحيح عبر CDN يجب أن تكون بصيغة png. سيُعاد تحجيمها إلى 32x32. إذا تُركت فارغة، ستُستخدم «الأيقونة المربعة».
     legal:
-      page_title: Legal
+      page_title: الشؤون القانونية
       terms_of_service:
-        label: Terms of Service
-        text: "You can add terms of service content here. If you already have a document hosted elsewhere, provide the full URL here."
+        label: شروط الخدمة
+        text: "يمكنك إضافة محتوى شروط الخدمة هنا. إذا كان لديك مستند مستضاف في مكان آخر، فأدخل الرابط الكامل هنا."
       privacy_policy:
-        label: Privacy Policy
-        text: "You can add privacy policy content here. If you already have a document hosted elsewhere, provide the full URL here."
+        label: سياسة الخصوصية
+        text: "يمكنك إضافة محتوى سياسة الخصوصية هنا. إذا كان لديك مستند مستضاف في مكان آخر، فأدخل الرابط الكامل هنا."
+      external_content_display:
+        label: المحتوى الخارجي
+        text: "يشمل المحتوى الصور ومقاطع الفيديو والوسائط المضمّنة من مواقع خارجية."
+        always_display: عرض المحتوى الخارجي دائماً
+        ask_before_display: السؤال قبل عرض المحتوى الخارجي
     write:
-      page_title: Write
+      page_title: الملفات
+      min_content:
+        label: الحد الأدنى لطول نص السؤال
+        text: الحد الأدنى المسموح به لطول نص السؤال بالأحرف.
+      restrict_answer:
+        title: كتابة الإجابات
+        label: يمكن لكل مستخدم كتابة إجابة واحدة فقط على السؤال نفسه
+        text: "أوقف هذا الخيار للسماح للمستخدمين بكتابة إجابات متعددة على السؤال نفسه، مما قد يجعل الإجابات غير مركزة."
+      min_tags:
+        label: "الحد الأدنى للوسوم لكل سؤال"
+        text: "الحد الأدنى لعدد الوسوم المطلوبة في السؤال."
       recommend_tags:
-        label: Recommend Tags
-        text: "Please input tag slug above, one tag per line."
+        label: الوسوم الموصى بها
+        text: "ستظهر الوسوم الموصى بها في القائمة المنسدلة بشكل افتراضي."
+        msg:
+          contain_reserved: "لا يمكن أن تحتوي الوسوم الموصى بها على وسوم محجوزة"
       required_tag:
-        title: Required Tag
-        label: Set recommend tag as required
-        text: "Every new question must have at least one recommend tag."
+        title: تعيين الوسوم الإلزامية
+        label: تعيين «الوسوم الموصى بها» كوسوم إلزامية
+        text: "يجب أن يحتوي كل سؤال جديد على وسم موصى به واحد على الأقل."
       reserved_tags:
-        label: Reserved Tags
-        text: "Reserved tags can only be added to a post by moderator."
+        label: الوسوم المحجوزة
+        text: "لا يمكن استخدام الوسوم المحجوزة إلا من قبل المشرف."
+      image_size:
+        label: الحد الأقصى لحجم الصورة (ميجابايت)
+        text: "الحد الأقصى لحجم رفع الصور."
+      attachment_size:
+        label: الحد الأقصى لحجم المرفق (ميجابايت)
+        text: "الحد الأقصى لحجم رفع الملفات المرفقة."
+      image_megapixels:
+        label: الحد الأقصى لميجابكسل الصورة
+        text: "الحد الأقصى لعدد الميجابكسل المسموح به للصورة."
+      image_extensions:
+        label: امتدادات الصور المصرح بها
+        text: "قائمة بامتدادات الملفات المسموح بها لعرض الصور، افصل بينها بفواصل."
+      attachment_extensions:
+        label: امتدادات المرفقات المصرح بها
+        text: "قائمة بامتدادات الملفات المسموح برفعها، افصل بينها بفواصل. تحذير: السماح بالرفع قد يسبب مشكلات أمنية."
     seo:
-      page_title: SEO
+      page_title: تحسين محركات البحث (SEO)
       permalink:
-        label: Permalink
-        text: Custom URL structures can improve the usability, and forward-compatibility of your links.
+        label: الرابط الدائم
+        text: يمكن لهياكل الروابط المخصصة تحسين سهولة الاستخدام والتوافق المستقبلي لروابطك.
       robots:
         label: robots.txt
-        text: This will permanently override any related site settings.
+        text: سيؤدي هذا إلى تجاوز أي إعدادات موقع ذات صلة بشكل دائم.
     themes:
-      page_title: Themes
+      page_title: السمات
       themes:
-        label: Themes
-        text: Select an existing theme.
+        label: السمات
+        text: اختر سمة موجودة.
+      color_scheme:
+        label: نظام الألوان
       navbar_style:
-        label: Navbar Style
-        text: Select an existing theme.
+        label: نمط خلفية شريط التنقل
       primary_color:
-        label: Primary Color
-        text: Modify the colors used by your themes
+        label: اللون الأساسي
+        text: عدّل الألوان المستخدمة في سماتك
+      layout:
+        label: التخطيط
+        full_width: عرض كامل
+        fixed_width: عرض ثابت
     css_and_html:
-      page_title: CSS and HTML
+      page_title: CSS و HTML
       custom_css:
-        label: Custom CSS
-        text: This will insert as <link>
+        label: CSS مخصص
+        text: سيتم إدراج هذا كـ &lt;link>
       head:
         label: Head
-        text: This will insert before </head>
+        text: سيتم إدراج هذا قبل &lt;/head>
       header:
-        label: Header
-        text: This will insert after <body>
+        label: الترويسة
+        text: سيتم إدراج هذا بعد &lt;body>
       footer:
-        label: Footer
-        text: This will insert before </html>.
+        label: التذييل
+        text: سيتم إدراج هذا قبل &lt;/body>.
+      sidebar:
+        label: الشريط الجانبي
+        text: سيتم إدراج هذا في الشريط الجانبي.
     login:
-      page_title: Login
+      page_title: تسجيل الدخول
       membership:
-        title: Membership
-        label: Allow new registrations
-        text: Turn off to prevent anyone from creating a new account.
+        title: العضوية
+        label: السماح بالتسجيلات الجديدة
+        text: أوقف هذا الخيار لمنع أي شخص من إنشاء حساب جديد.
+      email_registration:
+        title: التسجيل بالبريد الإلكتروني
+        label: السماح بالتسجيل بالبريد الإلكتروني
+        text: أوقف هذا الخيار لمنع أي شخص من إنشاء حساب جديد عبر البريد الإلكتروني.
+      allowed_email_domains:
+        title: نطاقات البريد الإلكتروني المسموح بها
+        text: نطاقات البريد الإلكتروني التي يجب على المستخدمين التسجيل بها. نطاق واحد في كل سطر. يتم تجاهلها عندما تكون فارغة.
       private:
-        title: Private
-        label: Login required
-        text: Only logged in users can access this community.
+        title: خاص
+        label: تسجيل الدخول مطلوب
+        text: يمكن للمستخدمين المسجلين دخولهم فقط الوصول إلى هذا المجتمع.
+      password_login:
+        title: تسجيل الدخول بكلمة المرور
+        label: السماح بتسجيل الدخول بالبريد الإلكتروني وكلمة المرور
+        text: "تحذير: في حال الإيقاف، قد لا تتمكن من تسجيل الدخول إذا لم تكن قد أعددت مسبقاً طريقة تسجيل دخول أخرى."
+    installed_plugins:
+      title: الإضافات المثبتة
+      plugin_link: الإضافات توسّع الوظائف وتزيدها. يمكنك العثور على إضافات في <1>مستودع الإضافات</1>.
+      filter:
+        all: الكل
+        active: نشطة
+        inactive: غير نشطة
+        outdated: قديمة
+      plugins:
+        label: الإضافات
+        text: اختر إضافة موجودة.
+      name: الاسم
+      version: الإصدار
+      status: الحالة
+      action: إجراء
+      deactivate: إلغاء التنشيط
+      activate: تنشيط
+      settings: الإعدادات
+    settings_users:
+      title: المستخدمون
+      avatar:
+        label: الصورة الرمزية الافتراضية
+        text: للمستخدمين الذين ليس لديهم صورة رمزية مخصصة.
+      gravatar_base_url:
+        label: الرابط الأساسي لـ Gravatar
+        text: الرابط الأساسي لواجهة برمجة تطبيقات مزود Gravatar. يتم تجاهله عندما يكون فارغاً.
+      profile_editable:
+        title: إمكانية تعديل الملف الشخصي
+      allow_update_display_name:
+        label: السماح للمستخدمين بتغيير أسمائهم المعروضة
+      allow_update_username:
+        label: السماح للمستخدمين بتغيير أسماء المستخدمين الخاصة بهم
+      allow_update_avatar:
+        label: السماح للمستخدمين بتغيير صورهم الشخصية
+      allow_update_bio:
+        label: السماح للمستخدمين بتغيير نبذتهم التعريفية
+      allow_update_website:
+        label: السماح للمستخدمين بتغيير مواقعهم الإلكترونية
+      allow_update_location:
+        label: السماح للمستخدمين بتغيير مواقعهم الجغرافية
+    privilege:
+      title: الصلاحيات
+      level:
+        label: مستوى السمعة المطلوب
+        text: اختر السمعة المطلوبة للحصول على الصلاحيات
+      msg:
+        should_be_number: يجب أن يكون المُدخل رقماً
+        number_larger_1: يجب أن يكون الرقم مساوياً لـ 1 أو أكبر
+    badges:
+      action: إجراء
+      active: نشطة
+      activate: تنشيط
+      all: الكل
+      awards: المنح
+      deactivate: إلغاء التنشيط
+      filter:
+        placeholder: التصفية حسب الاسم، badge:id
+      group: المجموعة
+      inactive: غير نشطة
+      name: الاسم
+      show_logs: عرض السجلات
+      status: الحالة
+      title: الشارات
+    apikeys:
+      title: مفاتيح API
+      add_api_key: إضافة مفتاح API
+      desc: الوصف
+      scope: النطاق
+      key: المفتاح
+      created: تاريخ الإنشاء
+      last_used: آخر استخدام
+      add_or_edit_modal:
+        add_title: إضافة مفتاح API
+        edit_title: تعديل مفتاح API
+        description: الوصف
+        description_required: الوصف مطلوب.
+        scope: النطاق
+        global: عام
+        read-only: للقراءة فقط
+      created_modal:
+        title: تم إنشاء مفتاح API
+        api_key: مفتاح API
+        description: لن يُعرض هذا المفتاح مرة أخرى. تأكد من أخذ نسخة منه قبل المتابعة.
+      delete_modal:
+        title: حذف مفتاح API
+        content: لن تتمكن أي تطبيقات أو نصوص برمجية تستخدم هذا المفتاح من الوصول إلى واجهة API بعد الآن. هذا الإجراء نهائي!
+    ai_settings:
+      enabled:
+        label: تفعيل الذكاء الاصطناعي
+        check: تفعيل ميزات الذكاء الاصطناعي
+        text: يجب إعداد نموذج الذكاء الاصطناعي بشكل صحيح قبل إمكانية استخدامه.
+      provider:
+        label: المزود
+      api_host:
+        label: مضيف API
+        msg: مضيف API مطلوب
+      api_key:
+        label: مفتاح API
+        check: تحقق
+        check_success: "تم الاتصال بنجاح."
+        msg: مفتاح API مطلوب
+      model:
+        label: النموذج
+        msg: النموذج مطلوب
+      add_success: تم تحديث إعدادات الذكاء الاصطناعي بنجاح.
+    conversations:
+      topic: الموضوع
+      helpful: مفيدة
+      unhelpful: غير مفيدة
+      created: تاريخ الإنشاء
+      action: إجراء
+      empty: لم يتم العثور على أي محادثات.
+      delete_modal:
+        title: حذف المحادثة
+        content: هل أنت متأكد من رغبتك في حذف هذه المحادثة؟ هذا الإجراء نهائي!
+        delete_success: تم حذف المحادثة بنجاح.
+    mcp:
+      mcp_server:
+        label: خادم MCP
+        switch: مفعّل
+      type:
+        label: النوع
+      url:
+        label: الرابط
+      http_header:
+        label: ترويسة HTTP
+        text: يرجى استبدال {key} بمفتاح API.
   form:
-    empty: cannot be empty
-    invalid: is invalid
-    btn_submit: Save
-    not_found_props: "Required property {{ key }} not found."
+    optional: (اختياري)
+    empty: لا يمكن أن يكون فارغاً
+    invalid: غير صالح
+    btn_submit: حفظ
+    not_found_props: "الخاصية المطلوبة {{ key }} غير موجودة."
+    select: اختر
   page_review:
-    review: Review
-    proposed: proposed
-    question_edit: Question edit
-    answer_edit: Answer edit
-    tag_edit: Tag edit
-    edit_summary: Edit summary
-    edit_question: Edit question
-    edit_answer: Edit answer
-    edit_tag: Edit tag
-    empty: No review tasks left.
+    review: مراجعة
+    proposed: اقترح
+    question_edit: تعديل سؤال
+    answer_edit: تعديل إجابة
+    tag_edit: تعديل وسم
+    edit_summary: ملخص التعديل
+    edit_question: تعديل السؤال
+    edit_answer: تعديل الإجابة
+    edit_tag: تعديل الوسم
+    empty: لا توجد مهام مراجعة متبقية.
+    approve_revision_tip: هل توافق على هذه المراجعة؟
+    approve_flag_tip: هل توافق على هذا البلاغ؟
+    approve_post_tip: هل توافق على هذا المنشور؟
+    approve_user_tip: هل توافق على هذا المستخدم؟
+    suggest_edits: التعديلات المقترحة
+    flag_post: الإبلاغ عن منشور
+    flag_user: الإبلاغ عن مستخدم
+    queued_post: منشور في قائمة الانتظار
+    queued_user: مستخدم في قائمة الانتظار
+    filter_label: النوع
+    reputation: السمعة
+    flag_post_type: تم الإبلاغ عن هذا المنشور بوصفه {{ type }}.
+    flag_user_type: تم الإبلاغ عن هذا المستخدم بوصفه {{ type }}.
+    edit_post: تعديل المنشور
+    list_post: إدراج المنشور
+    unlist_post: إلغاء إدراج المنشور
   timeline:
-    undeleted: undeleted
-    deleted: deleted
-    downvote: downvote
-    upvote: upvote
-    accept: accept
-    cancelled: cancelled
-    commented: commented
-    rollback: rollback
-    edited: edited
-    answered: answered
-    asked: asked
-    closed: closed
-    reopened: reopened
-    created: created
-    title: "History for"
-    tag_title: "Timeline for"
-    show_votes: "Show votes"
-    n_or_a: N/A
-    title_for_question: "Timeline for"
-    title_for_answer: "Timeline for answer to {{ title }} by {{ author }}"
-    title_for_tag: "Timeline for tag"
-    datetime: Datetime
-    type: Type
-    by: By
-    comment: Comment
-    no_data: "We couldn't find anything."
+    undeleted: ألغى الحذف
+    deleted: حذف
+    downvote: صوّت سلباً
+    upvote: صوّت إيجاباً
+    accept: قبل
+    cancelled: ألغى
+    commented: علّق
+    rollback: تراجع
+    edited: عدّل
+    answered: أجاب
+    asked: سأل
+    closed: أغلق
+    reopened: أعاد الفتح
+    created: أنشأ
+    pin: ثبّت
+    unpin: ألغى التثبيت
+    show: أدرج
+    hide: ألغى الإدراج
+    title: "سجل"
+    tag_title: "الجدول الزمني لـ"
+    show_votes: "عرض الأصوات"
+    n_or_a: غير متاح
+    title_for_question: "الجدول الزمني لـ"
+    title_for_answer: "الجدول الزمني لإجابة على {{ title }} بواسطة {{ author }}"
+    title_for_tag: "الجدول الزمني للوسم"
+    datetime: التاريخ والوقت
+    type: النوع
+    by: بواسطة
+    comment: التعليق
+    no_data: "لم نتمكن من العثور على أي شيء."
   users:
-    title: Users
-    users_with_the_most_reputation: Users with the highest reputation scores
-    users_with_the_most_vote: Users who voted the most
-    staffs: Our community staff
-    reputation: reputation
-    votes: votes
+    title: المستخدمون
+    users_with_the_most_reputation: المستخدمون الحاصلون على أعلى درجات السمعة هذا الأسبوع
+    users_with_the_most_vote: المستخدمون الأكثر تصويتاً هذا الأسبوع
+    staffs: طاقم مجتمعنا
+    reputation: السمعة
+    votes: الأصوات
+  prompt:
+    leave_page: هل أنت متأكد من رغبتك في مغادرة الصفحة؟
+    changes_not_save: قد لا يتم حفظ تغييراتك.
+  draft:
+    discard_confirm: هل أنت متأكد من رغبتك في تجاهل مسودتك؟
+  messages:
+    post_deleted: تم حذف هذا المنشور.
+    post_cancel_deleted: تم إلغاء حذف هذا المنشور.
+    post_pin: تم تثبيت هذا المنشور.
+    post_unpin: تم إلغاء تثبيت هذا المنشور.
+    post_hide_list: تم إخفاء هذا المنشور من القائمة.
+    post_show_list: تم عرض هذا المنشور في القائمة.
+    post_reopen: تم إعادة فتح هذا المنشور.
+    post_list: تم إدراج هذا المنشور.
+    post_unlist: تم إلغاء إدراج هذا المنشور.
+    post_pending: منشورك في انتظار المراجعة. هذه معاينة، وسيصبح مرئياً بعد الموافقة عليه.
+    post_closed: تم إغلاق هذا المنشور.
+    answer_deleted: تم حذف هذه الإجابة.
+    answer_cancel_deleted: تم إلغاء حذف هذه الإجابة.
+    change_user_role: تم تغيير دور هذا المستخدم.
+    user_inactive: هذا المستخدم غير نشط بالفعل.
+    user_normal: هذا المستخدم عادي بالفعل.
+    user_suspended: تم إيقاف هذا المستخدم.
+    user_deleted: تم حذف هذا المستخدم.
+    user_added: تمت إضافة المستخدم بنجاح.
+    badge_activated: تم تنشيط هذه الشارة.
+    badge_inactivated: تم إلغاء تنشيط هذه الشارة.
+    users_deleted: تم حذف هؤلاء المستخدمين.
+    posts_deleted: تم حذف هذه الأسئلة.
+    answers_deleted: تم حذف هذه الإجابات.
+    copy: نسخ إلى الحافظة
+    copied: تم النسخ
+    external_content_warning: لا يتم عرض الصور/الوسائط الخارجية.
+plugin:
+  google_connector:
+    backend:
+      name:
+        other: Google
+      info:
+        name:
+          other: موصل Google
+        description:
+          other: الاتصال بحساب Google لتسجيل الدخول عبر طرف ثالث
+      config:
+        client_id:
+          title:
+            other: معرّف العميل (ClientID)
+          description:
+            other: معرّف العميل الخاص بتطبيق Google
+        client_secret:
+          title:
+            other: السر الخاص بالعميل (ClientSecret)
+          description:
+            other: السر الخاص بتطبيق Google

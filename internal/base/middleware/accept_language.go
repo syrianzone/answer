@@ -35,7 +35,7 @@ func ExtractAndSetAcceptLanguage(ctx *gin.Context) {
 	acceptLanguage := ctx.GetHeader(constant.AcceptLanguageFlag)
 	tag, _, err := language.ParseAcceptLanguage(acceptLanguage)
 	if err != nil || len(tag) == 0 {
-		ctx.Set(constant.AcceptLanguageFlag, i18n.LanguageEnglish)
+		ctx.Set(constant.AcceptLanguageFlag, i18n.Language("ar_SA"))
 		return
 	}
 
@@ -49,5 +49,5 @@ func ExtractAndSetAcceptLanguage(ctx *gin.Context) {
 	}
 
 	// default language
-	ctx.Set(constant.AcceptLanguageFlag, i18n.LanguageEnglish)
+	ctx.Set(constant.AcceptLanguageFlag, i18n.Language("ar_SA"))
 }

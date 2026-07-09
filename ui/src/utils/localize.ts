@@ -133,6 +133,24 @@ export const getCurrentTheme = () => {
 };
 
 /**
+ * Right-to-left languages: keep <html> lang/dir in sync with the current UI
+ * language so the RTL stylesheet (postcss-rtlcss) can take effect.
+ */
+const RTL_LANGUAGES = ['ar', 'he', 'fa', 'ur'];
+export const setupHtmlDirection = (langName: string) => {
+  const htmlLang = langName.replace('_', '-');
+  const isRTL = RTL_LANGUAGES.some((lang) =>
+    htmlLang.toLowerCase().startsWith(lang),
+  );
+  document.documentElement.setAttribute('lang', htmlLang);
+  document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+};
+
+i18next.on('languageChanged', (lng) => {
+  setupHtmlDirection(lng);
+});
+
+/**
  * localize for Day.js
  */
 dayjs.extend(utc);

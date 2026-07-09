@@ -53,7 +53,8 @@ i18next
   .init({
     resources: initResources,
     lng: initLng,
-    fallbackLng: DEFAULT_LANG,
+    // en_US is bundled above and complete — untranslated keys fall back to it
+    fallbackLng: 'en_US',
     interpolation: {
       escapeValue: false,
     },

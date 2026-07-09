@@ -22,12 +22,20 @@
 #header {
   z-index: 1041;
   --bs-navbar-padding-y: 0.75rem;
-  background: var(--bs-primary);
-  box-shadow:
-    inset 0 -1px 0 rgba(0, 0, 0, 0.15),
-    0 0.125rem 0.25rem rgb(0 0 0 / 8%);
+  // shadcn header (matches syrianzone): translucent page background with
+  // blur and a hairline bottom border instead of a solid brand color
+  background-color: #{'hsl(var(--background) / 0.95)'};
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: $border-width $border-style #{'hsl(var(--border))'};
+  box-shadow: none;
   .logo {
     max-height: 2rem;
+  }
+
+  // theme-aware fallback logo pair (only one is visible at a time)
+  .logo-theme-dark {
+    display: none;
   }
 
   .fixed-width {
@@ -87,26 +95,31 @@
     }
   }
 
-  // style for colored navbar
+  // default navbar (shadcn style): muted links, primary on hover
   &.theme-light {
     .nav-link {
-      color: rgba(0, 0, 0, 0.65);
+      color: #{'hsl(var(--muted-foreground))'};
+      &:hover,
+      &:focus,
+      &.active {
+        color: #{'hsl(var(--primary))'};
+      }
     }
     .placeholder-search {
       padding-left: 42px;
       box-shadow: none;
       color: var(--bs-body-color);
-      background-color: rgba(255, 255, 255, 0.2);
-      border: $border-width $border-style rgba(0, 0, 0, 0.05);
+      background-color: #{'hsl(var(--muted))'};
+      border: $border-width $border-style #{'hsl(var(--input))'};
       &:focus {
-        border: $border-width $border-style $border-color;
+        border: $border-width $border-style #{'hsl(var(--ring))'};
       }
       &::placeholder {
-        color: rgba(0, 0, 0, 0.65);
+        color: #{'hsl(var(--muted-foreground))'};
       }
     }
     .search-icon {
-      color: var(--bs-body-color);
+      color: #{'hsl(var(--muted-foreground))'};
     }
   }
 
@@ -120,6 +133,17 @@
     left: 0;
     padding: 10px 13px;
     line-height: 1;
+  }
+}
+
+[data-bs-theme='dark'] {
+  #header {
+    .logo-theme-light {
+      display: none;
+    }
+    .logo-theme-dark {
+      display: inline-block;
+    }
   }
 }
 

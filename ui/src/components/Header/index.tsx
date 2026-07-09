@@ -106,12 +106,16 @@ const Header: FC = () => {
 
   return (
     <Navbar
-      data-bs-theme={themeMode}
+      data-bs-theme={
+        theme_config?.[theme]?.navbar_style ? themeMode : undefined
+      }
       expand="xl"
       className={classnames('sticky-top', navbarStyle)}
-      style={{
-        backgroundColor: theme_config[theme].navbar_style,
-      }}
+      style={
+        theme_config?.[theme]?.navbar_style
+          ? { backgroundColor: theme_config[theme].navbar_style }
+          : undefined
+      }
       id="header">
       <div
         className={classnames(
@@ -144,8 +148,29 @@ const Header: FC = () => {
                 alt={siteInfo.name}
               />
             </>
+          ) : theme_config?.[theme]?.navbar_style ? (
+            <img
+              className="logo me-0"
+              src={
+                themeMode === 'dark'
+                  ? '/static/assets/logo-darkmode.svg'
+                  : '/static/assets/logo-lightmode.svg'
+              }
+              alt={siteInfo.name}
+            />
           ) : (
-            <span>{siteInfo.name}</span>
+            <>
+              <img
+                className="logo me-0 logo-theme-light"
+                src="/static/assets/logo-lightmode.svg"
+                alt={siteInfo.name}
+              />
+              <img
+                className="logo me-0 logo-theme-dark"
+                src="/static/assets/logo-darkmode.svg"
+                alt={siteInfo.name}
+              />
+            </>
           )}
         </Navbar.Brand>
 

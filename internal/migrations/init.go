@@ -253,7 +253,7 @@ func (m *Mentor) initSiteInfoSecurityConfig() {
 }
 
 func (m *Mentor) initSiteInfoThemeConfig() {
-	themeConfig := fmt.Sprintf(`{"theme":"default","theme_config":{"default":{"navbar_style":"#0033ff","primary_color":"#0033ff"}},"layout":"%s"}`, constant.ThemeLayoutFullWidth)
+	themeConfig := fmt.Sprintf(`{"theme":"default","theme_config":{"default":{"navbar_style":"","primary_color":"#556A4E"}},"layout":"%s"}`, constant.ThemeLayoutFullWidth)
 	_, m.err = m.engine.Context(m.ctx).Insert(&entity.SiteInfo{
 		Type:    "theme",
 		Content: themeConfig,

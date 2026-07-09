@@ -51,7 +51,7 @@ func addThemeAndPrivateMode(ctx context.Context, x *xorm.Engine) error {
 		}
 	}
 
-	themeConfig := fmt.Sprintf(`{"theme":"default","theme_config":{"default":{"navbar_style":"#0033ff","primary_color":"#0033ff"}},"layout":"%s"}`, constant.ThemeLayoutFullWidth)
+	themeConfig := fmt.Sprintf(`{"theme":"default","theme_config":{"default":{"navbar_style":"","primary_color":"#556A4E"}},"layout":"%s"}`, constant.ThemeLayoutFullWidth)
 	themeSiteInfo := &entity.SiteInfo{
 		Type:    "theme",
 		Content: themeConfig,

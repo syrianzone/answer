@@ -96,7 +96,7 @@ func GetStyle() (script []string, css string) {
 		}
 	}
 
-	cssRegexp := regexp.MustCompile(`<link href="(.*)" rel="stylesheet">`)
+	cssRegexp := regexp.MustCompile(`<link href="([^"]*\.css)" rel="stylesheet">`)
 	cssListData := cssRegexp.FindStringSubmatch(string(file))
 	if len(cssListData) == 2 {
 		css = cssListData[1]
@@ -601,6 +601,13 @@ func (tc *TemplateController) html(ctx *gin.Context, code int, tpl string, siteI
 	data["timezone"] = siteInfo.Interface.TimeZone
 	language := strings.ReplaceAll(siteInfo.Interface.Language, "_", "-")
 	data["lang"] = language
+	data["dir"] = "ltr"
+	for _, rtlLang := range []string{"ar", "he", "fa", "ur"} {
+		if strings.HasPrefix(language, rtlLang) {
+			data["dir"] = "rtl"
+			break
+		}
+	}
 	data["HeadCode"] = siteInfo.CustomCssHtml.CustomHead
 	data["HeaderCode"] = siteInfo.CustomCssHtml.CustomHeader
 	data["FooterCode"] = siteInfo.CustomCssHtml.CustomFooter

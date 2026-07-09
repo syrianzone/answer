@@ -23,6 +23,9 @@ package main
 
 import (
 	answercmd "github.com/apache/answer/cmd"
+
+	// Google OAuth login connector
+	_ "github.com/apache/answer-plugins/connector-google"
 )
 
 // main godoc

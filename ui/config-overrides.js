@@ -28,6 +28,40 @@ const webpack = require('webpack');
 const path = require("path");
 const i18nPath = path.resolve(__dirname, "../i18n");
 
+// Generate [dir="rtl"] overrides for every direction-sensitive rule so the
+// UI flips correctly when <html dir="rtl"> is set (Arabic and other RTL langs).
+const addPostcssRtlcss = (config) => {
+  const postcssRTLCSS = require('postcss-rtlcss');
+  const visit = (rules) => {
+    rules.forEach((rule) => {
+      if (!rule) return;
+      if (Array.isArray(rule.oneOf)) visit(rule.oneOf);
+      if (Array.isArray(rule.use)) {
+        rule.use.forEach((use) => {
+          if (
+            use &&
+            typeof use === 'object' &&
+            typeof use.loader === 'string' &&
+            use.loader.includes('postcss-loader') &&
+            use.options &&
+            use.options.postcssOptions
+          ) {
+            const postcssOptions = use.options.postcssOptions;
+            if (typeof postcssOptions === 'object') {
+              postcssOptions.plugins = [
+                ...(postcssOptions.plugins || []),
+                postcssRTLCSS({ mode: 'override' }),
+              ];
+            }
+          }
+        });
+      }
+    });
+  };
+  visit(config.module.rules);
+  return config;
+};
+
 module.exports = {
   webpack: function(config, env) {
     addWebpackAlias({
@@ -124,6 +158,8 @@ module.exports = {
         },
       },
     })(config);
+
+    addPostcssRtlcss(config);
 
     // add i18n dir to ModuleScopePlugin allowedPaths
     const moduleScopePlugin = config.resolve.plugins.find(_ => _.constructor.name === "ModuleScopePlugin");
