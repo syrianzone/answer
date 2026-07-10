@@ -34,11 +34,22 @@ ARG CGO_EXTRA_CFLAGS
 
 COPY . ${BUILD_DIR}
 WORKDIR ${BUILD_DIR}
+# Build THIS fork from source: `make ui` compiles the customized frontend
+# (Arabic RTL, syrianzone theme, ar_SY) into ui/build, which `make build`
+# then embeds via //go:embed. Plugins (e.g. connector-google) are compiled
+# in through the blank imports in cmd/answer/main.go.
+#
+# NOTE: we deliberately do NOT run script/build_plugin.sh here. That script
+# invokes `answer build --with ...`, which downloads upstream
+# github.com/apache/answer from the module proxy and rebuilds the binary from
+# it, discarding every fork customization. Add extra plugins by blank-importing
+# them in cmd/answer/main.go instead.
 RUN apk --no-cache add build-base git bash nodejs npm && npm install -g pnpm@9.7.0 \
-    && make clean build
+    && make clean \
+    && make ui \
+    && make build
 
 RUN chmod 755 answer
-RUN ["/bin/bash","-c","script/build_plugin.sh"]
 RUN cp answer /usr/bin/answer
 
 RUN mkdir -p /data/uploads && chmod 777 /data/uploads \
