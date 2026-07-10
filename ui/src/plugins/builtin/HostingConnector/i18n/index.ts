@@ -21,10 +21,10 @@ import { initI18nResource } from '@/utils/pluginKit/utils';
 
 import en_US from './en_US.yaml';
 import zh_CN from './zh_CN.yaml';
-import ar_SA from './ar_SA.yaml';
+import ar_SY from './ar_SY.yaml';
 
 initI18nResource({
   en_US,
   zh_CN,
-  ar_SA,
+  ar_SY,
 });

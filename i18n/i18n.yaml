@@ -17,6 +17,9 @@
 
 # all support language
 language_options:
+  - label: "العربية"
+    value: "ar_SY"
+    progress: 100
   - label: "English"
     value: "en_US"
     progress: 100

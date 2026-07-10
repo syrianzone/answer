@@ -15,15 +15,46 @@
 # specific language governing permissions and limitations
 # under the License.
 
-version: "3"
+# Deploys THIS fork (Arabic/RTL + syrianzone theme + Google login),
+# not upstream apache/answer. Secrets & config are read from ./.env
+# (copy .env.example -> .env). See .env.example for all variables.
+
 services:
   answer:
-    image: apache/answer
+    # Build the local fork image instead of pulling apache/answer,
+    # otherwise all customizations (theme, RTL, plugins, i18n) are lost.
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        TIMEZONE: ${TIMEZONE:-Asia/Damascus}
+    image: answer-ar:latest
+    env_file:
+      - .env
     ports:
-      - '9080:80'
+      - '${INSTALL_PORT:-9080}:80'
     restart: on-failure
     volumes:
       - answer-data:/data
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${DB_USERNAME:-answer}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set in .env}
+      POSTGRES_DB: ${DB_NAME:-answer}
+    restart: on-failure
+    volumes:
+      - answer-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-answer} -d ${DB_NAME:-answer}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
 volumes:
   answer-data:
+  answer-db:
