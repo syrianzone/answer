@@ -1,0 +1,61 @@
+name: deploy
+
+on:
+  # Deploy on a push to main whose commit message contains "+ghdeploy",
+  # or manually via the Actions tab.
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      auto_rollback:
+        description: "Roll back to the previous commit if the healthcheck fails"
+        type: boolean
+        default: true
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: >-
+      ${{ github.event_name == 'workflow_dispatch'
+          || (github.ref == 'refs/heads/main'
+              && contains(github.event.head_commit.message, '+ghdeploy')) }}
+    env:
+      VPS_HOST: ${{ secrets.VPS_HOST }}
+      VPS_USER: ${{ secrets.VPS_USER }}
+      REMOTE_APP_DIR: ${{ secrets.REMOTE_APP_DIR }}
+      HEALTHCHECK_URL: ${{ secrets.HEALTHCHECK_URL }}
+      DEPLOY_BRANCH: main
+      MAX_ATTEMPTS: "30"
+      SLEEP_SECONDS: "5"
+      AUTO_ROLLBACK: ${{ github.event_name == 'workflow_dispatch' && inputs.auto_rollback == false && '0' || '1' }}
+    steps:
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.VPS_SSH_PRIVATE_KEY }}" > ~/.ssh/vps-ssh-key
+          chmod 600 ~/.ssh/vps-ssh-key
+
+      - name: Deploy and verify
+        run: |
+          set -eu
+          echo "Deploying to $VPS_HOST:$REMOTE_APP_DIR (branch $DEPLOY_BRANCH)"
+          # The full deploy (pull, build, restart, healthcheck, rollback) runs on
+          # the VPS via script/deploy.sh, which lives in this repo and is pulled
+          # onto the server. Config is passed through as environment variables.
+          ssh \
+            -i ~/.ssh/vps-ssh-key \
+            -o StrictHostKeyChecking=no \
+            -o ConnectTimeout=10 \
+            "$VPS_USER@$VPS_HOST" \
+            "cd '$REMOTE_APP_DIR' \
+              && REMOTE_APP_DIR='$REMOTE_APP_DIR' \
+                 DEPLOY_BRANCH='$DEPLOY_BRANCH' \
+                 HEALTHCHECK_URL='$HEALTHCHECK_URL' \
+                 MAX_ATTEMPTS='$MAX_ATTEMPTS' \
+                 SLEEP_SECONDS='$SLEEP_SECONDS' \
+                 AUTO_ROLLBACK='$AUTO_ROLLBACK' \
+                 ./script/deploy.sh"
