@@ -130,7 +130,7 @@ const Index: FC<Props> = ({
           </div>
         )}
       </div>
-      <div className="d-flex align-items-start mt-3">
+      <div className="d-flex align-items-start gap-3 mt-3 post-body-wrapper">
         <div className="flex-grow-1 min-w-0">
           <ImgViewer>
             <article
@@ -139,7 +139,7 @@ const Index: FC<Props> = ({
             />
           </ImgViewer>
         </div>
-        <div className="ms-3 flex-shrink-0">
+        <div className="flex-shrink-0">
           <Actions
             source="answer"
             data={{
