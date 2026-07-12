@@ -18,9 +18,11 @@
  */
 
 import { FC, useEffect, useState } from 'react';
-import { ListGroup, Dropdown } from 'react-bootstrap';
+import { ListGroup } from 'react-bootstrap';
 import { NavLink, useSearchParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+
+import classNames from 'classnames';
 
 import { pathFactory } from '@/router/pathFactory';
 import {
@@ -116,23 +118,26 @@ const QuestionList: FC<Props> = ({
             maxBtnCount={source === 'tag' ? 3 : 4}
             wrapClassName="me-2"
           />
-          <Dropdown align="end" onSelect={handleViewMode}>
-            <Dropdown.Toggle variant="outline-secondary" size="sm">
-              <Icon name={viewType === 'card' ? 'view-stacked' : 'list'} />
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu>
-              <Dropdown.Header as="h6">
-                {t('view', { keyPrefix: 'btns' })}
-              </Dropdown.Header>
-              <Dropdown.Item eventKey="card" active={viewType === 'card'}>
-                {t('card', { keyPrefix: 'btns' })}
-              </Dropdown.Item>
-              <Dropdown.Item eventKey="compact" active={viewType === 'compact'}>
-                {t('compact', { keyPrefix: 'btns' })}
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+          <div className="shadcn-toggle-group">
+            <button
+              type="button"
+              className={classNames('btn-toggle-item', {
+                active: viewType === 'card',
+              })}
+              onClick={() => handleViewMode('card')}
+              title={t('card', { keyPrefix: 'btns' })}>
+              <Icon name="view-stacked" />
+            </button>
+            <button
+              type="button"
+              className={classNames('btn-toggle-item', {
+                active: viewType === 'compact',
+              })}
+              onClick={() => handleViewMode('compact')}
+              title={t('compact', { keyPrefix: 'btns' })}>
+              <Icon name="list" />
+            </button>
+          </div>
         </div>
       </div>
       <ListGroup className="rounded-0">
