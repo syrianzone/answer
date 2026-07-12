@@ -109,7 +109,7 @@ const QuestionList: FC<Props> = ({
               ? t('x_posts', { count })
               : t('x_questions', { count })}
         </h5>
-        <div className="d-flex flex-wrap">
+        <div className="d-flex flex-wrap align-items-center gap-2">
           <QueryGroup
             data={orderKeys}
             currentSort={curOrder}
