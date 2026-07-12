@@ -91,13 +91,30 @@ const Index: FC<Props> = ({ data, initPage, hasAnswer, isLogged }) => {
 
   return (
     <div>
-      <div className="mb-5 d-flex flex-wrap gap-2">
+      <div className="mb-1 d-flex flex-wrap gap-2">
         {data?.tags?.map((item: any) => {
           return <Tag key={item.slug_name} data={item} />;
         })}
       </div>
 
       <div className="d-flex align-items-center justify-content-between mb-3">
+        <div className="me-3 flex-shrink-0">
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="followTooltip">{t('follow_tip')}</Tooltip>}>
+            <Button
+              variant="link"
+              size="lg"
+              className="p-0 btn-no-border"
+              onClick={(e) => handleFollow(e)}>
+              <Icon
+                name={followed ? 'bell-fill' : 'bell'}
+                className={`${followed ? 'text-warning' : 'text-secondary'} fs-4`}
+              />
+            </Button>
+          </OverlayTrigger>
+        </div>
+
         <h1 className="h3 mb-0 text-wrap text-break pb-1 flex-grow-1">
           <Link
             className="link-dark"
@@ -109,23 +126,6 @@ const Index: FC<Props> = ({ data, initPage, hasAnswer, isLogged }) => {
               : ''}
           </Link>
         </h1>
-        <div className="ms-3 flex-shrink-0">
-          <OverlayTrigger
-            placement="bottom"
-            overlay={<Tooltip id="followTooltip">{t('follow_tip')}</Tooltip>}>
-            <Button
-              variant="link"
-              size="sm"
-              className="p-0 btn-no-border"
-              onClick={(e) => handleFollow(e)}>
-              <Icon
-                name={followed ? 'bell-fill' : 'bell'}
-                className={followed ? 'text-warning' : 'text-secondary'}
-                style={{ fontSize: '1.4rem' }}
-              />
-            </Button>
-          </OverlayTrigger>
-        </div>
       </div>
 
       <div className="mb-4 border-bottom pb-3">
