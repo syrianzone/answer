@@ -1513,6 +1513,11 @@ ui:
     save: Save
     delete: Delete
     undelete: Undelete
+    hide: Hide
+    show: Show
+    pin: Pin
+    unpin: Unpin
+    report: Report
     list: List
     unlist: Unlist
     unlisted: Unlisted
@@ -1796,6 +1801,7 @@ ui:
     votes: votes
     answers: answers
     accepted: Accepted
+    best_answer: Best answer
   page_error:
     http_error: HTTP Error {{ code }}
     desc_403: You don't have permission to access this page.

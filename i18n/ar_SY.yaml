@@ -1455,7 +1455,7 @@ ui:
       oldest: الأقدم
       btn_accept: اعتماد الإجابة
       btn_accepted: معتمدة
-      best_answer: أفضل إجابة
+      best_answer: معتمدة
     write_answer:
       title: إجابتك
       edit_answer: تعديل إجابتي الحالية
@@ -1511,6 +1511,11 @@ ui:
     save: حفظ
     delete: حذف
     undelete: تراجع عن الحذف
+    hide: إخفاء
+    show: إظهار
+    pin: تثبيت
+    unpin: إلغاء التثبيت
+    report: إبلاغ
     list: إدراج
     unlist: إلغاء الإدراج
     unlisted: غير مُدرج
@@ -1791,9 +1796,10 @@ ui:
       يعني هذا إما أن معلومات قاعدة البيانات في ملف <1>config.yaml</1> غير صحيحة أو أنه تعذّر الاتصال بخادم قاعدة البيانات. قد يعني هذا أن خادم قاعدة البيانات لدى مضيفك متوقف عن العمل.
   counts:
     views: المشاهدات
-    votes: الأصوات
-    answers: الإجابات
+    votes: عدد الأصوات
+    answers: عدد الإجابات
     accepted: مقبولة
+    best_answer: معتمدة
   page_error:
     http_error: خطأ HTTP {{ code }}
     desc_403: ليست لديك صلاحية الوصول إلى هذه الصفحة.

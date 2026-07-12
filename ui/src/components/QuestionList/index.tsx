@@ -192,31 +192,33 @@ const QuestionList: FC<Props> = ({
                     </div>
                   )}
 
-                  <div className="question-tags mb-12">
-                    {Array.isArray(li.tags)
-                      ? li.tags.map((tag, index) => {
-                          return (
-                            <Tag
-                              key={tag.slug_name}
-                              className={`${
-                                li.tags.length - 1 === index ? '' : 'me-1'
-                              }`}
-                              data={tag}
-                            />
-                          );
-                        })
-                      : null}
-                  </div>
-                  <div className="small text-secondary">
+                  <div className="d-flex flex-wrap align-items-center justify-content-between small text-secondary">
                     <Counts
                       data={{
                         votes: li.vote_count,
                         answers: li.answer_count,
                         views: li.view_count,
                       }}
-                      isAccepted={li.accepted_answer_id >= 1}
+                      isAccepted={false}
+                      showBestAnswer={li.accepted_answer_id >= 1}
+                      labelBeforeNumber
                       className="mt-2 mt-md-0"
                     />
+                    <div className="question-tags mt-2 mt-md-0">
+                      {Array.isArray(li.tags)
+                        ? li.tags.map((tag, index) => {
+                            return (
+                              <Tag
+                                key={tag.slug_name}
+                                className={`${
+                                  li.tags.length - 1 === index ? '' : 'me-1'
+                                }`}
+                                data={tag}
+                              />
+                            );
+                          })
+                        : null}
+                    </div>
                   </div>
                 </ListGroup.Item>
               );

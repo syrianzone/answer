@@ -33,7 +33,7 @@ import './index.scss';
 const iconMap: Record<string, string> = {
   // Sorting
   score: 'star',
-  recommend: 'hand-thumbs-up',
+  recommend: 'heart',
   newest: 'clock',
   oldest: 'clock-history',
   active: 'lightning',

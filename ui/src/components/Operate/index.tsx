@@ -42,6 +42,22 @@ import { toastStore } from '@/stores';
 
 import '@/components/QueryGroup/index.scss';
 
+const getActionName = (action: string, fallback: string, tBtn) => {
+  const names: Record<string, string> = {
+    report: tBtn('report'),
+    edit: tBtn('edit'),
+    delete: tBtn('delete'),
+    close: tBtn('close'),
+    reopen: tBtn('reopen'),
+    pin: tBtn('pin'),
+    unpin: tBtn('unpin'),
+    hide: tBtn('hide'),
+    show: tBtn('show'),
+    undelete: tBtn('undelete'),
+  };
+  return names[action] || fallback;
+};
+
 const getIconName = (action: string) => {
   switch (action) {
     case 'edit':
@@ -90,6 +106,7 @@ const Index: FC<IProps> = ({
   callback,
 }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'delete' });
+  const { t: tBtn } = useTranslation('translation', { keyPrefix: 'btns' });
   const toast = useToast();
   const navigate = useNavigate();
   const reportModal = useReportModal();
@@ -356,7 +373,7 @@ const Index: FC<IProps> = ({
                 onClick={(evt) => handleEdit(evt, editUrl)}
                 style={{ lineHeight: '23px' }}>
                 <Icon name="pencil-square" className="me-1" />
-                <span>{item.name}</span>
+                <span>{getActionName(item.action, item.name, tBtn)}</span>
               </Link>
             );
           }
@@ -370,7 +387,7 @@ const Index: FC<IProps> = ({
               } p-0 ms-3 d-flex align-items-center text-decoration-none`}
               onClick={() => handleAction(item.action)}>
               <Icon name={getIconName(item.action)} className="me-1" />
-              <span>{item.name}</span>
+              <span>{getActionName(item.action, item.name, tBtn)}</span>
             </Button>
           );
         })}
@@ -401,7 +418,7 @@ const Index: FC<IProps> = ({
                     className={item.action === 'report' ? 'text-danger' : ''}
                     onClick={() => handleAction(item.action)}>
                     <Icon name={getIconName(item.action)} className="me-2" />
-                    {item.name}
+                    {getActionName(item.action, item.name, tBtn)}
                   </Dropdown.Item>
                 );
               })}
