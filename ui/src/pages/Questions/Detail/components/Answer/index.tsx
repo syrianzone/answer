@@ -18,16 +18,17 @@
  */
 
 import { memo, FC, useEffect, useRef } from 'react';
-import { Button, Alert, Badge } from 'react-bootstrap';
+import { Alert, Badge } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 
 import {
   Actions,
   Operate,
-  UserCard,
+  BaseUserCard,
   Icon,
   Comment,
+  FormatTime,
   htmlRender,
   ImgViewer,
 } from '@/components';
@@ -42,13 +43,11 @@ interface Props {
   aid?: string;
   canAccept: boolean;
   questionTitle: string;
-  isLogged: boolean;
   callback: (type: string) => void;
 }
 const Index: FC<Props> = ({
   aid,
   data,
-  isLogged,
   questionTitle = '',
   callback,
   canAccept = false,
@@ -109,77 +108,81 @@ const Index: FC<Props> = ({
           {t('post_pending', { keyPrefix: 'messages' })}
         </Alert>
       )}
-      <div className="d-flex justify-content-between mb-3">
-        <div style={{ minWidth: '196px' }}>
-          <UserCard
-            data={data?.user_info}
-            time={Number(data.create_time)}
-            updateTime={Number(data.update_time)}
-            updateTimePrefix={t('edit')}
-            isLogged={isLogged}
-            timelinePath={`/posts/${data.question_id}/${data.id}/timeline`}
+      <div className="d-flex flex-wrap align-items-center justify-content-between small mb-3 text-secondary">
+        <div className="d-flex flex-wrap align-items-center">
+          <BaseUserCard data={data.user_info} className="me-3" />
+          <span className="me-3 d-flex align-items-center">
+            <Icon name="clock" className="me-1" />
+            <FormatTime
+              time={Number(data.create_time)}
+              preFix={t('answered')}
+            />
+          </span>
+          {Number(data.update_time) > 0 && (
+            <span className="me-3 d-flex align-items-center">
+              <Icon name="pencil" className="me-1" />
+              <FormatTime
+                time={Number(data.update_time)}
+                preFix={t('Edited')}
+              />
+            </span>
+          )}
+        </div>
+        {data?.accepted === 2 && (
+          <Badge bg="success" pill className="d-inline-flex align-items-center">
+            <Icon name="check-circle-fill me-1" />
+            {t('answers.best_answer')}
+          </Badge>
+        )}
+      </div>
+      <div className="d-flex align-items-stretch gap-3 mt-3 post-body-wrapper">
+        <div className="flex-grow-1 min-w-0 d-flex flex-column">
+          <ImgViewer>
+            <article
+              className="fmt text-break text-wrap"
+              dangerouslySetInnerHTML={{ __html: data?.html }}
+            />
+          </ImgViewer>
+
+          <div className="mt-auto pt-4">
+            <Comment
+              objectId={data.id}
+              mode="answer"
+              commentId={searchParams.get('commentId')}
+              canAccept={canAccept}
+              isAccepted={data.accepted === 2}
+              onAccept={acceptAnswer}>
+              <Operate
+                qid={data.question_id}
+                aid={data.id}
+                memberActions={data?.member_actions}
+                type="answer"
+                isAccepted={data.accepted === 2}
+                title={questionTitle}
+                callback={callback}
+              />
+            </Comment>
+          </div>
+        </div>
+        <div className="flex-shrink-0">
+          <Actions
+            source="answer"
+            qid={data?.question_id}
+            aid={data?.id}
+            title={questionTitle}
+            data={{
+              id: data?.id,
+              isHate: data?.vote_status === 'vote_down',
+              isLike: data?.vote_status === 'vote_up',
+              votesCount: data?.vote_count,
+              hideCollect: true,
+              collected: data?.collected,
+              collectCount: 0,
+              username: data?.user_info?.username,
+            }}
           />
         </div>
-
-        {data?.accepted === 2 && (
-          <div className="lh-1">
-            <Badge bg="success" pill>
-              <Icon name="check-circle-fill me-1" />
-              Best answer
-            </Badge>
-          </div>
-        )}
       </div>
-      <ImgViewer>
-        <article
-          className="fmt text-break text-wrap"
-          dangerouslySetInnerHTML={{ __html: data?.html }}
-        />
-      </ImgViewer>
-      <div className="d-flex align-items-center my-4">
-        <Actions
-          source="answer"
-          data={{
-            id: data?.id,
-            isHate: data?.vote_status === 'vote_down',
-            isLike: data?.vote_status === 'vote_up',
-            votesCount: data?.vote_count,
-            hideCollect: true,
-            collected: data?.collected,
-            collectCount: 0,
-            username: data?.user_info?.username,
-          }}
-        />
-
-        {canAccept && (
-          <Button
-            variant={data.accepted === 2 ? 'success' : 'outline-success'}
-            className="ms-3"
-            onClick={acceptAnswer}>
-            <Icon name="check-circle-fill" className="me-2" />
-            <span>
-              {data.accepted === 2
-                ? t('answers.btn_accepted')
-                : t('answers.btn_accept')}
-            </span>
-          </Button>
-        )}
-      </div>
-
-      <Comment
-        objectId={data.id}
-        mode="answer"
-        commentId={searchParams.get('commentId')}>
-        <Operate
-          qid={data.question_id}
-          aid={data.id}
-          memberActions={data?.member_actions}
-          type="answer"
-          isAccepted={data.accepted === 2}
-          title={questionTitle}
-          callback={callback}
-        />
-      </Comment>
     </div>
   );
 };

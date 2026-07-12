@@ -295,7 +295,7 @@ const BubbleAi: FC<IProps> = ({
               variant="link"
               className={`p-0 small me-3 ${isHelpful ? 'link-primary active' : 'link-secondary'}`}
               onClick={() => handleVote('helpful')}>
-              <Icon name="hand-thumbs-up-fill" />
+              <Icon name="heart-fill" />
               <span className="ms-1">Helpful</span>
             </Button>
             <Button

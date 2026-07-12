@@ -18,7 +18,7 @@
  */
 
 import { memo, FC, useState, useEffect } from 'react';
-import { Button, ButtonGroup } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 import classNames from 'classnames';
@@ -30,6 +30,8 @@ import { useCaptchaPlugin } from '@/utils/pluginKit';
 import { tryNormalLogged } from '@/utils/guard';
 import { bookmark, postVote } from '@/services';
 import * as Types from '@/common/interface';
+import Reactions from '@/pages/Questions/Detail/components/Reactions';
+import Share from '@/components/Share';
 
 interface Props {
   className?: string;
@@ -44,9 +46,21 @@ interface Props {
     collectCount: number;
     username: string;
   };
+  qid: string;
+  aid?: string;
+  title: string;
+  children?: React.ReactNode;
 }
 
-const Index: FC<Props> = ({ className, data, source }) => {
+const Index: FC<Props> = ({
+  className,
+  data,
+  source,
+  qid,
+  aid,
+  title,
+  children,
+}) => {
   const [votes, setVotes] = useState(0);
   const [like, setLike] = useState(false);
   const [hate, setHated] = useState(false);
@@ -147,44 +161,71 @@ const Index: FC<Props> = ({ className, data, source }) => {
   };
 
   return (
-    <div className={classNames(className)}>
-      <ButtonGroup>
-        <Button
-          title={
-            source === 'question'
-              ? t('question_detail.question_useful')
-              : t('question_detail.answer_useful')
-          }
-          variant="outline-secondary"
-          active={like}
-          onClick={() => handleVote('up')}>
-          <Icon name="hand-thumbs-up-fill" />
-        </Button>
-        <Button variant="outline-secondary" className="opacity-100" disabled>
-          {votes}
-        </Button>
-        <Button
-          title={
-            source === 'question'
-              ? t('question_detail.question_un_useful')
-              : t('question_detail.answer_un_useful')
-          }
-          variant="outline-secondary"
-          active={hate}
-          onClick={() => handleVote('down')}>
-          <Icon name="hand-thumbs-down-fill" />
-        </Button>
-      </ButtonGroup>
+    <div
+      className={classNames(
+        'd-flex flex-column align-items-center justify-content-start',
+        className,
+      )}>
+      <Button
+        title={
+          source === 'question'
+            ? t('question_detail.question_useful')
+            : t('question_detail.answer_useful')
+        }
+        variant="link"
+        className={classNames(
+          'p-0 btn-no-border',
+          like ? 'text-primary' : 'text-secondary',
+        )}
+        onClick={() => handleVote('up')}>
+        <Icon name="caret-up-fill" size="2rem" />
+      </Button>
+      <span className="fw-bold fs-5 my-1 text-secondary">{votes}</span>
+      <Button
+        title={
+          source === 'question'
+            ? t('question_detail.question_un_useful')
+            : t('question_detail.answer_un_useful')
+        }
+        variant="link"
+        className={classNames(
+          'p-0 btn-no-border',
+          hate ? 'text-primary' : 'text-secondary',
+        )}
+        onClick={() => handleVote('down')}>
+        <Icon name="caret-down-fill" size="2rem" />
+      </Button>
+
+      {children}
+
       {!data?.hideCollect && (
         <Button
-          variant="outline-secondary ms-3"
+          variant="link"
+          className={classNames(
+            'p-0 mt-2 btn-no-border d-flex flex-column align-items-center',
+            bookmarkState.state ? 'text-warning' : 'text-secondary',
+          )}
           title={t('question_detail.question_bookmark')}
-          active={bookmarkState.state}
           onClick={handleBookmark}>
-          <Icon name="bookmark-fill" />
-          <span style={{ paddingLeft: '10px' }}>{bookmarkState.count}</span>
+          <Icon
+            name={bookmarkState.state ? 'bookmark-fill' : 'bookmark'}
+            size="1.4rem"
+          />
+          <span className="small mt-1">{bookmarkState.count}</span>
         </Button>
       )}
+
+      <div className="mt-2">
+        <Reactions
+          objectId={data.id}
+          showAddCommentBtn={false}
+          className="d-flex flex-column align-items-center gap-1"
+        />
+      </div>
+
+      <div className="mt-2">
+        <Share type={source} qid={qid} aid={aid} title={title} isIconButton />
+      </div>
     </div>
   );
 };

@@ -1106,6 +1106,8 @@ ui:
     unreact_emoji: unreact with {{ emoji }}
   comment:
     btn_add_comment: Add comment
+    btn_add_comment_question: Comment on question or request clarification
+    btn_add_comment_answer: Comment on answer or request clarification
     reply_to: Reply to
     btn_reply: Reply
     btn_edit: Edit
@@ -1447,11 +1449,13 @@ ui:
     answer_un_useful: It is not useful
     answers:
       title: Answers
+      answers_label: "Answers: {{count}}"
       score: Score
       newest: Newest
       oldest: Oldest
       btn_accept: Accept
       btn_accepted: Accepted
+      best_answer: Best answer
     write_answer:
       title: Your Answer
       edit_answer: Edit my existing answer
@@ -1509,6 +1513,11 @@ ui:
     save: Save
     delete: Delete
     undelete: Undelete
+    hide: Hide
+    show: Show
+    pin: Pin
+    unpin: Unpin
+    report: Report
     list: List
     unlist: Unlist
     unlisted: Unlisted
@@ -1792,6 +1801,7 @@ ui:
     votes: votes
     answers: answers
     accepted: Accepted
+    best_answer: Best answer
   page_error:
     http_error: HTTP Error {{ code }}
     desc_403: You don't have permission to access this page.

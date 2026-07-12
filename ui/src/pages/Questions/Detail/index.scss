@@ -80,3 +80,24 @@
     }
   }
 }
+
+.btn-no-border {
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+  &:hover {
+    transform: scale(1.1);
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.post-body-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+html[dir='rtl'] .post-body-wrapper {
+  flex-direction: row-reverse !important;
+}

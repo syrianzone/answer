@@ -18,9 +18,11 @@
  */
 
 import { FC, useEffect, useState } from 'react';
-import { ListGroup, Dropdown } from 'react-bootstrap';
+import { ListGroup } from 'react-bootstrap';
 import { NavLink, useSearchParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+
+import classNames from 'classnames';
 
 import { pathFactory } from '@/router/pathFactory';
 import {
@@ -107,7 +109,7 @@ const QuestionList: FC<Props> = ({
               ? t('x_posts', { count })
               : t('x_questions', { count })}
         </h5>
-        <div className="d-flex flex-wrap">
+        <div className="d-flex flex-wrap align-items-center gap-2">
           <QueryGroup
             data={orderKeys}
             currentSort={curOrder}
@@ -116,23 +118,26 @@ const QuestionList: FC<Props> = ({
             maxBtnCount={source === 'tag' ? 3 : 4}
             wrapClassName="me-2"
           />
-          <Dropdown align="end" onSelect={handleViewMode}>
-            <Dropdown.Toggle variant="outline-secondary" size="sm">
-              <Icon name={viewType === 'card' ? 'view-stacked' : 'list'} />
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu>
-              <Dropdown.Header as="h6">
-                {t('view', { keyPrefix: 'btns' })}
-              </Dropdown.Header>
-              <Dropdown.Item eventKey="card" active={viewType === 'card'}>
-                {t('card', { keyPrefix: 'btns' })}
-              </Dropdown.Item>
-              <Dropdown.Item eventKey="compact" active={viewType === 'compact'}>
-                {t('compact', { keyPrefix: 'btns' })}
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+          <div className="shadcn-toggle-group">
+            <button
+              type="button"
+              className={classNames('btn-toggle-item', {
+                active: viewType === 'card',
+              })}
+              onClick={() => handleViewMode('card')}
+              title={t('card', { keyPrefix: 'btns' })}>
+              <Icon name="view-stacked" />
+            </button>
+            <button
+              type="button"
+              className={classNames('btn-toggle-item', {
+                active: viewType === 'compact',
+              })}
+              onClick={() => handleViewMode('compact')}
+              title={t('compact', { keyPrefix: 'btns' })}>
+              <Icon name="list" />
+            </button>
+          </div>
         </div>
       </div>
       <ListGroup className="rounded-0">
@@ -187,31 +192,33 @@ const QuestionList: FC<Props> = ({
                     </div>
                   )}
 
-                  <div className="question-tags mb-12">
-                    {Array.isArray(li.tags)
-                      ? li.tags.map((tag, index) => {
-                          return (
-                            <Tag
-                              key={tag.slug_name}
-                              className={`${
-                                li.tags.length - 1 === index ? '' : 'me-1'
-                              }`}
-                              data={tag}
-                            />
-                          );
-                        })
-                      : null}
-                  </div>
-                  <div className="small text-secondary">
+                  <div className="d-flex flex-wrap align-items-center justify-content-between small text-secondary">
                     <Counts
                       data={{
                         votes: li.vote_count,
                         answers: li.answer_count,
                         views: li.view_count,
                       }}
-                      isAccepted={li.accepted_answer_id >= 1}
+                      isAccepted={false}
+                      showBestAnswer={li.accepted_answer_id >= 1}
+                      labelBeforeNumber
                       className="mt-2 mt-md-0"
                     />
+                    <div className="question-tags mt-2 mt-md-0">
+                      {Array.isArray(li.tags)
+                        ? li.tags.map((tag, index) => {
+                            return (
+                              <Tag
+                                key={tag.slug_name}
+                                className={`${
+                                  li.tags.length - 1 === index ? '' : 'me-1'
+                                }`}
+                                data={tag}
+                              />
+                            );
+                          })
+                        : null}
+                    </div>
                   </div>
                 </ListGroup.Item>
               );

@@ -49,11 +49,11 @@ backend:
     pin:
       other: تثبيت
     hide:
-      other: إخفاء من القائمة
+      other: إخفاء
     unpin:
       other: إلغاء التثبيت
     show:
-      other: إظهار في القائمة
+      other: إظهار
     invite_someone_to_answer:
       other: تعديل
     undelete:
@@ -1106,6 +1106,8 @@ ui:
     unreact_emoji: إزالة التفاعل بـ {{ emoji }}
   comment:
     btn_add_comment: إضافة تعليق
+    btn_add_comment_question: علّق على السؤال أو اطلب توضيحاً
+    btn_add_comment_answer: علق على الجواب أو اطلب توضيحاً
     reply_to: الرد على
     btn_reply: رد
     btn_edit: تعديل
@@ -1447,11 +1449,13 @@ ui:
     answer_un_useful: إنها غير مفيدة
     answers:
       title: الإجابات
+      answers_label: "عدد الإجابات: {{count}}"
       score: التقييم
       newest: الأحدث
       oldest: الأقدم
-      btn_accept: قبول
-      btn_accepted: مقبولة
+      btn_accept: اعتماد الإجابة
+      btn_accepted: معتمدة
+      best_answer: معتمدة
     write_answer:
       title: إجابتك
       edit_answer: تعديل إجابتي الحالية
@@ -1507,6 +1511,11 @@ ui:
     save: حفظ
     delete: حذف
     undelete: تراجع عن الحذف
+    hide: إخفاء
+    show: إظهار
+    pin: تثبيت
+    unpin: إلغاء التثبيت
+    report: إبلاغ
     list: إدراج
     unlist: إلغاء الإدراج
     unlisted: غير مُدرج
@@ -1787,9 +1796,10 @@ ui:
       يعني هذا إما أن معلومات قاعدة البيانات في ملف <1>config.yaml</1> غير صحيحة أو أنه تعذّر الاتصال بخادم قاعدة البيانات. قد يعني هذا أن خادم قاعدة البيانات لدى مضيفك متوقف عن العمل.
   counts:
     views: المشاهدات
-    votes: الأصوات
-    answers: الإجابات
+    votes: عدد الأصوات
+    answers: عدد الإجابات
     accepted: مقبولة
+    best_answer: معتمدة
   page_error:
     http_error: خطأ HTTP {{ code }}
     desc_403: ليست لديك صلاحية الوصول إلى هذه الصفحة.

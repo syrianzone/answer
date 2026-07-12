@@ -84,7 +84,9 @@ const addI18nResource = async (langName) => {
   const storageResource = Storage.get(LANG_RESOURCE_STORAGE_KEY);
   if (process.env.NODE_ENV === 'development') {
     try {
-      const { default: resConf } = await import(`@i18n/${langName}.yaml`);
+      const { default: resConf } = await import(
+        `@i18n/${langName.replace('-', '_')}.yaml`
+      );
       res.resources = resConf.ui;
     } catch (ex) {
       console.error('addI18nResource error: ', ex);

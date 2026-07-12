@@ -268,7 +268,6 @@ const Index = () => {
                   questionTitle={question?.title || ''}
                   canAccept={isAuthor || isAdmin || isModerator}
                   callback={initPage}
-                  isLogged={isLogged}
                 />
               );
             })}

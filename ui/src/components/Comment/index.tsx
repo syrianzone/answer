@@ -26,7 +26,7 @@ import classNames from 'classnames';
 import unionBy from 'lodash/unionBy';
 
 import * as Types from '@/common/interface';
-import { Modal } from '@/components';
+import { Modal, Icon } from '@/components';
 import { usePageUsers, useReportModal, useCaptchaModal } from '@/hooks';
 import {
   matchedUsers,
@@ -44,7 +44,6 @@ import {
   postVote,
 } from '@/services';
 import { commentReplyStore } from '@/stores';
-import Reactions from '@/pages/Questions/Detail/components/Reactions';
 
 import { Form, ActionBar, Reply } from './components';
 
@@ -55,9 +54,19 @@ interface IProps {
   mode?: 'answer' | 'question';
   commentId?: string | null;
   children?: React.ReactNode;
+  canAccept?: boolean;
+  isAccepted?: boolean;
+  onAccept?: () => void;
 }
-
-const Comment: FC<IProps> = ({ objectId, mode, commentId, children }) => {
+const Comment: FC<IProps> = ({
+  objectId,
+  mode,
+  commentId,
+  children,
+  canAccept = false,
+  isAccepted = false,
+  onAccept,
+}) => {
   const pageUsers = usePageUsers();
   const [pageIndex, setPageIndex] = useState(0);
   const [visibleComment, setVisibleComment] = useState(false);
@@ -80,6 +89,11 @@ const Comment: FC<IProps> = ({ objectId, mode, commentId, children }) => {
   const vCaptcha = useCaptchaPlugin('vote');
 
   const { t } = useTranslation('translation', { keyPrefix: 'comment' });
+
+  const addCommentBtnText =
+    mode === 'question'
+      ? t('btn_add_comment_question')
+      : t('btn_add_comment_answer');
 
   useEffect(() => {
     if (pageIndex === 0 && commentId && comments.length !== 0) {
@@ -386,11 +400,31 @@ const Comment: FC<IProps> = ({ objectId, mode, commentId, children }) => {
           'd-flex flex-wrap justify-content-between align-items-center',
           comments.length === 0 ? '' : 'mb-3',
         )}>
-        <Reactions
-          objectId={objectId}
-          showAddCommentBtn={comments.length === 0}
-          handleClickComment={handleAddComment}
-        />
+        <div className="d-flex flex-wrap align-items-center gap-2">
+          <Button
+            variant="outline-secondary"
+            className="rounded-pill link-secondary btn-reaction"
+            size="sm"
+            onClick={handleAddComment}>
+            <Icon name="chat-left-text" className="me-1" />
+            {addCommentBtnText}
+          </Button>
+          {canAccept && (
+            <Button
+              variant={isAccepted ? 'outline-success' : 'outline-secondary'}
+              className="rounded-pill link-secondary btn-reaction"
+              size="sm"
+              onClick={onAccept}>
+              <Icon
+                name={isAccepted ? 'check-circle-fill' : 'check-circle'}
+                className="me-1"
+              />
+              {isAccepted
+                ? t('btn_accepted', { keyPrefix: 'question_detail.answers' })
+                : t('btn_accept', { keyPrefix: 'question_detail.answers' })}
+            </Button>
+          )}
+        </div>
         {children}
       </div>
       <div
@@ -471,21 +505,12 @@ const Comment: FC<IProps> = ({ objectId, mode, commentId, children }) => {
         })}
 
         <div className={classNames(comments.length > 0 && 'py-2')}>
-          {comments.length > 0 && (
-            <Button
-              variant="link"
-              className="p-0 btn-no-border"
-              size="sm"
-              onClick={handleAddComment}>
-              {t('btn_add_comment')}
-            </Button>
-          )}
           {data &&
             (pageIndex || 1) < Math.ceil((data?.count || 0) / pageSize) && (
               <Button
                 variant="link"
                 size="sm"
-                className="p-0 ms-3 btn-no-border"
+                className="p-0 btn-no-border"
                 onClick={() => {
                   setPageIndex(pageIndex + 1);
                 }}>

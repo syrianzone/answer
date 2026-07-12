@@ -35,7 +35,9 @@ interface Props {
   showAnswers?: boolean;
   showViews?: boolean;
   showAccepted?: boolean;
+  showBestAnswer?: boolean;
   isAccepted?: boolean;
+  labelBeforeNumber?: boolean;
   className?: string;
 }
 const Index: FC<Props> = ({
@@ -45,6 +47,8 @@ const Index: FC<Props> = ({
   showViews = true,
   isAccepted = false,
   showAccepted = false,
+  showBestAnswer = false,
+  labelBeforeNumber = false,
   className = '',
 }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'counts' });
@@ -53,9 +57,18 @@ const Index: FC<Props> = ({
     <div className={classname('d-flex align-items-center', className)}>
       {showVotes && (
         <div className="d-flex align-items-center flex-shrink-0 text-body">
-          <Icon name="hand-thumbs-up-fill me-1" />
-          <span className="fw-medium">{data.votes}</span>
-          <span className="ms-1">{t('votes')}</span>
+          <Icon name="heart-fill me-1" />
+          {labelBeforeNumber ? (
+            <>
+              <span className="me-1">{t('votes')}</span>
+              <span className="fw-medium">{data.votes}</span>
+            </>
+          ) : (
+            <>
+              <span className="fw-medium">{data.votes}</span>
+              <span className="ms-1">{t('votes')}</span>
+            </>
+          )}
         </div>
       )}
 
@@ -63,6 +76,13 @@ const Index: FC<Props> = ({
         <div className="d-flex align-items-center ms-3 text-success flex-shrink-0">
           <Icon name="check-circle-fill me-1" />
           <span>{t('accepted')}</span>
+        </div>
+      )}
+
+      {showBestAnswer && (
+        <div className="d-flex align-items-center ms-3 text-success flex-shrink-0">
+          <Icon name="check-circle-fill me-1" />
+          <span>{t('best_answer')}</span>
         </div>
       )}
 
@@ -76,8 +96,17 @@ const Index: FC<Props> = ({
           ) : (
             <Icon name="chat-square-text-fill me-1" />
           )}
-          <span className="fw-medium">{data.answers}</span>
-          <span className="ms-1">{t('answers')}</span>
+          {labelBeforeNumber ? (
+            <>
+              <span className="me-1">{t('answers')}</span>
+              <span className="fw-medium">{data.answers}</span>
+            </>
+          ) : (
+            <>
+              <span className="fw-medium">{data.answers}</span>
+              <span className="ms-1">{t('answers')}</span>
+            </>
+          )}
         </div>
       )}
       {showViews && (
@@ -92,9 +121,8 @@ const Index: FC<Props> = ({
                   ? 'view-level1'
                   : '',
           )}>
-          <Icon name="bar-chart-fill" />
+          <Icon name="eye" />
           <span className="fw-medium ms-1">{formatCount(data.views)}</span>
-          <span className="ms-1">{t('views')}</span>
         </span>
       )}
     </div>

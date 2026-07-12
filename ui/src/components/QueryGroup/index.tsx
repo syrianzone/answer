@@ -18,7 +18,7 @@
  */
 
 import { FC, memo } from 'react';
-import { ButtonGroup, Button, DropdownButton, Dropdown } from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -26,8 +26,34 @@ import classNames from 'classnames';
 
 import { REACT_BASE_PATH } from '@/router/alias';
 import { floppyNavigation } from '@/utils';
+import Icon from '../Icon';
 
 import './index.scss';
+
+const iconMap: Record<string, string> = {
+  // Sorting
+  score: 'star',
+  recommend: 'heart',
+  newest: 'clock',
+  oldest: 'clock-history',
+  active: 'lightning',
+  unanswered: 'chat-square-text',
+  frequent: 'graph-up',
+  popular: 'fire',
+  name: 'sort-alpha-down',
+  relevance: 'search',
+
+  // Status / Types
+  all: 'grid',
+  questions: 'question-circle',
+  answers: 'chat-left-text',
+  active_user: 'person-check',
+  inactive: 'person-x',
+  suspended: 'exclamation-triangle',
+  deleted: 'trash',
+  pending: 'hourglass-split',
+  closed: 'lock',
+};
 
 interface Props {
   data;
@@ -82,79 +108,87 @@ const Index: FC<Props> = ({
 
   return (
     <>
-      <ButtonGroup size="sm" className={classNames('md-show', wrapClassName)}>
+      <div className={classNames('shadcn-toggle-group md-show', wrapClassName)}>
         {normalBtnData.map((btn) => {
           const key = typeof btn === 'string' ? btn : btn.sort;
           const name = typeof btn === 'string' ? btn : btn.name;
+          const hasIcon = iconMap[name];
           return (
-            <Button
+            <a
               key={key}
-              variant="outline-secondary"
-              active={currentSort === name}
-              className={classNames('text-capitalize fit-content', className)}
+              className={classNames(
+                'btn-toggle-item text-capitalize fit-content',
+                className,
+                {
+                  active: currentSort === name,
+                },
+              )}
               href={
                 pathname
                   ? `${REACT_BASE_PATH}${pathname}${handleParams(key)}`
                   : handleParams(key)
               }
               onClick={(evt) => handleClick(evt, key)}>
-              {t(name)}
-            </Button>
+              {hasIcon && <Icon name={hasIcon} />}
+              <span>{t(name)}</span>
+            </a>
           );
         })}
         {moreBtnData.length > 0 && (
-          <DropdownButton
-            size="sm"
-            variant={currentBtn ? 'secondary' : 'outline-secondary'}
-            as={ButtonGroup}
-            title={currentBtn ? t(currentSort) : t('more')}>
-            {moreBtnData.map((btn) => {
-              const key = typeof btn === 'string' ? btn : btn.sort;
-              const name = typeof btn === 'string' ? btn : btn.name;
-              return (
-                <Dropdown.Item
-                  as="a"
-                  key={key}
-                  active={currentSort === name}
-                  className={classNames('text-capitalize', className)}
-                  href={
-                    pathname
-                      ? `${REACT_BASE_PATH}${pathname}${handleParams(key)}`
-                      : handleParams(key)
-                  }
-                  onClick={(evt) => handleClick(evt, key)}>
-                  {t(name)}
-                </Dropdown.Item>
-              );
-            })}
-          </DropdownButton>
+          <Dropdown align="end">
+            <Dropdown.Toggle as="button" className="shadcn-dropdown-trigger">
+              {currentBtn ? t(currentSort) : t('more')}
+            </Dropdown.Toggle>
+            <Dropdown.Menu className="shadcn-dropdown-menu">
+              {moreBtnData.map((btn) => {
+                const key = typeof btn === 'string' ? btn : btn.sort;
+                const name = typeof btn === 'string' ? btn : btn.name;
+                return (
+                  <Dropdown.Item
+                    as="a"
+                    key={key}
+                    active={currentSort === name}
+                    className={classNames('text-capitalize', className)}
+                    href={
+                      pathname
+                        ? `${REACT_BASE_PATH}${pathname}${handleParams(key)}`
+                        : handleParams(key)
+                    }
+                    onClick={(evt) => handleClick(evt, key)}>
+                    {t(name)}
+                  </Dropdown.Item>
+                );
+              })}
+            </Dropdown.Menu>
+          </Dropdown>
         )}
-      </ButtonGroup>
-      <DropdownButton
-        size="sm"
-        variant="outline-secondary"
-        className={classNames('md-hide', wrapClassName)}
-        title={t(currentSort)}>
-        {data.map((btn) => {
-          const key = typeof btn === 'string' ? btn : btn.sort;
-          const name = typeof btn === 'string' ? btn : btn.name;
-          return (
-            <Dropdown.Item
-              as="a"
-              key={key}
-              active={currentSort === name}
-              className={classNames('text-capitalize', className)}
-              href={
-                pathname
-                  ? `${REACT_BASE_PATH}${pathname}${handleParams(key)}`
-                  : handleParams(key)
-              }
-              onClick={(evt) => handleClick(evt, key)}>
-              {t(name)}
-            </Dropdown.Item>
-          );
-        })}
-      </DropdownButton>
+      </div>
+      <Dropdown align="end" className={classNames('md-hide', wrapClassName)}>
+        <Dropdown.Toggle as="button" className="shadcn-dropdown-trigger">
+          {t(currentSort)}
+        </Dropdown.Toggle>
+        <Dropdown.Menu className="shadcn-dropdown-menu">
+          {data.map((btn) => {
+            const key = typeof btn === 'string' ? btn : btn.sort;
+            const name = typeof btn === 'string' ? btn : btn.name;
+            return (
+              <Dropdown.Item
+                as="a"
+                key={key}
+                active={currentSort === name}
+                className={classNames('text-capitalize', className)}
+                href={
+                  pathname
+                    ? `${REACT_BASE_PATH}${pathname}${handleParams(key)}`
+                    : handleParams(key)
+                }
+                onClick={(evt) => handleClick(evt, key)}>
+                {t(name)}
+              </Dropdown.Item>
+            );
+          })}
+        </Dropdown.Menu>
+      </Dropdown>
     </>
   );
 };

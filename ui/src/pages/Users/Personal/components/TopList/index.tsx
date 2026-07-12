@@ -55,7 +55,7 @@ const Index: FC<Props> = ({ data, type }) => {
             </Link>
 
             <div className="text-secondary small">
-              <Icon name="hand-thumbs-up-fill me-1" />
+              <Icon name="heart-fill me-1" />
               <span>
                 {item.vote_count} {t('votes', { keyPrefix: 'counts' })}
               </span>
