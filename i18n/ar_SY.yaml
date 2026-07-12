@@ -1453,8 +1453,9 @@ ui:
       score: التقييم
       newest: الأحدث
       oldest: الأقدم
-      btn_accept: قبول
-      btn_accepted: مقبولة
+      btn_accept: اعتماد الإجابة
+      btn_accepted: معتمدة
+      best_answer: أفضل إجابة
     write_answer:
       title: إجابتك
       edit_answer: تعديل إجابتي الحالية

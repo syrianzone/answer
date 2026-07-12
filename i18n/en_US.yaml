@@ -1455,6 +1455,7 @@ ui:
       oldest: Oldest
       btn_accept: Accept
       btn_accepted: Accepted
+      best_answer: Best answer
     write_answer:
       title: Your Answer
       edit_answer: Edit my existing answer

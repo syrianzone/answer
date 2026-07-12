@@ -54,9 +54,19 @@ interface IProps {
   mode?: 'answer' | 'question';
   commentId?: string | null;
   children?: React.ReactNode;
+  canAccept?: boolean;
+  isAccepted?: boolean;
+  onAccept?: () => void;
 }
-
-const Comment: FC<IProps> = ({ objectId, mode, commentId, children }) => {
+const Comment: FC<IProps> = ({
+  objectId,
+  mode,
+  commentId,
+  children,
+  canAccept = false,
+  isAccepted = false,
+  onAccept,
+}) => {
   const pageUsers = usePageUsers();
   const [pageIndex, setPageIndex] = useState(0);
   const [visibleComment, setVisibleComment] = useState(false);
@@ -390,14 +400,31 @@ const Comment: FC<IProps> = ({ objectId, mode, commentId, children }) => {
           'd-flex flex-wrap justify-content-between align-items-center',
           comments.length === 0 ? '' : 'mb-3',
         )}>
-        <Button
-          variant="outline-secondary"
-          className="rounded-pill link-secondary btn-reaction"
-          size="sm"
-          onClick={handleAddComment}>
-          <Icon name="chat-left-text" className="me-1" />
-          {addCommentBtnText}
-        </Button>
+        <div className="d-flex flex-wrap align-items-center gap-2">
+          <Button
+            variant="outline-secondary"
+            className="rounded-pill link-secondary btn-reaction"
+            size="sm"
+            onClick={handleAddComment}>
+            <Icon name="chat-left-text" className="me-1" />
+            {addCommentBtnText}
+          </Button>
+          {canAccept && (
+            <Button
+              variant={isAccepted ? 'outline-success' : 'outline-secondary'}
+              className="rounded-pill link-secondary btn-reaction"
+              size="sm"
+              onClick={onAccept}>
+              <Icon
+                name={isAccepted ? 'check-circle-fill' : 'check-circle'}
+                className="me-1"
+              />
+              {isAccepted
+                ? t('btn_accepted', { keyPrefix: 'question_detail.answers' })
+                : t('btn_accept', { keyPrefix: 'question_detail.answers' })}
+            </Button>
+          )}
+        </div>
         {children}
       </div>
       <div
