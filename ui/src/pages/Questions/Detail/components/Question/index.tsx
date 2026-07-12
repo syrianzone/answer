@@ -132,35 +132,42 @@ const Index: FC<Props> = ({ data, initPage, hasAnswer, isLogged }) => {
             <>
               <Link
                 to={`/posts/${data.id}/timeline`}
-                className="link-secondary me-3 text-decoration-none">
+                className="link-secondary me-3 text-decoration-none d-flex align-items-center">
+                <Icon name="clock" className="me-1" />
                 <FormatTime time={data.create_time} preFix={t('created')} />
               </Link>
 
-              <Link
-                to={`/posts/${data.id}/timeline`}
-                className="link-secondary me-3 text-decoration-none">
-                <FormatTime time={data.edit_time} preFix={t('Edited')} />
-              </Link>
+              {data.edit_time > 0 && (
+                <Link
+                  to={`/posts/${data.id}/timeline`}
+                  className="link-secondary me-3 text-decoration-none d-flex align-items-center">
+                  <Icon name="pencil" className="me-1" />
+                  <FormatTime time={data.edit_time} preFix={t('Edited')} />
+                </Link>
+              )}
             </>
           ) : (
             <>
-              <FormatTime
-                time={data.create_time}
-                preFix={t('created')}
-                className="me-3 text-secondary"
-              />
+              <span className="me-3 text-secondary d-flex align-items-center">
+                <Icon name="clock" className="me-1" />
+                <FormatTime time={data.create_time} preFix={t('created')} />
+              </span>
 
-              <FormatTime
-                time={data.edit_time}
-                preFix={t('Edited')}
-                className="me-3 text-secondary"
-              />
+              {data.edit_time > 0 && (
+                <span className="me-3 text-secondary d-flex align-items-center">
+                  <Icon name="pencil" className="me-1" />
+                  <FormatTime time={data.edit_time} preFix={t('Edited')} />
+                </span>
+              )}
             </>
           )}
 
           {data?.view_count > 0 && (
-            <div>
-              {t('Views')} {formatCount(data.view_count)}
+            <div className="d-flex align-items-center">
+              <Icon name="eye" className="me-1" />
+              <span>
+                {t('Views')} {formatCount(data.view_count)}
+              </span>
             </div>
           )}
         </div>
