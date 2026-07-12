@@ -390,16 +390,14 @@ const Comment: FC<IProps> = ({ objectId, mode, commentId, children }) => {
           'd-flex flex-wrap justify-content-between align-items-center',
           comments.length === 0 ? '' : 'mb-3',
         )}>
-        {comments.length === 0 && (
-          <Button
-            variant="outline-secondary"
-            className="rounded-pill link-secondary btn-reaction"
-            size="sm"
-            onClick={handleAddComment}>
-            <Icon name="chat-left-text" className="me-1" />
-            {addCommentBtnText}
-          </Button>
-        )}
+        <Button
+          variant="outline-secondary"
+          className="rounded-pill link-secondary btn-reaction"
+          size="sm"
+          onClick={handleAddComment}>
+          <Icon name="chat-left-text" className="me-1" />
+          {addCommentBtnText}
+        </Button>
         {children}
       </div>
       <div
@@ -480,22 +478,12 @@ const Comment: FC<IProps> = ({ objectId, mode, commentId, children }) => {
         })}
 
         <div className={classNames(comments.length > 0 && 'py-2')}>
-          {comments.length > 0 && (
-            <Button
-              variant="outline-secondary"
-              className="rounded-pill link-secondary btn-reaction"
-              size="sm"
-              onClick={handleAddComment}>
-              <Icon name="chat-left-text" className="me-1" />
-              {addCommentBtnText}
-            </Button>
-          )}
           {data &&
             (pageIndex || 1) < Math.ceil((data?.count || 0) / pageSize) && (
               <Button
                 variant="link"
                 size="sm"
-                className="p-0 ms-3 btn-no-border"
+                className="p-0 btn-no-border"
                 onClick={() => {
                   setPageIndex(pageIndex + 1);
                 }}>
