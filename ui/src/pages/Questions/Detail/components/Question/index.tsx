@@ -122,55 +122,51 @@ const Index: FC<Props> = ({ data, initPage, hasAnswer, isLogged }) => {
         </h1>
       </div>
 
-      <div className="mb-4 border-bottom pb-3">
-        <div className="d-flex align-items-center mb-2">
-          <BaseUserCard data={data.user_info} />
-        </div>
+      <div className="d-flex flex-wrap align-items-center small mb-4 text-secondary border-bottom pb-3">
+        <BaseUserCard data={data.user_info} className="me-3" />
 
-        <div className="d-flex flex-wrap align-items-center small text-secondary">
-          {isLogged ? (
-            <>
+        {isLogged ? (
+          <>
+            <Link
+              to={`/posts/${data.id}/timeline`}
+              className="link-secondary me-3 text-decoration-none d-flex align-items-center">
+              <Icon name="clock" className="me-1" />
+              <FormatTime time={data.create_time} preFix={t('created')} />
+            </Link>
+
+            {data.edit_time > 0 && (
               <Link
                 to={`/posts/${data.id}/timeline`}
                 className="link-secondary me-3 text-decoration-none d-flex align-items-center">
-                <Icon name="clock" className="me-1" />
-                <FormatTime time={data.create_time} preFix={t('created')} />
+                <Icon name="pencil" className="me-1" />
+                <FormatTime time={data.edit_time} preFix={t('Edited')} />
               </Link>
+            )}
+          </>
+        ) : (
+          <>
+            <span className="me-3 text-secondary d-flex align-items-center">
+              <Icon name="clock" className="me-1" />
+              <FormatTime time={data.create_time} preFix={t('created')} />
+            </span>
 
-              {data.edit_time > 0 && (
-                <Link
-                  to={`/posts/${data.id}/timeline`}
-                  className="link-secondary me-3 text-decoration-none d-flex align-items-center">
-                  <Icon name="pencil" className="me-1" />
-                  <FormatTime time={data.edit_time} preFix={t('Edited')} />
-                </Link>
-              )}
-            </>
-          ) : (
-            <>
+            {data.edit_time > 0 && (
               <span className="me-3 text-secondary d-flex align-items-center">
-                <Icon name="clock" className="me-1" />
-                <FormatTime time={data.create_time} preFix={t('created')} />
+                <Icon name="pencil" className="me-1" />
+                <FormatTime time={data.edit_time} preFix={t('Edited')} />
               </span>
+            )}
+          </>
+        )}
 
-              {data.edit_time > 0 && (
-                <span className="me-3 text-secondary d-flex align-items-center">
-                  <Icon name="pencil" className="me-1" />
-                  <FormatTime time={data.edit_time} preFix={t('Edited')} />
-                </span>
-              )}
-            </>
-          )}
-
-          {data?.view_count > 0 && (
-            <div className="d-flex align-items-center">
-              <Icon name="eye" className="me-1" />
-              <span>
-                {t('Views')} {formatCount(data.view_count)}
-              </span>
-            </div>
-          )}
-        </div>
+        {data?.view_count > 0 && (
+          <div className="d-flex align-items-center">
+            <Icon name="eye" className="me-1" />
+            <span>
+              {t('Views')} {formatCount(data.view_count)}
+            </span>
+          </div>
+        )}
       </div>
 
       <div className="d-flex align-items-stretch gap-3 mt-3 post-body-wrapper">
