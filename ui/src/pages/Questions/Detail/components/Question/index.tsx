@@ -172,6 +172,23 @@ const Index: FC<Props> = ({ data, initPage, hasAnswer, isLogged }) => {
               dangerouslySetInnerHTML={{ __html: data?.html }}
             />
           </ImgViewer>
+
+          <div className="mt-4">
+            <Comment
+              objectId={data?.id}
+              mode="question"
+              commentId={searchParams.get('commentId')}>
+              <Operate
+                qid={data?.id}
+                type="question"
+                memberActions={data?.member_actions}
+                title={data.title}
+                hasAnswer={hasAnswer}
+                isAccepted={Boolean(data?.accepted_answer_id)}
+                callback={initPage}
+              />
+            </Comment>
+          </div>
         </div>
         <div className="flex-shrink-0">
           <Actions
@@ -189,23 +206,6 @@ const Index: FC<Props> = ({ data, initPage, hasAnswer, isLogged }) => {
             }}
           />
         </div>
-      </div>
-
-      <div className="mt-4">
-        <Comment
-          objectId={data?.id}
-          mode="question"
-          commentId={searchParams.get('commentId')}>
-          <Operate
-            qid={data?.id}
-            type="question"
-            memberActions={data?.member_actions}
-            title={data.title}
-            hasAnswer={hasAnswer}
-            isAccepted={Boolean(data?.accepted_answer_id)}
-            callback={initPage}
-          />
-        </Comment>
       </div>
     </div>
   );

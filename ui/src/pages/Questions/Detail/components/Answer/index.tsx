@@ -138,6 +138,36 @@ const Index: FC<Props> = ({
               dangerouslySetInnerHTML={{ __html: data?.html }}
             />
           </ImgViewer>
+
+          {canAccept && (
+            <div className="d-flex align-items-center my-3">
+              <Button
+                variant={data.accepted === 2 ? 'success' : 'outline-success'}
+                onClick={acceptAnswer}>
+                <Icon name="check-circle-fill" className="me-2" />
+                <span>
+                  {data.accepted === 2
+                    ? t('answers.btn_accepted')
+                    : t('answers.btn_accept')}
+                </span>
+              </Button>
+            </div>
+          )}
+
+          <Comment
+            objectId={data.id}
+            mode="answer"
+            commentId={searchParams.get('commentId')}>
+            <Operate
+              qid={data.question_id}
+              aid={data.id}
+              memberActions={data?.member_actions}
+              type="answer"
+              isAccepted={data.accepted === 2}
+              title={questionTitle}
+              callback={callback}
+            />
+          </Comment>
         </div>
         <div className="flex-shrink-0">
           <Actions
@@ -158,36 +188,6 @@ const Index: FC<Props> = ({
           />
         </div>
       </div>
-
-      {canAccept && (
-        <div className="d-flex align-items-center my-3">
-          <Button
-            variant={data.accepted === 2 ? 'success' : 'outline-success'}
-            onClick={acceptAnswer}>
-            <Icon name="check-circle-fill" className="me-2" />
-            <span>
-              {data.accepted === 2
-                ? t('answers.btn_accepted')
-                : t('answers.btn_accept')}
-            </span>
-          </Button>
-        </div>
-      )}
-
-      <Comment
-        objectId={data.id}
-        mode="answer"
-        commentId={searchParams.get('commentId')}>
-        <Operate
-          qid={data.question_id}
-          aid={data.id}
-          memberActions={data?.member_actions}
-          type="answer"
-          isAccepted={data.accepted === 2}
-          title={questionTitle}
-          callback={callback}
-        />
-      </Comment>
     </div>
   );
 };
