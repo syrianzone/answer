@@ -30,7 +30,8 @@ import { ReactionItem } from '@/common/interface';
 interface Props {
   objectId: string;
   showAddCommentBtn?: boolean;
-  handleClickComment: () => void;
+  handleClickComment?: () => void;
+  className?: string;
 }
 
 const emojiMap = [
@@ -54,7 +55,8 @@ const emojiMap = [
 const Index: FC<Props> = ({
   objectId,
   showAddCommentBtn,
-  handleClickComment,
+  handleClickComment = () => {},
+  className = 'd-flex flex-wrap',
 }) => {
   const [reactions, setReactions] = useState<ReactionItem[]>();
   const [reactIsActive, setReactIsActive] = useState<boolean>(false);
@@ -109,7 +111,7 @@ const Index: FC<Props> = ({
   );
 
   return (
-    <div className="d-flex flex-wrap">
+    <div className={className}>
       {showAddCommentBtn && (
         <Button
           className="rounded-pill me-2 link-secondary btn-reaction"
@@ -155,7 +157,7 @@ const Index: FC<Props> = ({
               </Tooltip>
             }>
             <Button
-              className="rounded-pill ms-2 link-secondary d-flex align-items-center btn-reaction"
+              className="rounded-pill m-1 link-secondary d-flex align-items-center btn-reaction"
               aria-label={
                 data?.is_active
                   ? t('reaction.unreact_emoji', { emoji: data.emoji })

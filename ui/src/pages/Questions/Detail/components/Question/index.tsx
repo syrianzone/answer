@@ -157,33 +157,37 @@ const Index: FC<Props> = ({ data, initPage, hasAnswer, isLogged }) => {
         </OverlayTrigger>
       </div>
 
-      <ImgViewer>
-        <article
-          ref={ref}
-          className="fmt text-break text-wrap last-p mb-4"
-          dangerouslySetInnerHTML={{ __html: data?.html }}
-        />
-      </ImgViewer>
-
-      <div className="m-n1">
+      <div className="m-n1 mb-4">
         {data?.tags?.map((item: any) => {
           return <Tag className="m-1" key={item.slug_name} data={item} />;
         })}
       </div>
 
-      <Actions
-        className="mt-4"
-        source="question"
-        data={{
-          id: data?.id,
-          isHate: data?.vote_status === 'vote_down',
-          isLike: data?.vote_status === 'vote_up',
-          votesCount: data?.vote_count,
-          collected: data?.collected,
-          collectCount: data?.collection_count,
-          username: data.user_info?.username,
-        }}
-      />
+      <div className="d-flex align-items-start mt-3">
+        <div className="flex-grow-1 min-w-0">
+          <ImgViewer>
+            <article
+              ref={ref}
+              className="fmt text-break text-wrap last-p mb-4"
+              dangerouslySetInnerHTML={{ __html: data?.html }}
+            />
+          </ImgViewer>
+        </div>
+        <div className="ms-3 flex-shrink-0">
+          <Actions
+            source="question"
+            data={{
+              id: data?.id,
+              isHate: data?.vote_status === 'vote_down',
+              isLike: data?.vote_status === 'vote_up',
+              votesCount: data?.vote_count,
+              collected: data?.collected,
+              collectCount: data?.collection_count,
+              username: data.user_info?.username,
+            }}
+          />
+        </div>
+      </div>
 
       <div className="mt-4">
         <Comment

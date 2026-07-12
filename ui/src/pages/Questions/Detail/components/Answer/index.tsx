@@ -130,31 +130,36 @@ const Index: FC<Props> = ({
           </div>
         )}
       </div>
-      <ImgViewer>
-        <article
-          className="fmt text-break text-wrap"
-          dangerouslySetInnerHTML={{ __html: data?.html }}
-        />
-      </ImgViewer>
-      <div className="d-flex align-items-center my-4">
-        <Actions
-          source="answer"
-          data={{
-            id: data?.id,
-            isHate: data?.vote_status === 'vote_down',
-            isLike: data?.vote_status === 'vote_up',
-            votesCount: data?.vote_count,
-            hideCollect: true,
-            collected: data?.collected,
-            collectCount: 0,
-            username: data?.user_info?.username,
-          }}
-        />
+      <div className="d-flex align-items-start mt-3">
+        <div className="flex-grow-1 min-w-0">
+          <ImgViewer>
+            <article
+              className="fmt text-break text-wrap"
+              dangerouslySetInnerHTML={{ __html: data?.html }}
+            />
+          </ImgViewer>
+        </div>
+        <div className="ms-3 flex-shrink-0">
+          <Actions
+            source="answer"
+            data={{
+              id: data?.id,
+              isHate: data?.vote_status === 'vote_down',
+              isLike: data?.vote_status === 'vote_up',
+              votesCount: data?.vote_count,
+              hideCollect: true,
+              collected: data?.collected,
+              collectCount: 0,
+              username: data?.user_info?.username,
+            }}
+          />
+        </div>
+      </div>
 
-        {canAccept && (
+      {canAccept && (
+        <div className="d-flex align-items-center my-3">
           <Button
             variant={data.accepted === 2 ? 'success' : 'outline-success'}
-            className="ms-3"
             onClick={acceptAnswer}>
             <Icon name="check-circle-fill" className="me-2" />
             <span>
@@ -163,8 +168,8 @@ const Index: FC<Props> = ({
                 : t('answers.btn_accept')}
             </span>
           </Button>
-        )}
-      </div>
+        </div>
+      )}
 
       <Comment
         objectId={data.id}

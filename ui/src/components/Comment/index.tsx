@@ -44,7 +44,6 @@ import {
   postVote,
 } from '@/services';
 import { commentReplyStore } from '@/stores';
-import Reactions from '@/pages/Questions/Detail/components/Reactions';
 
 import { Form, ActionBar, Reply } from './components';
 
@@ -80,6 +79,11 @@ const Comment: FC<IProps> = ({ objectId, mode, commentId, children }) => {
   const vCaptcha = useCaptchaPlugin('vote');
 
   const { t } = useTranslation('translation', { keyPrefix: 'comment' });
+
+  const addCommentBtnText =
+    mode === 'question'
+      ? t('btn_add_comment_question')
+      : t('btn_add_comment_answer');
 
   useEffect(() => {
     if (pageIndex === 0 && commentId && comments.length !== 0) {
@@ -386,11 +390,15 @@ const Comment: FC<IProps> = ({ objectId, mode, commentId, children }) => {
           'd-flex flex-wrap justify-content-between align-items-center',
           comments.length === 0 ? '' : 'mb-3',
         )}>
-        <Reactions
-          objectId={objectId}
-          showAddCommentBtn={comments.length === 0}
-          handleClickComment={handleAddComment}
-        />
+        {comments.length === 0 && (
+          <Button
+            variant="link"
+            className="p-0 btn-no-border"
+            size="sm"
+            onClick={handleAddComment}>
+            {addCommentBtnText}
+          </Button>
+        )}
         {children}
       </div>
       <div
@@ -477,7 +485,7 @@ const Comment: FC<IProps> = ({ objectId, mode, commentId, children }) => {
               className="p-0 btn-no-border"
               size="sm"
               onClick={handleAddComment}>
-              {t('btn_add_comment')}
+              {addCommentBtnText}
             </Button>
           )}
           {data &&

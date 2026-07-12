@@ -1106,6 +1106,8 @@ ui:
     unreact_emoji: unreact with {{ emoji }}
   comment:
     btn_add_comment: Add comment
+    btn_add_comment_question: Comment on question or request clarification
+    btn_add_comment_answer: Comment on answer or request clarification
     reply_to: Reply to
     btn_reply: Reply
     btn_edit: Edit

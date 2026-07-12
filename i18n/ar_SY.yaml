@@ -1106,6 +1106,8 @@ ui:
     unreact_emoji: إزالة التفاعل بـ {{ emoji }}
   comment:
     btn_add_comment: إضافة تعليق
+    btn_add_comment_question: علّق على السؤال أو اطلب توضيحاً
+    btn_add_comment_answer: علق على الجواب أو اطلب توضيحاً
     reply_to: الرد على
     btn_reply: رد
     btn_edit: تعديل
