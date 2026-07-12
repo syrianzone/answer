@@ -365,7 +365,9 @@ const Index: FC<IProps> = ({
               key={item.action}
               variant="link"
               size="sm"
-              className="link-secondary p-0 ms-3 d-flex align-items-center text-decoration-none"
+              className={`${
+                item.action === 'report' ? 'link-danger' : 'link-secondary'
+              } p-0 ms-3 d-flex align-items-center text-decoration-none`}
               onClick={() => handleAction(item.action)}>
               <Icon name={getIconName(item.action)} className="me-1" />
               <span>{item.name}</span>
@@ -396,6 +398,7 @@ const Index: FC<IProps> = ({
                 return (
                   <Dropdown.Item
                     key={item.action}
+                    className={item.action === 'report' ? 'text-danger' : ''}
                     onClick={() => handleAction(item.action)}>
                     <Icon name={getIconName(item.action)} className="me-2" />
                     {item.name}
