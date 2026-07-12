@@ -33,6 +33,83 @@
   }
 }
 
+// Shared shadcn dropdown trigger & menu styles
+.shadcn-dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--bs-tertiary-bg, #f8f9fa);
+  border: 1px solid var(--bs-border-color, #dee2e6);
+  color: var(--bs-body-color, #212529);
+  font-size: 0.825rem;
+  font-weight: 500;
+  padding: 5px 14px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-color: var(--bs-secondary-bg, rgba(0, 0, 0, 0.05));
+    border-color: var(--bs-border-color, #dee2e6);
+    color: var(--bs-body-color, #212529);
+    box-shadow: none;
+  }
+
+  &:active,
+  &.show {
+    background-color: var(--bs-secondary-bg, rgba(0, 0, 0, 0.05)) !important;
+    border-color: var(--bs-border-color, #dee2e6) !important;
+    color: var(--bs-body-color, #212529) !important;
+    box-shadow: none !important;
+  }
+
+  // Caret
+  &::after {
+    border-top-width: 0.3em;
+    border-right-width: 0.3em;
+    border-left-width: 0.3em;
+    opacity: 0.6;
+    margin-inline-start: 0.4em;
+    margin-inline-end: 0;
+  }
+}
+
+.shadcn-dropdown-menu {
+  border: 1px solid var(--bs-border-color, #dee2e6);
+  border-radius: 10px;
+  padding: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+  min-width: 140px;
+  overflow: hidden;
+
+  .dropdown-item {
+    font-size: 0.825rem;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: var(--bs-body-color, #212529);
+    transition: background-color 0.15s ease, color 0.15s ease;
+
+    &:hover {
+      background-color: var(--bs-tertiary-bg, #f8f9fa);
+      color: var(--bs-body-color, #212529);
+    }
+
+    &.active,
+    &:active {
+      background-color: color-mix(in srgb, var(--bs-primary) 12%, transparent);
+      color: var(--bs-primary);
+    }
+  }
+}
+
+// RTL caret fix
+html[dir='rtl'] .shadcn-dropdown-trigger::after {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .shadcn-toggle-group {
   display: inline-flex;
   align-items: center;
@@ -86,8 +163,12 @@
       }
 
       &::after {
-        margin-left: 0.35em;
+        margin-inline-start: 0.35em;
       }
+    }
+
+    .dropdown-menu {
+      @extend .shadcn-dropdown-menu;
     }
   }
 }

@@ -18,7 +18,7 @@
  */
 
 import { FC, memo } from 'react';
-import { DropdownButton, Dropdown } from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -135,57 +135,60 @@ const Index: FC<Props> = ({
           );
         })}
         {moreBtnData.length > 0 && (
-          <DropdownButton
-            size="sm"
-            variant={currentBtn ? 'secondary' : 'outline-secondary'}
-            title={currentBtn ? t(currentSort) : t('more')}>
-            {moreBtnData.map((btn) => {
-              const key = typeof btn === 'string' ? btn : btn.sort;
-              const name = typeof btn === 'string' ? btn : btn.name;
-              return (
-                <Dropdown.Item
-                  as="a"
-                  key={key}
-                  active={currentSort === name}
-                  className={classNames('text-capitalize', className)}
-                  href={
-                    pathname
-                      ? `${REACT_BASE_PATH}${pathname}${handleParams(key)}`
-                      : handleParams(key)
-                  }
-                  onClick={(evt) => handleClick(evt, key)}>
-                  {t(name)}
-                </Dropdown.Item>
-              );
-            })}
-          </DropdownButton>
+          <Dropdown align="end">
+            <Dropdown.Toggle as="button" className="shadcn-dropdown-trigger">
+              {currentBtn ? t(currentSort) : t('more')}
+            </Dropdown.Toggle>
+            <Dropdown.Menu className="shadcn-dropdown-menu">
+              {moreBtnData.map((btn) => {
+                const key = typeof btn === 'string' ? btn : btn.sort;
+                const name = typeof btn === 'string' ? btn : btn.name;
+                return (
+                  <Dropdown.Item
+                    as="a"
+                    key={key}
+                    active={currentSort === name}
+                    className={classNames('text-capitalize', className)}
+                    href={
+                      pathname
+                        ? `${REACT_BASE_PATH}${pathname}${handleParams(key)}`
+                        : handleParams(key)
+                    }
+                    onClick={(evt) => handleClick(evt, key)}>
+                    {t(name)}
+                  </Dropdown.Item>
+                );
+              })}
+            </Dropdown.Menu>
+          </Dropdown>
         )}
       </div>
-      <DropdownButton
-        size="sm"
-        variant="outline-secondary"
-        className={classNames('md-hide', wrapClassName)}
-        title={t(currentSort)}>
-        {data.map((btn) => {
-          const key = typeof btn === 'string' ? btn : btn.sort;
-          const name = typeof btn === 'string' ? btn : btn.name;
-          return (
-            <Dropdown.Item
-              as="a"
-              key={key}
-              active={currentSort === name}
-              className={classNames('text-capitalize', className)}
-              href={
-                pathname
-                  ? `${REACT_BASE_PATH}${pathname}${handleParams(key)}`
-                  : handleParams(key)
-              }
-              onClick={(evt) => handleClick(evt, key)}>
-              {t(name)}
-            </Dropdown.Item>
-          );
-        })}
-      </DropdownButton>
+      <Dropdown align="end" className={classNames('md-hide', wrapClassName)}>
+        <Dropdown.Toggle as="button" className="shadcn-dropdown-trigger">
+          {t(currentSort)}
+        </Dropdown.Toggle>
+        <Dropdown.Menu className="shadcn-dropdown-menu">
+          {data.map((btn) => {
+            const key = typeof btn === 'string' ? btn : btn.sort;
+            const name = typeof btn === 'string' ? btn : btn.name;
+            return (
+              <Dropdown.Item
+                as="a"
+                key={key}
+                active={currentSort === name}
+                className={classNames('text-capitalize', className)}
+                href={
+                  pathname
+                    ? `${REACT_BASE_PATH}${pathname}${handleParams(key)}`
+                    : handleParams(key)
+                }
+                onClick={(evt) => handleClick(evt, key)}>
+                {t(name)}
+              </Dropdown.Item>
+            );
+          })}
+        </Dropdown.Menu>
+      </Dropdown>
     </>
   );
 };
