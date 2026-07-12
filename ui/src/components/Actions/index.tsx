@@ -31,6 +31,7 @@ import { tryNormalLogged } from '@/utils/guard';
 import { bookmark, postVote } from '@/services';
 import * as Types from '@/common/interface';
 import Reactions from '@/pages/Questions/Detail/components/Reactions';
+import Share from '@/components/Share';
 
 interface Props {
   className?: string;
@@ -45,9 +46,12 @@ interface Props {
     collectCount: number;
     username: string;
   };
+  qid: string;
+  aid?: string;
+  title: string;
 }
 
-const Index: FC<Props> = ({ className, data, source }) => {
+const Index: FC<Props> = ({ className, data, source, qid, aid, title }) => {
   const [votes, setVotes] = useState(0);
   const [like, setLike] = useState(false);
   const [hate, setHated] = useState(false);
@@ -206,6 +210,10 @@ const Index: FC<Props> = ({ className, data, source }) => {
           showAddCommentBtn={false}
           className="d-flex flex-column align-items-center gap-1"
         />
+      </div>
+
+      <div className="mt-2">
+        <Share type={source} qid={qid} aid={aid} title={title} isIconButton />
       </div>
     </div>
   );

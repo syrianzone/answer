@@ -142,6 +142,9 @@ const Index: FC<Props> = ({
         <div className="flex-shrink-0">
           <Actions
             source="answer"
+            qid={data?.question_id}
+            aid={data?.id}
+            title={questionTitle}
             data={{
               id: data?.id,
               isHate: data?.vote_status === 'vote_down',

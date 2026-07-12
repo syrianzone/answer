@@ -18,13 +18,14 @@
  */
 
 import { memo, FC, useState, useEffect } from 'react';
-import { Dropdown, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Dropdown, OverlayTrigger, Tooltip, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 import { FacebookShareButton, TwitterShareButton } from 'next-share';
 import copy from 'copy-to-clipboard';
 import classNames from 'classnames';
 
+import { Icon } from '@/components';
 import { BASE_ORIGIN } from '@/router/alias';
 import { loggedUserInfoStore } from '@/stores';
 
@@ -35,10 +36,18 @@ interface IProps {
   title: string;
   className?: string;
   mode?: 'normal' | 'mobile';
-  // slugTitle: string;
+  isIconButton?: boolean;
 }
 
-const Index: FC<IProps> = ({ type, qid, aid, title, className, mode }) => {
+const Index: FC<IProps> = ({
+  type,
+  qid,
+  aid,
+  title,
+  className,
+  mode,
+  isIconButton,
+}) => {
   const user = loggedUserInfoStore((state) => state.user);
   const [show, setShow] = useState(false);
   const [showTip, setShowTip] = useState(false);
@@ -90,6 +99,62 @@ const Index: FC<IProps> = ({ type, qid, aid, title, className, mode }) => {
     }
     return null;
   }
+  if (isIconButton) {
+    return (
+      <Dropdown show={show} onToggle={closeShare}>
+        <Dropdown.Toggle
+          id="dropdown-share"
+          as={Button}
+          variant="link"
+          className={classNames(
+            'p-0 mt-2 btn-no-border d-flex flex-column align-items-center text-secondary no-toggle pointer',
+            className,
+          )}
+          onClick={() => setShow(true)}
+          style={{
+            border: 'none',
+            background: 'none',
+            outline: 'none',
+            boxShadow: 'none',
+          }}>
+          <Icon name="share-fill" size="1.4rem" />
+        </Dropdown.Toggle>
+        <Dropdown.Menu style={{ minWidth: '195px' }}>
+          <OverlayTrigger
+            trigger="click"
+            placement="left"
+            show={showTip}
+            overlay={<Tooltip>{t('share.copied')}</Tooltip>}>
+            <Dropdown.Item onClick={handleCopy} eventKey="copy">
+              {t('share.copy')}
+            </Dropdown.Item>
+          </OverlayTrigger>
+          <Dropdown.Item eventKey="facebook">
+            <FacebookShareButton
+              title={title}
+              url={baseUrl}
+              className="w-100 py-1 px-3 text-start">
+              {t('share.facebook')}
+            </FacebookShareButton>
+          </Dropdown.Item>
+          <Dropdown.Item>
+            <TwitterShareButton
+              title={title}
+              url={baseUrl}
+              className="w-100 py-1 px-3 text-start">
+              {t('share.twitter')}
+            </TwitterShareButton>
+          </Dropdown.Item>
+          {canSystemShare && (
+            <Dropdown.Item onClick={systemShare}>
+              {t('share.via')}
+            </Dropdown.Item>
+          )}
+        </Dropdown.Menu>
+      </Dropdown>
+    );
+  }
+
   return (
     <Dropdown show={show} onToggle={closeShare}>
       <Dropdown.Toggle

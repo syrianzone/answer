@@ -90,6 +90,12 @@ const Index: FC<Props> = ({ data, initPage, hasAnswer, isLogged }) => {
 
   return (
     <div>
+      <div className="m-n1 mb-4">
+        {data?.tags?.map((item: any) => {
+          return <Tag className="m-1" key={item.slug_name} data={item} />;
+        })}
+      </div>
+
       <h1 className="h3 mb-2 text-wrap text-break pb-1">
         <Link
           className="link-dark"
@@ -157,12 +163,6 @@ const Index: FC<Props> = ({ data, initPage, hasAnswer, isLogged }) => {
         </OverlayTrigger>
       </div>
 
-      <div className="m-n1 mb-4">
-        {data?.tags?.map((item: any) => {
-          return <Tag className="m-1" key={item.slug_name} data={item} />;
-        })}
-      </div>
-
       <div className="d-flex align-items-start gap-3 mt-3 post-body-wrapper">
         <div className="flex-grow-1 min-w-0">
           <ImgViewer>
@@ -176,6 +176,8 @@ const Index: FC<Props> = ({ data, initPage, hasAnswer, isLogged }) => {
         <div className="flex-shrink-0">
           <Actions
             source="question"
+            qid={data?.id}
+            title={data?.title}
             data={{
               id: data?.id,
               isHate: data?.vote_status === 'vote_down',

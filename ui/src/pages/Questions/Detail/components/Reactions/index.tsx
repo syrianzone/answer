@@ -21,6 +21,8 @@ import { FC, memo, useEffect, useState } from 'react';
 import { Button, OverlayTrigger, Popover, Tooltip } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
+import classNames from 'classnames';
+
 import { Icon } from '@/components';
 import { queryReactions, updateReaction } from '@/services';
 import { tryNormalLogged } from '@/utils/guard';
@@ -130,14 +132,15 @@ const Index: FC<Props> = ({
         show={reactIsActive}
         onToggle={(show) => setReactIsActive(show)}>
         <Button
-          size="sm"
+          variant="link"
           aria-label={t('reaction.btn_label')}
           aria-haspopup="true"
           active={reactIsActive}
-          className="smile-btn rounded-pill link-secondary btn-reaction"
-          variant={darkMode ? 'dark' : 'light'}>
-          <Icon name="emoji-smile-fill" />
-          <span className="ms-1">+</span>
+          className={classNames(
+            'p-0 btn-no-border smile-btn',
+            reactIsActive ? 'text-primary' : 'text-secondary',
+          )}>
+          <Icon name="emoji-smile" size="1.4rem" />
         </Button>
       </OverlayTrigger>
 

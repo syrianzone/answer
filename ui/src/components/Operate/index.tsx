@@ -338,13 +338,6 @@ const Index: FC<IProps> = ({
   return (
     <>
       <div className="md-show align-items-center">
-        <Share
-          type={type}
-          qid={qid}
-          aid={aid}
-          title={title}
-          className="link-secondary small"
-        />
         {firstAction?.map((item) => {
           if (item.action === 'edit') {
             return (

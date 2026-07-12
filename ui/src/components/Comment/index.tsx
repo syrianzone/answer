@@ -26,7 +26,7 @@ import classNames from 'classnames';
 import unionBy from 'lodash/unionBy';
 
 import * as Types from '@/common/interface';
-import { Modal } from '@/components';
+import { Modal, Icon } from '@/components';
 import { usePageUsers, useReportModal, useCaptchaModal } from '@/hooks';
 import {
   matchedUsers,
@@ -392,10 +392,11 @@ const Comment: FC<IProps> = ({ objectId, mode, commentId, children }) => {
         )}>
         {comments.length === 0 && (
           <Button
-            variant="link"
-            className="p-0 btn-no-border"
+            variant="outline-secondary"
+            className="rounded-pill link-secondary btn-reaction"
             size="sm"
             onClick={handleAddComment}>
+            <Icon name="chat-left-text" className="me-1" />
             {addCommentBtnText}
           </Button>
         )}
@@ -481,10 +482,11 @@ const Comment: FC<IProps> = ({ objectId, mode, commentId, children }) => {
         <div className={classNames(comments.length > 0 && 'py-2')}>
           {comments.length > 0 && (
             <Button
-              variant="link"
-              className="p-0 btn-no-border"
+              variant="outline-secondary"
+              className="rounded-pill link-secondary btn-reaction"
               size="sm"
               onClick={handleAddComment}>
+              <Icon name="chat-left-text" className="me-1" />
               {addCommentBtnText}
             </Button>
           )}
