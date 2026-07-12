@@ -163,8 +163,8 @@ const Index: FC<Props> = ({ data, initPage, hasAnswer, isLogged }) => {
         </OverlayTrigger>
       </div>
 
-      <div className="d-flex align-items-start gap-3 mt-3 post-body-wrapper">
-        <div className="flex-grow-1 min-w-0">
+      <div className="d-flex align-items-stretch gap-3 mt-3 post-body-wrapper">
+        <div className="flex-grow-1 min-w-0 d-flex flex-column">
           <ImgViewer>
             <article
               ref={ref}
@@ -173,7 +173,7 @@ const Index: FC<Props> = ({ data, initPage, hasAnswer, isLogged }) => {
             />
           </ImgViewer>
 
-          <div className="mt-4">
+          <div className="mt-auto pt-4">
             <Comment
               objectId={data?.id}
               mode="question"

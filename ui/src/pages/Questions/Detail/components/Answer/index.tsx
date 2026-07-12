@@ -130,8 +130,8 @@ const Index: FC<Props> = ({
           </div>
         )}
       </div>
-      <div className="d-flex align-items-start gap-3 mt-3 post-body-wrapper">
-        <div className="flex-grow-1 min-w-0">
+      <div className="d-flex align-items-stretch gap-3 mt-3 post-body-wrapper">
+        <div className="flex-grow-1 min-w-0 d-flex flex-column">
           <ImgViewer>
             <article
               className="fmt text-break text-wrap"
@@ -154,20 +154,22 @@ const Index: FC<Props> = ({
             </div>
           )}
 
-          <Comment
-            objectId={data.id}
-            mode="answer"
-            commentId={searchParams.get('commentId')}>
-            <Operate
-              qid={data.question_id}
-              aid={data.id}
-              memberActions={data?.member_actions}
-              type="answer"
-              isAccepted={data.accepted === 2}
-              title={questionTitle}
-              callback={callback}
-            />
-          </Comment>
+          <div className="mt-auto pt-4">
+            <Comment
+              objectId={data.id}
+              mode="answer"
+              commentId={searchParams.get('commentId')}>
+              <Operate
+                qid={data.question_id}
+                aid={data.id}
+                memberActions={data?.member_actions}
+                type="answer"
+                isAccepted={data.accepted === 2}
+                title={questionTitle}
+                callback={callback}
+              />
+            </Comment>
+          </div>
         </div>
         <div className="flex-shrink-0">
           <Actions

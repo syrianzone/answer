@@ -42,6 +42,33 @@ import { toastStore } from '@/stores';
 
 import '@/components/QueryGroup/index.scss';
 
+const getIconName = (action: string) => {
+  switch (action) {
+    case 'edit':
+      return 'pencil-square';
+    case 'delete':
+      return 'trash';
+    case 'undelete':
+      return 'arrow-counterclockwise';
+    case 'report':
+      return 'flag';
+    case 'close':
+      return 'lock';
+    case 'reopen':
+      return 'unlock';
+    case 'pin':
+      return 'pin';
+    case 'unpin':
+      return 'pin-fill';
+    case 'hide':
+      return 'eye-slash';
+    case 'show':
+      return 'eye';
+    default:
+      return 'three-dots';
+  }
+};
+
 interface IProps {
   type: 'answer' | 'question';
   qid: string;
@@ -316,38 +343,20 @@ const Index: FC<IProps> = ({
     }
   };
 
-  const firstAction =
-    memberActions?.filter(
-      (v) =>
-        v.action === 'report' ||
-        v.action === 'edit' ||
-        v.action === 'delete' ||
-        v.action === 'undelete',
-    ) || [];
-  const secondAction =
-    memberActions?.filter(
-      (v) =>
-        v.action === 'close' ||
-        v.action === 'reopen' ||
-        v.action === 'pin' ||
-        v.action === 'unpin' ||
-        v.action === 'hide' ||
-        v.action === 'show',
-    ) || [];
-
   return (
     <>
       <div className="md-show align-items-center">
-        {firstAction?.map((item) => {
+        {memberActions?.map((item) => {
           if (item.action === 'edit') {
             return (
               <Link
                 key={item.action}
                 to={editUrl}
-                className="link-secondary p-0 small ms-3"
+                className="link-secondary p-0 small ms-3 d-flex align-items-center text-decoration-none"
                 onClick={(evt) => handleEdit(evt, editUrl)}
                 style={{ lineHeight: '23px' }}>
-                {item.name}
+                <Icon name="pencil-square" className="me-1" />
+                <span>{item.name}</span>
               </Link>
             );
           }
@@ -356,34 +365,13 @@ const Index: FC<IProps> = ({
               key={item.action}
               variant="link"
               size="sm"
-              className="link-secondary p-0 ms-3"
+              className="link-secondary p-0 ms-3 d-flex align-items-center text-decoration-none"
               onClick={() => handleAction(item.action)}>
-              {item.name}
+              <Icon name={getIconName(item.action)} className="me-1" />
+              <span>{item.name}</span>
             </Button>
           );
         })}
-        {secondAction.length > 0 && (
-          <Dropdown className="ms-3 d-flex">
-            <Dropdown.Toggle
-              variant="link"
-              size="sm"
-              title={t('action', { keyPrefix: 'question_detail' })}
-              className="link-secondary p-0 no-toggle">
-              <Icon name="three-dots" />
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              {secondAction.map((item) => {
-                return (
-                  <Dropdown.Item
-                    key={item.action}
-                    onClick={() => handleAction(item.action)}>
-                    {item.name}
-                  </Dropdown.Item>
-                );
-              })}
-            </Dropdown.Menu>
-          </Dropdown>
-        )}
       </div>
       <div className="md-hide">
         {memberActions.length > 0 && (
@@ -404,11 +392,12 @@ const Index: FC<IProps> = ({
                 className="inherit"
                 mode="mobile"
               />
-              {[...firstAction, ...secondAction].map((item) => {
+              {memberActions.map((item) => {
                 return (
                   <Dropdown.Item
                     key={item.action}
                     onClick={() => handleAction(item.action)}>
+                    <Icon name={getIconName(item.action)} className="me-2" />
                     {item.name}
                   </Dropdown.Item>
                 );
