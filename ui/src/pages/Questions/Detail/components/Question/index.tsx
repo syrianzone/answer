@@ -31,6 +31,7 @@ import {
   FormatTime,
   htmlRender,
   ImgViewer,
+  Icon,
 } from '@/components';
 import { useRenderHtmlPlugin } from '@/utils/pluginKit';
 import { formatCount, guard } from '@/utils';
@@ -90,77 +91,85 @@ const Index: FC<Props> = ({ data, initPage, hasAnswer, isLogged }) => {
 
   return (
     <div>
-      <div className="m-n1 mb-4">
+      <div className="mb-5 d-flex flex-wrap gap-2">
         {data?.tags?.map((item: any) => {
-          return <Tag className="m-1" key={item.slug_name} data={item} />;
+          return <Tag key={item.slug_name} data={item} />;
         })}
       </div>
 
-      <h1 className="h3 mb-2 text-wrap text-break pb-1">
-        <Link
-          className="link-dark"
-          reloadDocument
-          to={pathFactory.questionLanding(data.id, data.url_title)}>
-          {data.title}
-          {data.status === 2
-            ? ` [${t('closed', { keyPrefix: 'question' })}]`
-            : ''}
-        </Link>
-      </h1>
+      <div className="d-flex align-items-center justify-content-between mb-3">
+        <h1 className="h3 mb-0 text-wrap text-break pb-1 flex-grow-1">
+          <Link
+            className="link-dark"
+            reloadDocument
+            to={pathFactory.questionLanding(data.id, data.url_title)}>
+            {data.title}
+            {data.status === 2
+              ? ` [${t('closed', { keyPrefix: 'question' })}]`
+              : ''}
+          </Link>
+        </h1>
+        <div className="ms-3 flex-shrink-0">
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="followTooltip">{t('follow_tip')}</Tooltip>}>
+            <Button
+              variant="link"
+              size="sm"
+              className="p-0 btn-no-border"
+              onClick={(e) => handleFollow(e)}>
+              <Icon
+                name={followed ? 'bell-fill' : 'bell'}
+                className={followed ? 'text-warning' : 'text-secondary'}
+                style={{ fontSize: '1.4rem' }}
+              />
+            </Button>
+          </OverlayTrigger>
+        </div>
+      </div>
 
-      <div className="d-flex flex-wrap align-items-center small mb-4 text-secondary border-bottom pb-3">
-        <BaseUserCard data={data.user_info} className="me-3" />
+      <div className="mb-4 border-bottom pb-3">
+        <div className="d-flex align-items-center mb-2">
+          <BaseUserCard data={data.user_info} />
+        </div>
 
-        {isLogged ? (
-          <>
-            <Link to={`/posts/${data.id}/timeline`}>
+        <div className="d-flex flex-wrap align-items-center small text-secondary">
+          {isLogged ? (
+            <>
+              <Link
+                to={`/posts/${data.id}/timeline`}
+                className="link-secondary me-3 text-decoration-none">
+                <FormatTime time={data.create_time} preFix={t('created')} />
+              </Link>
+
+              <Link
+                to={`/posts/${data.id}/timeline`}
+                className="link-secondary me-3 text-decoration-none">
+                <FormatTime time={data.edit_time} preFix={t('Edited')} />
+              </Link>
+            </>
+          ) : (
+            <>
               <FormatTime
                 time={data.create_time}
                 preFix={t('created')}
-                className="me-3 link-secondary"
+                className="me-3 text-secondary"
               />
-            </Link>
 
-            <Link to={`/posts/${data.id}/timeline`}>
               <FormatTime
                 time={data.edit_time}
                 preFix={t('Edited')}
-                className="me-3 link-secondary"
+                className="me-3 text-secondary"
               />
-            </Link>
-          </>
-        ) : (
-          <>
-            <FormatTime
-              time={data.create_time}
-              preFix={t('created')}
-              className="me-3 link-secondary"
-            />
+            </>
+          )}
 
-            <FormatTime
-              time={data.edit_time}
-              preFix={t('Edited')}
-              className="me-3 link-secondary"
-            />
-          </>
-        )}
-
-        {data?.view_count > 0 && (
-          <div className="me-3">
-            {t('Views')} {formatCount(data.view_count)}
-          </div>
-        )}
-        <OverlayTrigger
-          placement="bottom"
-          overlay={<Tooltip id="followTooltip">{t('follow_tip')}</Tooltip>}>
-          <Button
-            variant="link"
-            size="sm"
-            className="p-0 btn-no-border"
-            onClick={(e) => handleFollow(e)}>
-            {t(followed ? 'Following' : 'Follow')}
-          </Button>
-        </OverlayTrigger>
+          {data?.view_count > 0 && (
+            <div>
+              {t('Views')} {formatCount(data.view_count)}
+            </div>
+          )}
+        </div>
       </div>
 
       <div className="d-flex align-items-stretch gap-3 mt-3 post-body-wrapper">

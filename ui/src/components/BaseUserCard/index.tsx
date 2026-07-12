@@ -20,7 +20,7 @@
 import { memo, FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Avatar } from '@/components';
+import { Avatar, Icon } from '@/components';
 import { formatCount } from '@/utils';
 
 interface Props {
@@ -57,7 +57,7 @@ const Index: FC<Props> = ({
             <Avatar
               avatar={data?.avatar}
               size={avatarSize}
-              className={`me-1 ${avatarClass}`}
+              className={`me-2 ${avatarClass}`}
               searchStr={avatarSearchStr}
               alt={data?.display_name}
             />
@@ -74,7 +74,7 @@ const Index: FC<Props> = ({
             <Avatar
               avatar={data?.avatar}
               size={avatarSize}
-              className={`me-1 ${avatarClass}`}
+              className={`me-2 ${avatarClass}`}
               searchStr={avatarSearchStr}
               alt={data?.display_name}
             />
@@ -84,8 +84,12 @@ const Index: FC<Props> = ({
       )}
 
       {showReputation && (
-        <span className="fw-bold" title="Reputation">
-          {formatCount(data?.rank)}
+        <span
+          className="badge rounded-pill bg-light border text-secondary ms-2 d-inline-flex align-items-center px-2 py-1"
+          style={{ fontSize: '0.75rem' }}
+          title="Reputation">
+          <Icon name="star-fill" className="me-1 text-warning" />
+          <span>{formatCount(data?.rank)}</span>
         </span>
       )}
     </div>
