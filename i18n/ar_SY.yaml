@@ -49,11 +49,11 @@ backend:
     pin:
       other: تثبيت
     hide:
-      other: إخفاء من القائمة
+      other: إخفاء
     unpin:
       other: إلغاء التثبيت
     show:
-      other: إظهار في القائمة
+      other: إظهار
     invite_someone_to_answer:
       other: تعديل
     undelete:
