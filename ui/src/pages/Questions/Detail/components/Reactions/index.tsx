@@ -18,7 +18,7 @@
  */
 
 import { FC, memo, useEffect, useState } from 'react';
-import { Button, OverlayTrigger, Popover, Tooltip } from 'react-bootstrap';
+import { Button, OverlayTrigger, Popover } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 import classNames from 'classnames';
@@ -87,27 +87,39 @@ const Index: FC<Props> = ({
     });
   };
 
+  const totalCount =
+    reactions?.reduce((sum, item) => sum + (item.count || 0), 0) || 0;
+
   const renderPopover = (props) => (
     <Popover id="reaction-button-tooltip" {...props}>
       <Popover.Body className="d-block d-md-flex flex-wrap p-1">
-        {emojiMap.map((d, index) => (
-          <Button
-            aria-label={
-              reactions?.find((v) => v.emoji === d.name)?.is_active
-                ? t('reaction.undo_emoji', { emoji: d.name })
-                : t(`reaction.${d.name}`)
-            }
-            key={d.icon}
-            variant={darkMode ? 'dark' : 'light'}
-            active={reactions?.find((v) => v.emoji === d.name)?.is_active}
-            className={`${index !== 0 ? 'ms-1' : ''}`}
-            size="sm"
-            onClick={() =>
-              handleSubmit({ object_id: objectId, emoji: d.name })
-            }>
-            <Icon name={d.icon} className={d.className} />
-          </Button>
-        ))}
+        {emojiMap.map((d, index) => {
+          const reactionItem = reactions?.find((v) => v.emoji === d.name);
+          const count = reactionItem?.count || 0;
+          const isActive = !!reactionItem?.is_active;
+          return (
+            <Button
+              aria-label={
+                isActive
+                  ? t('reaction.undo_emoji', { emoji: d.name })
+                  : t(`reaction.${d.name}`)
+              }
+              key={d.icon}
+              variant={darkMode ? 'dark' : 'light'}
+              active={isActive}
+              className={classNames(
+                index !== 0 ? 'ms-1' : '',
+                'd-inline-flex align-items-center',
+              )}
+              size="sm"
+              onClick={() =>
+                handleSubmit({ object_id: objectId, emoji: d.name })
+              }>
+              <Icon name={d.icon} className={d.className} />
+              {count > 0 && <span className="ms-1 small">{count}</span>}
+            </Button>
+          );
+        })}
       </Popover.Body>
     </Popover>
   );
@@ -125,65 +137,33 @@ const Index: FC<Props> = ({
         </Button>
       )}
 
-      <OverlayTrigger
-        trigger="click"
-        placement="top"
-        overlay={renderPopover}
-        show={reactIsActive}
-        onToggle={(show) => setReactIsActive(show)}>
-        <Button
-          variant="link"
-          aria-label={t('reaction.btn_label')}
-          aria-haspopup="true"
-          active={reactIsActive}
-          className={classNames(
-            'p-0 btn-no-border smile-btn',
-            reactIsActive ? 'text-primary' : 'text-secondary',
-          )}>
-          <Icon name="emoji-smile" size="1.4rem" />
-        </Button>
-      </OverlayTrigger>
-
-      {reactions?.map((data) => {
-        if (!data.emoji || data?.count <= 0) {
-          return null;
-        }
-        return (
-          <OverlayTrigger
-            key={data.emoji}
-            placement="top"
-            overlay={
-              <Tooltip>
-                <div className="text-start">
-                  <b>{t(`reaction.${data.emoji}`)}</b> <br /> {data.tooltip}
-                </div>
-              </Tooltip>
-            }>
-            <Button
-              className="rounded-pill m-1 link-secondary d-flex align-items-center btn-reaction"
-              aria-label={
-                data?.is_active
-                  ? t('reaction.unreact_emoji', { emoji: data.emoji })
-                  : t('reaction.react_emoji', { emoji: data.emoji })
-              }
-              aria-pressed="true"
-              variant={darkMode ? 'dark' : 'light'}
-              active={data.is_active}
-              size="sm"
-              onClick={() =>
-                handleSubmit({ object_id: objectId, emoji: data.emoji })
-              }>
-              <Icon
-                name={String(emojiMap.find((v) => v.name === data.emoji)?.icon)}
-                className={
-                  emojiMap.find((v) => v.name === data.emoji)?.className
-                }
-              />
-              <span className="ms-1 lh-1">{data.count}</span>
-            </Button>
-          </OverlayTrigger>
-        );
-      })}
+      <div className="d-flex flex-column align-items-center">
+        <OverlayTrigger
+          trigger="click"
+          placement="top"
+          overlay={renderPopover}
+          show={reactIsActive}
+          onToggle={(show) => setReactIsActive(show)}>
+          <Button
+            variant="link"
+            aria-label={t('reaction.btn_label')}
+            aria-haspopup="true"
+            active={reactIsActive}
+            className={classNames(
+              'p-0 btn-no-border smile-btn',
+              reactIsActive ? 'text-primary' : 'text-secondary',
+            )}>
+            <Icon name="emoji-smile" size="1.4rem" />
+          </Button>
+        </OverlayTrigger>
+        {totalCount > 0 && (
+          <span
+            className="small text-secondary"
+            style={{ fontSize: '0.8rem', lineHeight: 1.2 }}>
+            {totalCount}
+          </span>
+        )}
+      </div>
     </div>
   );
 };
