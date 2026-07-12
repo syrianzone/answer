@@ -148,7 +148,7 @@ html[dir='rtl'] .shadcn-dropdown-trigger::after {
   }
 
   .dropdown {
-    .btn {
+    .shadcn-dropdown-trigger {
       border: 0;
       background: transparent;
       color: var(--bs-secondary-color, #6c757d);
@@ -157,11 +157,13 @@ html[dir='rtl'] .shadcn-dropdown-trigger::after {
       padding: 4px 12px;
       border-radius: 6px;
       transition: all 0.2s ease;
+      line-height: 1;
 
       &:hover, &:focus, &:active, &.show {
         background-color: var(--bs-secondary-bg, rgba(0, 0, 0, 0.05)) !important;
         color: var(--bs-body-color, #212529) !important;
         box-shadow: none !important;
+        border-color: transparent !important;
       }
 
       &::after {
