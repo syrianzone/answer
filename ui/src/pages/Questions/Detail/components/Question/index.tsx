@@ -91,25 +91,8 @@ const Index: FC<Props> = ({ data, initPage, hasAnswer, isLogged }) => {
 
   return (
     <div>
-      <div className="d-flex align-items-center justify-content-between mb-3">
-        <div className="me-3 flex-shrink-0">
-          <OverlayTrigger
-            placement="bottom"
-            overlay={<Tooltip id="followTooltip">{t('follow_tip')}</Tooltip>}>
-            <Button
-              variant="link"
-              size="lg"
-              className="p-0 btn-no-border"
-              onClick={(e) => handleFollow(e)}>
-              <Icon
-                name={followed ? 'bell-fill' : 'bell'}
-                className={`${followed ? 'text-warning' : 'text-secondary'} fs-4`}
-              />
-            </Button>
-          </OverlayTrigger>
-        </div>
-
-        <h1 className="h3 mb-0 text-wrap text-break pb-1 flex-grow-1">
+      <div className="mb-3">
+        <h1 className="h3 mb-0 text-wrap text-break pb-1">
           <Link
             className="link-dark"
             reloadDocument
@@ -202,7 +185,7 @@ const Index: FC<Props> = ({ data, initPage, hasAnswer, isLogged }) => {
             </Comment>
           </div>
         </div>
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 d-flex flex-column align-items-center">
           <Actions
             source="question"
             qid={data?.id}
@@ -217,6 +200,19 @@ const Index: FC<Props> = ({ data, initPage, hasAnswer, isLogged }) => {
               username: data.user_info?.username,
             }}
           />
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="followTooltip">{t('follow_tip')}</Tooltip>}>
+            <Button
+              variant="link"
+              className="p-0 btn-no-border mt-2"
+              onClick={(e) => handleFollow(e)}>
+              <Icon
+                name={followed ? 'bell-fill' : 'bell'}
+                className={`${followed ? 'text-warning' : 'text-secondary'} fs-4`}
+              />
+            </Button>
+          </OverlayTrigger>
         </div>
       </div>
     </div>
