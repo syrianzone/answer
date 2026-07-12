@@ -49,9 +49,18 @@ interface Props {
   qid: string;
   aid?: string;
   title: string;
+  children?: React.ReactNode;
 }
 
-const Index: FC<Props> = ({ className, data, source, qid, aid, title }) => {
+const Index: FC<Props> = ({
+  className,
+  data,
+  source,
+  qid,
+  aid,
+  title,
+  children,
+}) => {
   const [votes, setVotes] = useState(0);
   const [like, setLike] = useState(false);
   const [hate, setHated] = useState(false);
@@ -186,6 +195,8 @@ const Index: FC<Props> = ({ className, data, source, qid, aid, title }) => {
         onClick={() => handleVote('down')}>
         <Icon name="caret-down-fill" size="2rem" />
       </Button>
+
+      {children}
 
       {!data?.hideCollect && (
         <Button

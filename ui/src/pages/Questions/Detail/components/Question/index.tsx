@@ -186,19 +186,6 @@ const Index: FC<Props> = ({ data, initPage, hasAnswer, isLogged }) => {
           </div>
         </div>
         <div className="flex-shrink-0 d-flex flex-column align-items-center">
-          <OverlayTrigger
-            placement="bottom"
-            overlay={<Tooltip id="followTooltip">{t('follow_tip')}</Tooltip>}>
-            <Button
-              variant="link"
-              className="p-0 btn-no-border mb-2"
-              onClick={(e) => handleFollow(e)}>
-              <Icon
-                name={followed ? 'bell-fill' : 'bell'}
-                className={`${followed ? 'text-warning' : 'text-secondary'} fs-4`}
-              />
-            </Button>
-          </OverlayTrigger>
           <Actions
             source="question"
             qid={data?.id}
@@ -211,8 +198,21 @@ const Index: FC<Props> = ({ data, initPage, hasAnswer, isLogged }) => {
               collected: data?.collected,
               collectCount: data?.collection_count,
               username: data.user_info?.username,
-            }}
-          />
+            }}>
+            <OverlayTrigger
+              placement="bottom"
+              overlay={<Tooltip id="followTooltip">{t('follow_tip')}</Tooltip>}>
+              <Button
+                variant="link"
+                className="p-0 btn-no-border mt-2"
+                onClick={(e) => handleFollow(e)}>
+                <Icon
+                  name={followed ? 'bell-fill' : 'bell'}
+                  className={`${followed ? 'text-warning' : 'text-secondary'} fs-4`}
+                />
+              </Button>
+            </OverlayTrigger>
+          </Actions>
         </div>
       </div>
     </div>
