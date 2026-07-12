@@ -91,12 +91,6 @@ const Index: FC<Props> = ({ data, initPage, hasAnswer, isLogged }) => {
 
   return (
     <div>
-      <div className="mb-1 d-flex flex-wrap gap-2">
-        {data?.tags?.map((item: any) => {
-          return <Tag key={item.slug_name} data={item} />;
-        })}
-      </div>
-
       <div className="d-flex align-items-center justify-content-between mb-3">
         <div className="me-3 flex-shrink-0">
           <OverlayTrigger
@@ -174,6 +168,12 @@ const Index: FC<Props> = ({ data, initPage, hasAnswer, isLogged }) => {
 
       <div className="d-flex align-items-stretch gap-3 mt-3 post-body-wrapper">
         <div className="flex-grow-1 min-w-0 d-flex flex-column">
+          <div className="mb-1 d-flex flex-wrap gap-2">
+            {data?.tags?.map((item: any) => {
+              return <Tag key={item.slug_name} data={item} />;
+            })}
+          </div>
+
           <ImgViewer>
             <article
               ref={ref}
