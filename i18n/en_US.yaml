@@ -1449,6 +1449,7 @@ ui:
     answer_un_useful: It is not useful
     answers:
       title: Answers
+      answers_label: "Answers: {{count}}"
       score: Score
       newest: Newest
       oldest: Oldest

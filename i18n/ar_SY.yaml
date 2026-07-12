@@ -1449,6 +1449,7 @@ ui:
     answer_un_useful: إنها غير مفيدة
     answers:
       title: الإجابات
+      answers_label: "عدد الإجابات: {{count}}"
       score: التقييم
       newest: الأحدث
       oldest: الأقدم

@@ -19,8 +19,11 @@
 
 import { memo, FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSearchParams } from 'react-router-dom';
 
-import { QueryGroup } from '@/components';
+import classNames from 'classnames';
+
+import { Icon } from '@/components';
 
 interface Props {
   count: number;
@@ -31,14 +34,17 @@ const sortBtns = [
   {
     name: 'score',
     sort: 'default',
+    icon: 'star',
   },
   {
     name: 'newest',
     sort: 'updated',
+    icon: 'clock',
   },
   {
     name: 'oldest',
     sort: 'created',
+    icon: 'clock-history',
   },
 ];
 
@@ -47,24 +53,36 @@ const Index: FC<Props> = ({ count = 0, order = 'default' }) => {
     keyPrefix: 'question_detail.answers',
   });
 
+  const [searchParams, setUrlSearchParams] = useSearchParams();
+
+  const currentSort =
+    order === 'updated' ? 'newest' : order === 'created' ? 'oldest' : 'score';
+
+  const handleSort = (sortVal: string) => {
+    searchParams.delete('page');
+    searchParams.set('order', sortVal);
+    setUrlSearchParams(searchParams);
+  };
+
   return (
     <div
       className="d-flex align-items-center justify-content-between mt-5 mb-3"
       id="answerHeader">
-      <h5 className="mb-0">
-        {count} {t('title')}
-      </h5>
-      <QueryGroup
-        data={sortBtns}
-        currentSort={
-          order === 'updated'
-            ? 'newest'
-            : order === 'created'
-              ? 'oldest'
-              : 'score'
-        }
-        i18nKeyPrefix="question_detail.answers"
-      />
+      <h5 className="mb-0 fw-bold">{t('answers_label', { count })}</h5>
+      <div className="shadcn-toggle-group">
+        {sortBtns.map((btn) => (
+          <button
+            key={btn.sort}
+            type="button"
+            className={classNames('btn-toggle-item', {
+              active: currentSort === btn.name,
+            })}
+            onClick={() => handleSort(btn.sort)}>
+            <Icon name={btn.icon} />
+            <span>{t(btn.name)}</span>
+          </button>
+        ))}
+      </div>
     </div>
   );
 };
